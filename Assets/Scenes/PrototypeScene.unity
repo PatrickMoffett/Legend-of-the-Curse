@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttack: {fileID: 11400000, guid: a5a546e7c8f50b34ba5cf7ae7f6cfa2f, type: 2}
-  testEffect: {fileID: 11400000, guid: 652628b4411720042a8ee5e3177bef5c, type: 2}
+  testEffect: {fileID: 11400000, guid: fc47ecae5bfd9204eba28b979c635e5e, type: 2}
 --- !u!114 &1235959848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth:
-    baseValue: 0
+    baseValue: 100
   maxHealth:
     baseValue: 0
   healthRegen:

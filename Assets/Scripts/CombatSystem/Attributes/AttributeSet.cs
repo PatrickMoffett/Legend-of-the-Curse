@@ -50,8 +50,9 @@ public class AttributeSet : MonoBehaviour
 
     private void HandleDamage(AttributeModifier attributeModifier)
     {
-        throw new System.NotImplementedException();
+        currentHealth.BaseValue -= attributeModifier.modificationValue;
     }
+    // ReSharper disable Unity.PerformanceAnalysis
     public void ApplyModifier(AttributeModifier attributeModifier)
     {
         switch (attributeModifier.attribute)

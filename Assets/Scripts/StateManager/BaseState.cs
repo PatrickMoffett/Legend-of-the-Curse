@@ -25,6 +25,7 @@ namespace StateManager
         /// </summary>
         public StateStatus CurrentStateStatus { get; protected set; } = StateStatus.Inactive;
     
+        // ReSharper disable Unity.PerformanceAnalysis
         /// <summary>
         /// Transition into a new state
         /// </summary>

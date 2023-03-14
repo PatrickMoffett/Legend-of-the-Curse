@@ -46,6 +46,7 @@ namespace Services
             Instance = new ServiceLocator();
         }
         
+        // ReSharper disable Unity.PerformanceAnalysis
         /// <summary>
         /// Retrieves the instance of the service specified by the generic type parameter T.
         /// </summary>

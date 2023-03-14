@@ -43,6 +43,7 @@ public class Attribute
     /// </summary>
     public float CurrentValue { get; private set; }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     /// <summary>
     /// Updates the current value of this attribute including all the modifiers affecting it
     /// </summary>

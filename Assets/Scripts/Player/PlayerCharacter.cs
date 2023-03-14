@@ -2,32 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float projectileVelocity = 10f;
-    [SerializeField] private float attackSpeed = 1f;
+    public Ability basicAttack;
 
-    private float timeSinceLastAttack = 0;
-    public void TryRangedAttack()
+    public void Start()
     {
-        float attackRate = 1 / attackSpeed;
-        if (timeSinceLastAttack > attackRate)
-        {
-            PerformRangedAttack();
-            timeSinceLastAttack = 0;
-        }
+        basicAttack.Initialize(gameObject);
     }
 
-    private void Update()
+    public void PerformBasicAttack()
     {
-        timeSinceLastAttack += Time.deltaTime;
-    }
-
-    private void PerformRangedAttack()
-    {
-        GameObject projectile = Instantiate(projectilePrefab,transform.position,transform.rotation);
-        projectile.GetComponent<Rigidbody2D>().velocity = transform.up * projectileVelocity;
+        basicAttack.Activate();
     }
 }

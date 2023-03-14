@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
         if (_playerControls.Player.Attack.ReadValue<float>() > 0f)
         {
-            _playerCharacter.TryRangedAttack();
+            _playerCharacter.PerformBasicAttack();
         }
     }
 }

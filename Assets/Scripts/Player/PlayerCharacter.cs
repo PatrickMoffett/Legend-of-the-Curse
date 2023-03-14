@@ -12,7 +12,6 @@ public class PlayerCharacter : MonoBehaviour
     private float timeSinceLastAttack = 0;
     public void TryRangedAttack()
     {
-        Debug.Log(timeSinceLastAttack);
         float attackRate = 1 / attackSpeed;
         if (timeSinceLastAttack > attackRate)
         {

@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using Services;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using Object = UnityEngine.Object;
 
 namespace Abilities
@@ -13,7 +12,7 @@ namespace Abilities
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float projectileVelocity = 10f;
 
-        private bool onCooldown = false;
+        public bool onCooldown = false;
         public override void Activate()
         {
             if(onCooldown) return;
@@ -23,7 +22,7 @@ namespace Abilities
             projectile.GetComponent<Rigidbody2D>().velocity = _owner.transform.up * projectileVelocity;
         }
 
-        IEnumerator AttackCooldown(float cooldownLength)
+        private IEnumerator AttackCooldown(float cooldownLength)
         {
             onCooldown = true;
             yield return new WaitForSeconds(cooldownLength);

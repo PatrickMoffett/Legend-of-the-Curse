@@ -18,11 +18,6 @@ public class PlayerCharacter : MonoBehaviour
 
     public void PerformBasicAttack()
     {
-        _combatSystem.ApplyStatusEffect(testEffect);
-        _combatSystem.ApplyStatusEffect(testEffect);
-        _combatSystem.ApplyStatusEffect(testEffect);
         basicAttack.Activate();
-        _combatSystem.RemoveStatusEffect(testEffect);
-
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum AttributeType
@@ -30,6 +31,22 @@ public class AttributeSet : MonoBehaviour
     public Attribute physicalDefense;
     public Attribute magicalDefense;
     public Attribute moveSpeed;
+
+    private void Start()
+    {
+        currentHealth.UpdateCurrentValue();
+        maxHealth.UpdateCurrentValue();
+        healthRegen.UpdateCurrentValue();
+        currentMana.UpdateCurrentValue();
+        maxMana.UpdateCurrentValue();
+        manaRegen.UpdateCurrentValue();
+        attackSpeed.UpdateCurrentValue();
+        attackPower.UpdateCurrentValue();
+        magicPower.UpdateCurrentValue();
+        physicalDefense.UpdateCurrentValue();
+        magicalDefense.UpdateCurrentValue();
+        moveSpeed.UpdateCurrentValue();
+    }
 
     private void HandleDamage(AttributeModifier attributeModifier)
     {

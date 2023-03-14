@@ -46,7 +46,7 @@ public class Attribute
     /// <summary>
     /// Updates the current value of this attribute including all the modifiers affecting it
     /// </summary>
-    private void UpdateCurrentValue()
+    public void UpdateCurrentValue()
     {
         float sumToAdd = 0f;
         float multiplier = 1f;
@@ -86,7 +86,6 @@ public class Attribute
         _modifiers.Add(modifier);
         UpdateCurrentValue();
         ValueChanged?.Invoke(CurrentValue);
-        Debug.Log(CurrentValue);
     }
     /// <summary>
     /// Remove a modifier that was changing the value of the attribute
@@ -94,7 +93,6 @@ public class Attribute
     /// <param name="modifier"></param>
     public void RemoveModifier(AttributeModifier modifier)
     {
-        //TODO: Fix this
         _modifiers.Remove(modifier);
         UpdateCurrentValue();
         ValueChanged?.Invoke(CurrentValue);

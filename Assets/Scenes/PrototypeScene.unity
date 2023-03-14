@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 1235959848}
   - component: {fileID: 1235959847}
   - component: {fileID: 1235959849}
+  - component: {fileID: 1235959850}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -681,6 +682,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: c8527269a1d741342bdce0a1afb1dc67, type: 2}
+--- !u!114 &1235959850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235959843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8d03f44dc012243a7b81be72080e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth:
+    value: 0
+  maxHealth:
+    value: 0
+  healthRegen:
+    value: 0
+  currentMana:
+    value: 0
+  maxMana:
+    value: 0
+  manaRegen:
+    value: 0
+  attackSpeed:
+    value: 2
+  attackPower:
+    value: 0
+  magicPower:
+    value: 0
+  physicalDefense:
+    value: 0
+  magicalDefense:
+    value: 0
+  moveSpeed:
+    value: 0
 --- !u!1 &1524506471
 GameObject:
   m_ObjectHideFlags: 0

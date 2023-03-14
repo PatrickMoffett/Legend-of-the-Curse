@@ -66,7 +66,6 @@ namespace Services
 
         private void OnDestroy()
         {
-            Debug.Log("Destroyed");
             //Stop listening for buttons
             _popButton.clicked -= PopButtonClicked;
             _pushButton.clicked -= PushButtonClicked;

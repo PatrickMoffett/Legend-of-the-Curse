@@ -22,7 +22,6 @@ public static class Bootstrapper
         ServiceLocator.Instance.Register(singletonObject.GetComponent<MonoBehaviorService>());
         Object.DontDestroyOnLoad(singletonObject);
         
-        Debug.Log("Create ApplicationStateManager");
         //Setup Services
         ServiceLocator.Instance.Register(new ApplicationStateManager());
         ServiceLocator.Instance.Register(new AudioManager());

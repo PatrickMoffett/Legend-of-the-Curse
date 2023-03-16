@@ -50,6 +50,14 @@ public class PlayerController : MonoBehaviour
         var mouseDir = mousePos - transform.position;
         mouseDir.z = transform.position.z;
         _playerMovement.Rotate(mouseDir);
+
+        //unless left gamepad is active (twin-stick aiming mode)
+        Vector2 twinstick_aim = _playerControls.Player.TwinstickAiming.ReadValue<Vector2>();
+        // fixme: allow a deadzone for gamepads with drift don't interfere with mouse
+        if (twinstick_aim.x != 0 || twinstick_aim.y != 0) {
+            //Debug.Log("twin-stick aiming: "+twinstick_aim.x+","+twinstick_aim.y);
+            _playerMovement.Rotate(twinstick_aim);
+        }
         
         //Move Player towards input
         Vector2 input = _playerControls.Player.Move.ReadValue<Vector2>();

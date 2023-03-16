@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TwinstickAiming",
+                    "type": "Value",
+                    "id": "b29e6964-ebe8-4773-a6bd-f0f5c5b3ab5f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -238,6 +247,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DebugTeleport",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03427311-2ebc-41d9-80d5-85f4e203eb7e",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Joystick;XR;Keyboard&Mouse",
+                    "action": "TwinstickAiming",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

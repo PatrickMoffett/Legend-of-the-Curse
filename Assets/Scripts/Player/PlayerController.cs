@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     private PlayerCharacter _playerCharacter;
     private PlayerMovement _playerMovement;
 
+    // used to swap between mouse aim and thumbstick during game
+    private bool hasTwinStickedRecently = false;
+
     private void Awake()
     {
         //create controls
@@ -43,13 +46,18 @@ public class PlayerController : MonoBehaviour
         throw new System.NotImplementedException();
     }
 #endif
+    
     private void FixedUpdate()
     {
+        if (Input.GetMouseButton(0)) {
+            hasTwinStickedRecently = false; // start ignoring gamepad again
+        }
+
         //Rotate Player towards mouse
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var mouseDir = mousePos - transform.position;
         mouseDir.z = transform.position.z;
-        _playerMovement.Rotate(mouseDir);
+        if (!hasTwinStickedRecently) _playerMovement.Rotate(mouseDir);
 
         //unless left gamepad is active (twin-stick aiming mode)
         Vector2 twinstick_aim = _playerControls.Player.TwinstickAiming.ReadValue<Vector2>();
@@ -57,6 +65,7 @@ public class PlayerController : MonoBehaviour
         if (twinstick_aim.x != 0 || twinstick_aim.y != 0) {
             //Debug.Log("twin-stick aiming: "+twinstick_aim.x+","+twinstick_aim.y);
             _playerMovement.Rotate(twinstick_aim);
+            hasTwinStickedRecently = true;
         }
         
         //Move Player towards input

@@ -160,37 +160,37 @@ public class AttributeSet : MonoBehaviour
                 currentHealth.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.MaxHealth:
-                maxHealth.RemoveModifier(attributeModifier);
+                maxHealth.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.HealthRegen:
-                healthRegen.RemoveModifier(attributeModifier);
+                healthRegen.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.CurrentMana:
-                currentMana.RemoveModifier(attributeModifier);
+                currentMana.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.MaxMana:
-                maxMana.RemoveModifier(attributeModifier);
+                maxMana.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.ManaRegen:
-                manaRegen.RemoveModifier(attributeModifier);
+                manaRegen.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.AttackSpeed:
-                attackSpeed.RemoveModifier(attributeModifier);
+                attackSpeed.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.AttackPower:
-                attackPower.RemoveModifier(attributeModifier);
+                attackPower.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.MagicPower:
-                magicPower.RemoveModifier(attributeModifier);
+                magicPower.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.PhysicalDefense:
-                physicalDefense.RemoveModifier(attributeModifier);
+                physicalDefense.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.MagicalDefense:
-                magicalDefense.RemoveModifier(attributeModifier);
+                magicalDefense.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.MoveSpeed:
-                moveSpeed.RemoveModifier(attributeModifier);
+                moveSpeed.InstantlyApply(attributeModifier);
                 break;
             default:
                 Debug.LogError("Unexpected Attribute Enum on Remove Modifier");

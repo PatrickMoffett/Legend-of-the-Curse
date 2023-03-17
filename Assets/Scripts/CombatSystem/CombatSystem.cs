@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +9,15 @@ public class CombatSystem : MonoBehaviour
     private AttributeSet _attributeSet;
 
     private List<StatusEffect> _currentStatusEffects = new List<StatusEffect>();
+
+    public event Action StatusEffectAdded;
+    public event Action StatusEffectRemoved;
     // Start is called before the first frame update
     void Start()
     {
         _attributeSet = GetComponent<AttributeSet>();
     }
-
+    
     // ReSharper disable Unity.PerformanceAnalysis
     public void ApplyStatusEffect(StatusEffect effectToApply)
     {
@@ -47,6 +51,7 @@ public class CombatSystem : MonoBehaviour
                 Debug.LogError("Unexpected effect type in ApplyStatusEffect");
                 break;
         }
+        StatusEffectAdded?.Invoke();
     }
 
     public void RemoveStatusEffect(StatusEffect effectToRemove)
@@ -56,8 +61,13 @@ public class CombatSystem : MonoBehaviour
         {
             _attributeSet.RemoveModifier(modifier);
         }
+        StatusEffectRemoved?.Invoke();
     }
 
+    public List<StatusEffect> GetStatusEffects()
+    {
+        return _currentStatusEffects;
+    }
     private IEnumerator WaitToRemoveStatusEffect(StatusEffect effectToRemove)
     {
         yield return new WaitForSeconds(effectToRemove.duration);

@@ -19,18 +19,18 @@ public enum AttributeType
 }
 public class AttributeSet : MonoBehaviour
 {
-    public Attribute currentHealth;
-    public Attribute maxHealth;
-    public Attribute healthRegen;
-    public Attribute currentMana;
-    public Attribute maxMana;
-    public Attribute manaRegen;
-    public Attribute attackSpeed;
-    public Attribute attackPower;
-    public Attribute magicPower;
-    public Attribute physicalDefense;
-    public Attribute magicalDefense;
-    public Attribute moveSpeed;
+    public Attribute currentHealth = new Attribute(10f);
+    public Attribute maxHealth = new Attribute(10f);
+    public Attribute healthRegen = new Attribute(1f);
+    public Attribute currentMana = new Attribute(10f);
+    public Attribute maxMana = new Attribute(10f);
+    public Attribute manaRegen = new Attribute(1f);
+    public Attribute attackSpeed = new Attribute(2f);
+    public Attribute attackPower = new Attribute(10f);
+    public Attribute magicPower = new Attribute(10f);
+    public Attribute physicalDefense = new Attribute(10f);
+    public Attribute magicalDefense = new Attribute(10f);
+    public Attribute moveSpeed = new Attribute(5f);
 
     private void Start()
     {
@@ -102,12 +102,62 @@ public class AttributeSet : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void RemoveModifier(AttributeModifier attributeModifier)
     {
         switch (attributeModifier.attribute)
         {
             case AttributeType.CurrentHealth:
                 currentHealth.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.MaxHealth:
+                maxHealth.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.HealthRegen:
+                healthRegen.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.CurrentMana:
+                currentMana.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.MaxMana:
+                maxMana.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.ManaRegen:
+                manaRegen.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.AttackSpeed:
+                attackSpeed.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.AttackPower:
+                attackPower.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.MagicPower:
+                magicPower.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.PhysicalDefense:
+                physicalDefense.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.MagicalDefense:
+                magicalDefense.RemoveModifier(attributeModifier);
+                break;
+            case AttributeType.MoveSpeed:
+                moveSpeed.RemoveModifier(attributeModifier);
+                break;
+            default:
+                Debug.LogError("Unexpected Attribute Enum on Remove Modifier");
+                break;
+        }
+    }
+
+    public void ApplyInstantModifier(AttributeModifier attributeModifier)
+    {
+        switch (attributeModifier.attribute)
+        {
+            case AttributeType.Damage:
+                //TODO: Damage is different! Handle this
+                break;
+            case AttributeType.CurrentHealth:
+                currentHealth.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.MaxHealth:
                 maxHealth.RemoveModifier(attributeModifier);

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,12 +14,38 @@ public class CombatSystem : MonoBehaviour
         _attributeSet = GetComponent<AttributeSet>();
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void ApplyStatusEffect(StatusEffect effectToApply)
     {
-        _currentStatusEffects.Add(effectToApply);
-        foreach (var modifier in effectToApply.attributeModifiers)
+        switch (effectToApply.durationType)
         {
-            _attributeSet.ApplyModifier(modifier);
+            case StatusEffect.DurationType.Duration:
+                _currentStatusEffects.Add(effectToApply); ;
+                foreach (var modifier in effectToApply.attributeModifiers)
+                {
+                    _attributeSet.ApplyModifier(modifier);
+                }
+                StartCoroutine(WaitToRemoveStatusEffect(effectToApply));
+                break;
+            
+            case StatusEffect.DurationType.Infinite:
+                _currentStatusEffects.Add(effectToApply);
+                foreach (var modifier in effectToApply.attributeModifiers)
+                {
+                    _attributeSet.ApplyModifier(modifier);
+                }
+                break;
+            
+            case StatusEffect.DurationType.Instant:
+                foreach (var modifier in effectToApply.attributeModifiers)
+                {
+                    _attributeSet.ApplyInstantModifier(modifier);
+                }
+                break;
+            default:
+                
+                Debug.LogError("Unexpected effect type in ApplyStatusEffect");
+                break;
         }
     }
 
@@ -29,5 +56,11 @@ public class CombatSystem : MonoBehaviour
         {
             _attributeSet.RemoveModifier(modifier);
         }
+    }
+
+    private IEnumerator WaitToRemoveStatusEffect(StatusEffect effectToRemove)
+    {
+        yield return new WaitForSeconds(effectToRemove.duration);
+        RemoveStatusEffect(effectToRemove);
     }
 }

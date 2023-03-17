@@ -796,25 +796,25 @@ MonoBehaviour:
   currentHealth:
     baseValue: 100
   maxHealth:
-    baseValue: 0
+    baseValue: 100
   healthRegen:
-    baseValue: 0
+    baseValue: 100
   currentMana:
-    baseValue: 0
+    baseValue: 100
   maxMana:
-    baseValue: 0
+    baseValue: 100
   manaRegen:
-    baseValue: 0
+    baseValue: 100
   attackSpeed:
     baseValue: 2
   attackPower:
-    baseValue: 0
+    baseValue: 100
   magicPower:
-    baseValue: 0
+    baseValue: 100
   physicalDefense:
-    baseValue: 0
+    baseValue: 100
   magicalDefense:
-    baseValue: 0
+    baseValue: 100
   moveSpeed:
     baseValue: 8
 --- !u!1 &1417785482

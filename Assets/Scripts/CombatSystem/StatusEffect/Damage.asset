@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durationType: 0
   duration: 0
-  appliesPeriodically: 0
   periodicRate: 0
   attributeModifiers:
   - attribute: 0
     operation: 1
-    modificationValue: 0.001
+    modificationValue: 1
   grantedAbilities: []

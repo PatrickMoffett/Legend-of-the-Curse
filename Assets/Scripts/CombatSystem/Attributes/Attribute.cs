@@ -6,6 +6,12 @@ using UnityEngine.Serialization;
 [Serializable]
 public class Attribute
 {
+    public Attribute(){ }
+
+    public Attribute(float value)
+    {
+        baseValue = value;
+    }
     /// <summary>
     /// Action Invoked whenever the CurrentValue of this Attribute changes
     /// </summary>
@@ -95,6 +101,33 @@ public class Attribute
     public void RemoveModifier(AttributeModifier modifier)
     {
         _modifiers.Remove(modifier);
+        UpdateCurrentValue();
+        ValueChanged?.Invoke(CurrentValue);
+    }
+
+    public void InstantlyApply(AttributeModifier modifier)
+    {
+        switch (modifier.operation)
+        {
+            case AttributeModifier.Operator.Add:
+                baseValue += modifier.modificationValue;
+                break;
+            case AttributeModifier.Operator.Subtract:
+                baseValue -= modifier.modificationValue;
+                break;
+            case AttributeModifier.Operator.Multiply:
+                baseValue *= modifier.modificationValue;
+                break;
+            case AttributeModifier.Operator.Divide:
+                baseValue /= modifier.modificationValue;
+                break;
+            case AttributeModifier.Operator.Set:
+                baseValue = modifier.modificationValue;
+                return;
+            default:
+                Debug.LogError("Unexpected Operator in attributeMod");
+                break;
+        }
         UpdateCurrentValue();
         ValueChanged?.Invoke(CurrentValue);
     }

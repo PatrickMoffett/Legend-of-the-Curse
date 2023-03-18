@@ -8,7 +8,6 @@ using UnityEngine.Serialization;
 public class PlayerCharacter : MonoBehaviour
 {
     public Ability basicAttack;
-    public StatusEffect testEffect;
     private CombatSystem _combatSystem;
     private AttributeSet _attributeSet;
 
@@ -30,7 +29,6 @@ public class PlayerCharacter : MonoBehaviour
 
     public void PerformBasicAttack()
     {
-        _combatSystem.ApplyStatusEffect(testEffect);
         basicAttack.Activate();
     }
 }

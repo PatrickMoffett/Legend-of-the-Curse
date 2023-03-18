@@ -30,8 +30,8 @@ public class ReadmeEditor : Editor {
 			}
 		} 
 	}
-	
-	static void LoadLayout()
+
+	private static void LoadLayout()
 	{
 		var assembly = typeof(EditorApplication).Assembly; 
 		var windowLayoutType = assembly.GetType("UnityEditor.WindowLayout", true);

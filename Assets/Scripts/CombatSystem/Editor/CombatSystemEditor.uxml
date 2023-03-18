@@ -1,15 +1,103 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Label text="Selected GameObject" display-tooltip-when-elided="true" name="GameobjectName" style="align-items: stretch; -unity-text-align: upper-center; margin-top: 0; -unity-font-style: bold; visibility: visible; margin-left: 0; margin-right: 0; margin-bottom: 0; justify-content: flex-start; flex-grow: 0; font-size: 25px;" />
     <ui:GroupBox style="align-items: stretch;">
-        <ui:VisualElement>
-            <ui:DropdownField label="State To Push:" index="-1" name="StateToPushDropDown" style="opacity: 1; justify-content: flex-start;" />
-            <ui:Button text="Add Effect" display-tooltip-when-elided="true" name="PushStateButton" />
-            <ui:Button text="Pop State" display-tooltip-when-elided="true" name="PopStateButton" />
+        <ui:Label text="Stats" display-tooltip-when-elided="true" name="Stats" style="align-items: stretch; -unity-text-align: upper-center; margin-top: 0; -unity-font-style: bold; visibility: visible; margin-left: 0; margin-right: 0; margin-bottom: 0; justify-content: flex-start; flex-grow: 0; font-size: 20px;" />
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="Health:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="HealthCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="HealthBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="MaxHealth:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="MaxHealthCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="MaxHealthBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="Health Regen:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="HealthRegenCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="HealthRegenBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="Mana:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="ManaCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="ManaBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="MaxMana:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="MaxManaCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="MaxManaBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="ManaRegen:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="ManaRegenCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="ManaRegenBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="AttackSpeed:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="AttackSpeedCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="AttackSpeedBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="AttackPower:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="AttackPowerCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="AttackPowerBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="MagicPower:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="MagicPowerCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="MagicPowerBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="PhysicalDefense:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="PhysicalDefenseCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="PhysicalDefenseBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="MagicalDefense:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="MagicalDefenseCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="MagicalDefenseBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; -unity-text-align: upper-right; justify-content: flex-end;">
+            <ui:Label text="MoveSpeed:" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 20px;" />
+            <ui:Label text="Current: " display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-right;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="MoveSpeedCurrentValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left; padding-right: 100px;" />
+            <ui:Label text="Base:" display-tooltip-when-elided="true" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
+            <ui:Label text="100" display-tooltip-when-elided="true" name="MoveSpeedBaseValue" style="font-size: 16px; padding-left: 6px; -unity-text-align: middle-left;" />
         </ui:VisualElement>
     </ui:GroupBox>
-    <ui:VisualElement style="flex-direction: row; flex-grow: 1; align-items: stretch; justify-content: space-around;">
+    <ui:GroupBox style="align-items: stretch;">
+        <ui:VisualElement>
+            <ui:DropdownField label="StatusEffect To Add" index="-1" name="EffectToAddDropDown" style="opacity: 1; justify-content: flex-start;" />
+            <ui:Button text="Add Effect" display-tooltip-when-elided="true" name="AddEffectButton" />
+        </ui:VisualElement>
+        <ui:Button text="Remove Effect" display-tooltip-when-elided="true" name="RemoveEffectButton" />
+    </ui:GroupBox>
+    <ui:VisualElement name="VisualElement" style="flex-direction: row; flex-grow: 1; align-items: stretch; justify-content: space-around;">
         <ui:VisualElement style="flex-grow: 1; align-items: stretch; justify-content: space-around; flex-direction: column;">
-            <ui:Label text="Application State Stack" display-tooltip-when-elided="true" style="align-items: stretch; -unity-text-align: upper-center; margin-top: 0; -unity-font-style: bold; visibility: visible; margin-left: 0; margin-right: 0; margin-bottom: 0; justify-content: flex-start; flex-grow: 0;" />
-            <ui:VisualElement name="StateStackList" style="flex-grow: 1; border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-left-color: rgba(0, 0, 0, 0.42); border-right-color: rgba(0, 0, 0, 0.42); border-top-color: rgba(0, 0, 0, 0.42); border-bottom-color: rgba(0, 0, 0, 0.42); justify-content: space-around; max-width: none; max-height: none; align-items: stretch; min-width: auto; min-height: auto;" />
+            <ui:Label text="Status Effects" display-tooltip-when-elided="true" style="align-items: stretch; -unity-text-align: upper-center; margin-top: 0; -unity-font-style: bold; visibility: visible; margin-left: 0; margin-right: 0; margin-bottom: 0; justify-content: flex-start; flex-grow: 0;" />
+            <ui:ListView focusable="true" name="EffectList" style="align-items: auto; flex-direction: column;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

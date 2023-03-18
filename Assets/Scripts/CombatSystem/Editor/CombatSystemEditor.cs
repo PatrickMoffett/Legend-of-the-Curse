@@ -245,19 +245,13 @@ public class CombatSystemEditor : EditorWindow
             Debug.LogError("Cannot change state while game isn't running");
             return;
         }
-        GameObject player = GameObject.Find("Player");
-        if (!player)
+
+        if (!_lastSelectedCombatSystem)
         {
-            Debug.LogError("Player Not Found");
+            Debug.LogError("No Combat System found");
             return;
         }
-        CombatSystem system = player.GetComponent<CombatSystem>();
-        if (_effectDropDownField.index < 0 || _effectDropDownField.index >= _statusEffectsScriptableObjects.Count)
-        {
-            Debug.LogWarning("Tried to add Status Effect that was out of array range");
-            return;
-        }
-        system.ApplyStatusEffect(Instantiate(_statusEffectsScriptableObjects[_effectDropDownField.index]));
+        _lastSelectedCombatSystem.ApplyStatusEffect(Instantiate(_statusEffectsScriptableObjects[_effectDropDownField.index]));
     }
     private void RemoveEffectButtonClicked()
     {

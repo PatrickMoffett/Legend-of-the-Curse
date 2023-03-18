@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5421869499343826753}
   - component: {fileID: 5421869499343826756}
   - component: {fileID: 5421869499343826757}
+  - component: {fileID: 6348248489396451972}
+  - component: {fileID: 1339089340846152043}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -137,3 +139,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+--- !u!114 &6348248489396451972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421869499343826752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8d03f44dc012243a7b81be72080e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth:
+    baseValue: 10
+  maxHealth:
+    baseValue: 10
+  healthRegen:
+    baseValue: 1
+  currentMana:
+    baseValue: 10
+  maxMana:
+    baseValue: 10
+  manaRegen:
+    baseValue: 1
+  attackSpeed:
+    baseValue: 2
+  attackPower:
+    baseValue: 10
+  magicPower:
+    baseValue: 10
+  physicalDefense:
+    baseValue: 10
+  magicalDefense:
+    baseValue: 10
+  moveSpeed:
+    baseValue: 5
+--- !u!114 &1339089340846152043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421869499343826752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9929931ce52f4c4ca484f073fe40612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

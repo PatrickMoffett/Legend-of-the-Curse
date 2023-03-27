@@ -15,13 +15,13 @@ public class PlayerCharacter : MonoBehaviour
     {
         _combatSystem = GetComponent<CombatSystem>();
         _attributeSet = GetComponent<AttributeSet>();
-        _attributeSet.currentHealth.ValueChanged += HealthChanged;
+        _attributeSet.currentHealth.OnValueChanged += HealthChanged;
         basicAttack.Initialize(gameObject);
     }
 
-    private void HealthChanged(float newValue)
+    private void HealthChanged(Attribute attribute)
     {
-        if (newValue <= 0f)
+        if (attribute.BaseValue <= 0f)
         {
             ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<GameOverState>();
         }

@@ -15,7 +15,7 @@ public class Attribute
     /// <summary>
     /// Action Invoked whenever the CurrentValue of this Attribute changes
     /// </summary>
-    public event Action<float> ValueChanged;
+    public event Action<Attribute> OnValueChanged;
 
     /// <summary>
     /// Dictionary of Attribute modifiers
@@ -40,7 +40,7 @@ public class Attribute
         {
             baseValue = value;
             UpdateCurrentValue();
-            ValueChanged?.Invoke(CurrentValue);
+            OnValueChanged?.Invoke(this);
         }
     }
     
@@ -92,7 +92,7 @@ public class Attribute
     {
         _modifiers.Add(modifier);
         UpdateCurrentValue();
-        ValueChanged?.Invoke(CurrentValue);
+        OnValueChanged?.Invoke(this);
     }
     /// <summary>
     /// Remove a modifier that was changing the value of the attribute
@@ -102,7 +102,7 @@ public class Attribute
     {
         _modifiers.Remove(modifier);
         UpdateCurrentValue();
-        ValueChanged?.Invoke(CurrentValue);
+        OnValueChanged?.Invoke(this);
     }
 
     public void InstantlyApply(AttributeModifier modifier)
@@ -129,6 +129,6 @@ public class Attribute
                 break;
         }
         UpdateCurrentValue();
-        ValueChanged?.Invoke(CurrentValue);
+        OnValueChanged?.Invoke(this);
     }
 }

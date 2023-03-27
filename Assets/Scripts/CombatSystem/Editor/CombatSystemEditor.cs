@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -147,26 +148,29 @@ public class CombatSystemEditor : EditorWindow
     }
     private void OnInspectorUpdate()
     {
+        
         if (!EditorApplication.isPlaying) { return; }
 
         if (_lastSelectedCombatSystem == null)
         {
-            GameObject gameObject = GameObject.Find("Player");
-            CombatSystem combatSystem= gameObject.GetComponent<CombatSystem>();
-            if (combatSystem != null &&
-                combatSystem != _lastSelectedCombatSystem)
-            {
-                _gameObjectNameLabel.text = gameObject.name;
-                _lastSelectedCombatSystem = combatSystem;
-                _attributeSet = gameObject.GetComponent<AttributeSet>();
-                _statusEffectList.itemsSource = _lastSelectedCombatSystem.GetStatusEffects();
-                _lastSelectedCombatSystem.StatusEffectAdded += Refresh;
-                _lastSelectedCombatSystem.StatusEffectRemoved += Refresh;
-                Refresh();
-                return;
-            }
+            GameObject[] gameObjects = new GameObject[1]; 
+            gameObjects[0]= GameObject.Find("Player");
+            newCombatSystemSelected(gameObjects); 
         }
-        foreach (var gameObject in Selection.gameObjects)
+        else if(Selection.gameObjects.Length > 0 &&
+                !Selection.gameObjects.Contains(_lastSelectedCombatSystem.gameObject))
+        {
+            newCombatSystemSelected(Selection.gameObjects);
+        }
+        else
+        {
+            Refresh();
+        }
+    }
+
+    private void newCombatSystemSelected(GameObject[] gameObjects)
+    {
+        foreach (var gameObject in gameObjects)
         {
             CombatSystem combatSystem= gameObject.GetComponent<CombatSystem>();
             if (combatSystem != null &&

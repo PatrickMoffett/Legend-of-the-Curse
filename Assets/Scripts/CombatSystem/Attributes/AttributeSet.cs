@@ -47,19 +47,11 @@ public class AttributeSet : MonoBehaviour
         magicalDefense.UpdateCurrentValue();
         moveSpeed.UpdateCurrentValue();
     }
-
-    private void HandleDamage(AttributeModifier attributeModifier)
-    {
-        currentHealth.BaseValue -= attributeModifier.modificationValue;
-    }
     // ReSharper disable Unity.PerformanceAnalysis
     public void ApplyModifier(AttributeModifier attributeModifier)
     {
         switch (attributeModifier.attribute)
-        { 
-            case AttributeType.Damage:
-                HandleDamage(attributeModifier);
-                break;
+        {
             case AttributeType.CurrentHealth:
                 currentHealth.AddModifier(attributeModifier);
                 break;
@@ -96,6 +88,7 @@ public class AttributeSet : MonoBehaviour
             case AttributeType.MoveSpeed:
                 moveSpeed.AddModifier(attributeModifier);
                 break;
+            case AttributeType.Damage:
             default:
                 Debug.LogError("Unexpected Attribute Enum on Apply Modifier");
                 break;
@@ -143,6 +136,7 @@ public class AttributeSet : MonoBehaviour
             case AttributeType.MoveSpeed:
                 moveSpeed.RemoveModifier(attributeModifier);
                 break;
+            case AttributeType.Damage:
             default:
                 Debug.LogError("Unexpected Attribute Enum on Remove Modifier");
                 break;
@@ -154,7 +148,8 @@ public class AttributeSet : MonoBehaviour
         switch (attributeModifier.attribute)
         {
             case AttributeType.Damage:
-                //TODO: Damage is different! Handle this
+                //TODO: Insert Defense Calculation Logic here
+                currentHealth.InstantlyApply(attributeModifier);
                 break;
             case AttributeType.CurrentHealth:
                 currentHealth.InstantlyApply(attributeModifier);

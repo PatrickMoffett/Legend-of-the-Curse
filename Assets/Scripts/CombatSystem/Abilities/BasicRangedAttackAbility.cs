@@ -18,7 +18,7 @@ namespace Abilities
             if(onCooldown) return;
             ServiceLocator.Instance.Get<MonoBehaviorService>().StartCoroutine(
                 AttackCooldown(1/_attributes.attackSpeed.CurrentValue));
-            GameObject projectile = Object.Instantiate(projectilePrefab,_owner.transform.position,_owner.transform.rotation);
+            GameObject projectile = Instantiate(projectilePrefab,_owner.transform.position,_owner.transform.rotation);
             projectile.GetComponent<Rigidbody2D>().velocity = _owner.transform.up * projectileVelocity;
         }
 

@@ -35,6 +35,10 @@ public class StatusEffect : ScriptableObject
     /// </summary>
     public float duration = 0f;
     /// <summary>
+    /// Bool indicating if the effect happens at set intervals
+    /// </summary>
+    public bool isPeriodic = false;
+    /// <summary>
     /// How often to reapply the effect
     /// </summary>
     public float periodicRate = 0f;
@@ -46,13 +50,4 @@ public class StatusEffect : ScriptableObject
     /// List of abilities granted while this effect is active
     /// </summary>
     public List<Ability> grantedAbilities = new List<Ability>();
-
-    public virtual void OnApply()
-    {
-        
-    }
-    public virtual void OnRemove()
-    {
-        
-    }
 }

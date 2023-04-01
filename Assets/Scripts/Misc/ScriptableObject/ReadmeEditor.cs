@@ -25,23 +25,11 @@ public class ReadmeEditor : Editor {
 			
 			if (readme && !readme.loadedLayout)
 			{
-				LoadLayout();
 				readme.loadedLayout = true;
 			}
 		} 
 	}
 
-	private static void LoadLayout()
-	{
-		var assembly = typeof(EditorApplication).Assembly; 
-		var windowLayoutType = assembly.GetType("UnityEditor.WindowLayout", true);
-		var loadMethod = windowLayoutType.GetMethod("LoadWindowLayout", BindingFlags.Public | BindingFlags.Static);
-		if (loadMethod != null)
-		{
-			loadMethod.Invoke(null, new object[] { Path.Combine(Application.dataPath, "TutorialInfo/Layout.wlt"), false });
-		}
-	}
-	
 	[MenuItem("Tutorial/Show Tutorial Instructions")]
 	static Readme SelectReadme() 
 	{

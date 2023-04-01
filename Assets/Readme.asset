@@ -24,4 +24,8 @@ MonoBehaviour:
       by either posting in the discord channel or messaging me directly!
     linkText: 
     url: 
+  - heading: Trello
+    text: Looking for tasks? Check out the Trello!
+    linkText: Trello Page
+    url: https://trello.com/b/pHOQWxGH/the-legend-of-the-curse
   loadedLayout: 0

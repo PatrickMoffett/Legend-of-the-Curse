@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6348248489396451972}
   - component: {fileID: 1339089340846152043}
   - component: {fileID: 4509596724667498618}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  distanceToPerformAttack: 5
+  basicAttack: {fileID: 11400000, guid: 6b63785248329bf488fd83564cd6f467, type: 2}
 --- !u!114 &6348248489396451972
 MonoBehaviour:
   m_ObjectHideFlags: 0

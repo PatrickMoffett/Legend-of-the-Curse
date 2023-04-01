@@ -13,5 +13,5 @@ public abstract class Ability : ScriptableObject
         this._owner = owner;
         _attributes = _owner.GetComponent<AttributeSet>();
     }
-    public abstract void Activate();
+    public abstract void Activate(Vector2 direction);
 }

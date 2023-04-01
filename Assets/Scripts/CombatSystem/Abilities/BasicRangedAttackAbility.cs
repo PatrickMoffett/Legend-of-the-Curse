@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using Services;
 using UnityEditor;
 using UnityEngine;
@@ -11,15 +13,19 @@ namespace Abilities
     {
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float projectileVelocity = 10f;
+        [SerializeField] private List<StatusEffect> effectsToApplyOnHit;
 
         public bool onCooldown = false;
-        public override void Activate()
+        public override void Activate(Vector2 direction)
         {
             if(onCooldown) return;
             ServiceLocator.Instance.Get<MonoBehaviorService>().StartCoroutine(
                 AttackCooldown(1/_attributes.attackSpeed.CurrentValue));
-            GameObject projectile = Instantiate(projectilePrefab,_owner.transform.position,_owner.transform.rotation);
-            projectile.GetComponent<Rigidbody2D>().velocity = _owner.transform.up * projectileVelocity;
+            var rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90));
+            GameObject projectile = Instantiate(projectilePrefab,_owner.transform.position,rotation);
+            projectile.GetComponent<Projectile>().AddStatusEffects(effectsToApplyOnHit);
+
+            projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileVelocity;
         }
 
         private IEnumerator AttackCooldown(float cooldownLength)

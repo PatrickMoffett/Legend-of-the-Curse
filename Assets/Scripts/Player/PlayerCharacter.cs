@@ -16,6 +16,7 @@ public class PlayerCharacter : MonoBehaviour
         _combatSystem = GetComponent<CombatSystem>();
         _attributeSet = GetComponent<AttributeSet>();
         _attributeSet.currentHealth.OnValueChanged += HealthChanged;
+        basicAttack = Instantiate(basicAttack);
         basicAttack.Initialize(gameObject);
     }
 
@@ -29,6 +30,6 @@ public class PlayerCharacter : MonoBehaviour
 
     public void PerformBasicAttack()
     {
-        basicAttack.Activate();
+        basicAttack.Activate(transform.up);
     }
 }

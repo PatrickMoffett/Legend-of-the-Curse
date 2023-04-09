@@ -192,4 +192,76 @@ public class AttributeSet : MonoBehaviour
                 break;
         }
     }
+
+    public float GetCurrentAttributeValue(AttributeType type)
+    {
+        switch (type)
+        {
+            case AttributeType.CurrentHealth:
+                return currentHealth.CurrentValue;
+                break;
+            case AttributeType.MaxHealth:
+                return maxHealth.CurrentValue;
+            case AttributeType.HealthRegen:
+                return healthRegen.CurrentValue;
+            case AttributeType.CurrentMana:
+                return currentMana.CurrentValue;
+            case AttributeType.MaxMana:
+                return maxMana.CurrentValue;
+            case AttributeType.ManaRegen:
+                return manaRegen.CurrentValue;
+            case AttributeType.AttackSpeed:
+                return attackSpeed.CurrentValue;
+            case AttributeType.AttackPower:
+                return attackPower.CurrentValue;
+            case AttributeType.MagicPower:
+                return magicPower.CurrentValue;
+            case AttributeType.PhysicalDefense:
+                return physicalDefense.CurrentValue;
+            case AttributeType.MagicalDefense:
+                return magicalDefense.CurrentValue;
+            case AttributeType.MoveSpeed:
+                return moveSpeed.CurrentValue;
+            case AttributeType.Damage:
+            default:
+                Debug.LogError("Unexpected Attribute Enum on Remove Modifier");
+                return 0f;
+        }
+    }
+    
+    public float GetBaseAttributeValue(AttributeType type)
+    {
+        switch (type)
+        {
+            case AttributeType.CurrentHealth:
+                return currentHealth.BaseValue;
+                break;
+            case AttributeType.MaxHealth:
+                return maxHealth.BaseValue;
+            case AttributeType.HealthRegen:
+                return healthRegen.BaseValue;
+            case AttributeType.CurrentMana:
+                return currentMana.BaseValue;
+            case AttributeType.MaxMana:
+                return maxMana.BaseValue;
+            case AttributeType.ManaRegen:
+                return manaRegen.BaseValue;
+            case AttributeType.AttackSpeed:
+                return attackSpeed.BaseValue;
+            case AttributeType.AttackPower:
+                return attackPower.BaseValue;
+            case AttributeType.MagicPower:
+                return magicPower.BaseValue;
+            case AttributeType.PhysicalDefense:
+                return physicalDefense.BaseValue;
+            case AttributeType.MagicalDefense:
+                return magicalDefense.BaseValue;
+            case AttributeType.MoveSpeed:
+                return moveSpeed.BaseValue;
+            case AttributeType.Damage:
+            default:
+                Debug.LogError("Unexpected Attribute Enum on Remove Modifier");
+                return 0f;
+        }
+    }
 }

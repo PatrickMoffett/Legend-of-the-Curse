@@ -62,19 +62,19 @@ public class Attribute
             switch (modifier.operation)
             {
                 case AttributeModifier.Operator.Add:
-                    sumToAdd += modifier.modificationValue;
+                    sumToAdd += modifier.attributeModifierValue.GetValue();
                     break;
                 case AttributeModifier.Operator.Subtract:
-                    sumToAdd -= modifier.modificationValue;
+                    sumToAdd -= modifier.attributeModifierValue.GetValue();
                     break;
                 case AttributeModifier.Operator.Multiply:
-                    multiplier *= modifier.modificationValue;
+                    multiplier *= modifier.attributeModifierValue.GetValue();
                     break;
                 case AttributeModifier.Operator.Divide:
-                    multiplier /= modifier.modificationValue;
+                    multiplier /= modifier.attributeModifierValue.GetValue();
                     break;
                 case AttributeModifier.Operator.Set:
-                    CurrentValue = modifier.modificationValue;
+                    CurrentValue = modifier.attributeModifierValue.GetValue();
                     return;
                 default:
                     Debug.LogError("Unexpected Operator in attributeMod");
@@ -110,19 +110,19 @@ public class Attribute
         switch (modifier.operation)
         {
             case AttributeModifier.Operator.Add:
-                baseValue += modifier.modificationValue;
+                baseValue += modifier.attributeModifierValue.GetValue();
                 break;
             case AttributeModifier.Operator.Subtract:
-                baseValue -= modifier.modificationValue;
+                baseValue -= modifier.attributeModifierValue.GetValue();
                 break;
             case AttributeModifier.Operator.Multiply:
-                baseValue *= modifier.modificationValue;
+                baseValue *= modifier.attributeModifierValue.GetValue();
                 break;
             case AttributeModifier.Operator.Divide:
-                baseValue /= modifier.modificationValue;
+                baseValue /= modifier.attributeModifierValue.GetValue();
                 break;
             case AttributeModifier.Operator.Set:
-                baseValue = modifier.modificationValue;
+                baseValue = modifier.attributeModifierValue.GetValue();
                 return;
             default:
                 Debug.LogError("Unexpected Operator in attributeMod");

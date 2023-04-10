@@ -19,5 +19,24 @@ MonoBehaviour:
   attributeModifiers:
   - attribute: 0
     operation: 1
-    modificationValue: 10
+    attributeModifierValue:
+      valueType: 0
+      attributeSet: 0
+      staticFloat: 0
+      sourceAttributeType: 0
+      preCoefficientAddition: 0
+      coefficient: 0
+      postCoefficientAddition: 0
+      customValueCalculation: {fileID: 0}
+  - attribute: 0
+    operation: 1
+    attributeModifierValue:
+      valueType: 0
+      attributeSet: 0
+      staticFloat: 0
+      sourceAttributeType: 0
+      preCoefficientAddition: 0
+      coefficient: 0
+      postCoefficientAddition: 0
+      customValueCalculation: {fileID: 0}
   grantedAbilities: []

@@ -239,7 +239,7 @@ public class CombatSystemEditor : EditorWindow
     void BindItem(VisualElement e, int i)
     {
         if (_lastSelectedCombatSystem == null) { return; }
-        ((Label)e).text = _lastSelectedCombatSystem.GetStatusEffects()[i].name;
+        ((Label)e).text = _lastSelectedCombatSystem.GetStatusEffects()[i].EffectName;
     }
 
     private void AddEffectButtonClicked()
@@ -255,7 +255,7 @@ public class CombatSystemEditor : EditorWindow
             Debug.LogError("No Combat System found");
             return;
         }
-        _lastSelectedCombatSystem.ApplyStatusEffect(Instantiate(_statusEffectsScriptableObjects[_effectDropDownField.index]));
+        //_lastSelectedCombatSystem.ApplyStatusEffect(Instantiate(_statusEffectsScriptableObjects[_effectDropDownField.index]));
     }
     private void RemoveEffectButtonClicked()
     {

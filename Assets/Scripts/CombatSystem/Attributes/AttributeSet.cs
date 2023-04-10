@@ -199,7 +199,6 @@ public class AttributeSet : MonoBehaviour
         {
             case AttributeType.CurrentHealth:
                 return currentHealth.CurrentValue;
-                break;
             case AttributeType.MaxHealth:
                 return maxHealth.CurrentValue;
             case AttributeType.HealthRegen:
@@ -235,7 +234,6 @@ public class AttributeSet : MonoBehaviour
         {
             case AttributeType.CurrentHealth:
                 return currentHealth.BaseValue;
-                break;
             case AttributeType.MaxHealth:
                 return maxHealth.BaseValue;
             case AttributeType.HealthRegen:

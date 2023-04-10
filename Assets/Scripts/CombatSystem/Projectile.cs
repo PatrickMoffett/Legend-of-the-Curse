@@ -6,13 +6,13 @@ using UnityEngine.Serialization;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField]private List<StatusEffect> effectsToApply;
+    private List<StatusEffectInstance> _effectsToApply = new List<StatusEffectInstance>();
     private void OnCollisionEnter2D(Collision2D col)
     {
         CombatSystem combatSystem = col.gameObject.GetComponent<CombatSystem>();
         if (combatSystem)
         {
-            foreach (var effect in effectsToApply)
+            foreach (var effect in _effectsToApply)
             {
                 combatSystem.ApplyStatusEffect(effect);
             }
@@ -20,8 +20,8 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void AddStatusEffects(List<StatusEffect> effects)
+    public void AddStatusEffects(List<StatusEffectInstance> effects)
     {
-        effectsToApply.AddRange(effects);
+        _effectsToApply.AddRange(effects);
     }
 }

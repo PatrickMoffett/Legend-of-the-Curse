@@ -50,14 +50,4 @@ public class StatusEffect : ScriptableObject
     /// List of abilities granted while this effect is active
     /// </summary>
     public List<Ability> grantedAbilities = new List<Ability>();
-
-    StatusEffect Create(AttributeSet source)
-    {
-        StatusEffect clone = Instantiate(this);
-        foreach (var modifier in clone.attributeModifiers)
-        {
-            modifier.attributeModifierValue.SetAttributeSet(source);
-        }
-        return clone;
-    }
 }

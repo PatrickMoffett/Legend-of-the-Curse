@@ -46,6 +46,8 @@ public class CombatSystemEditor : EditorWindow
     private AttributeSet _attributeSet;
     private List<StatusEffect> _activeStatusEffects;
 
+    private CombatSystem _debugSource;
+
     [MenuItem("CombatSystem/CombatSystem Debug Window")]
     public static void OpenWindow()
     {
@@ -59,7 +61,7 @@ public class CombatSystemEditor : EditorWindow
         VisualElement root = rootVisualElement;
 
         // Import UXML
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/CombatSystem/Editor/CombatSystemEditor.uxml");
+        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Editor/CombatSystemEditor.uxml");
         VisualElement labelFromUxml = visualTree.Instantiate();
         root.Add(labelFromUxml);
     
@@ -148,8 +150,13 @@ public class CombatSystemEditor : EditorWindow
     }
     private void OnInspectorUpdate()
     {
-        
         if (!EditorApplication.isPlaying) { return; }
+        if (!_debugSource)
+        {
+            GameObject debug = new GameObject("Debug CombatSystem");
+            _debugSource = debug.AddComponent<CombatSystem>();
+            DontDestroyOnLoad(debug);
+        }
 
         if (_lastSelectedCombatSystem == null)
         {
@@ -255,7 +262,10 @@ public class CombatSystemEditor : EditorWindow
             Debug.LogError("No Combat System found");
             return;
         }
-        //_lastSelectedCombatSystem.ApplyStatusEffect(Instantiate(_statusEffectsScriptableObjects[_effectDropDownField.index]));
+
+        StatusEffectInstance statusEffect =
+            new StatusEffectInstance(_statusEffectsScriptableObjects[_effectDropDownField.index], _debugSource);
+        _lastSelectedCombatSystem.ApplyStatusEffect(statusEffect);
     }
     private void RemoveEffectButtonClicked()
     {

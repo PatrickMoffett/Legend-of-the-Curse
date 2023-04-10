@@ -15,4 +15,6 @@ MonoBehaviour:
   passiveAbility: 0
   projectilePrefab: {fileID: 7477218898586871388, guid: d98ddf3dfd6a0ee4faff47afb6edc193, type: 3}
   projectileVelocity: 10
+  effectsToApplyOnHit:
+  - {fileID: 11400000, guid: fc47ecae5bfd9204eba28b979c635e5e, type: 2}
   onCooldown: 0

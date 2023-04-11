@@ -30,10 +30,10 @@ namespace Abilities
             GameObject projectile = Instantiate(projectilePrefab,_owner.transform.position,rotation);
             
             //Instantiate status effects
-            List<StatusEffectInstance> statusEffectInstances = new List<StatusEffectInstance>();
+            List<OutgoingStatusEffectInstance> statusEffectInstances = new List<OutgoingStatusEffectInstance>();
             foreach (var effect in effectsToApplyOnHit)
             {
-                statusEffectInstances.Add(new StatusEffectInstance(effect,_combatSystem));
+                statusEffectInstances.Add(new OutgoingStatusEffectInstance(effect,_combatSystem));
             }
             
             //Add Status Effect Instances to projectile

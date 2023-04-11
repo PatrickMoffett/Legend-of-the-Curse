@@ -25,10 +25,10 @@ public class CombatSystem : MonoBehaviour
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    public void ApplyStatusEffect(StatusEffectInstance effectToApply)
+    public StatusEffectInstance ApplyStatusEffect(OutgoingStatusEffectInstance effect)
     {
         //set this as the targetCombatSystem
-        effectToApply.SetTargetCombatSystem(this);
+        StatusEffectInstance effectToApply = new StatusEffectInstance(effect, this);
 
         if (effectToApply.DurationType == StatusEffect.DurationType.Instant)
         {
@@ -64,6 +64,7 @@ public class CombatSystem : MonoBehaviour
             }
         }
         StatusEffectAdded?.Invoke();
+        return effectToApply;
     }
 
     private IEnumerator ApplyPeriodicEffect(StatusEffectInstance effectToApply)
@@ -83,10 +84,20 @@ public class CombatSystem : MonoBehaviour
     public void RemoveStatusEffect(StatusEffectInstance effectToRemove)
     {
         _currentStatusEffects.Remove(effectToRemove);
-        foreach (var modifier in effectToRemove.AttributeModifiers)
+        if (effectToRemove.DurationType == StatusEffect.DurationType.Instant)
         {
-            _attributeSet.RemoveModifier(modifier);
+            Debug.LogError("Tried to remove Instant Status Effect");
+            return;
         }
+
+        if (!effectToRemove.IsPeriodic)
+        {
+            foreach (var modifier in effectToRemove.AttributeModifiers)
+            {
+                _attributeSet.RemoveModifier(modifier);
+            }
+        }
+
         StatusEffectRemoved?.Invoke();
     }
 

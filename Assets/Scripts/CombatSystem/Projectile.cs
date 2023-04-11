@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class Projectile : MonoBehaviour
 {
-    private List<StatusEffectInstance> _effectsToApply = new List<StatusEffectInstance>();
+    private List<OutgoingStatusEffectInstance> _effectsToApply = new List<OutgoingStatusEffectInstance>();
 
     private static GameObject _bucket;
     private void Start()
@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void AddStatusEffects(List<StatusEffectInstance> effects)
+    public void AddStatusEffects(List<OutgoingStatusEffectInstance> effects)
     {
         _effectsToApply.AddRange(effects);
     }

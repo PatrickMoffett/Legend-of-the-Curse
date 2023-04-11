@@ -263,9 +263,9 @@ public class CombatSystemEditor : EditorWindow
             return;
         }
 
-        StatusEffectInstance statusEffect =
-            new StatusEffectInstance(_statusEffectsScriptableObjects[_effectDropDownField.index], _debugSource);
-        _lastSelectedCombatSystem.ApplyStatusEffect(statusEffect);
+        OutgoingStatusEffectInstance outgoingStatusEffect =
+            new OutgoingStatusEffectInstance(_statusEffectsScriptableObjects[_effectDropDownField.index], _debugSource);
+        _lastSelectedCombatSystem.ApplyStatusEffect(outgoingStatusEffect);
     }
     private void RemoveEffectButtonClicked()
     {

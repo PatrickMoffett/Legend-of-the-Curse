@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durationType: 2
   duration: 0
-  isPeriodic: 1
+  isPeriodic: 0
   periodicRate: 0
   attributeModifiers:
   - attribute: 0
     operation: 0
     attributeModifierValue:
       valueType: 0
-      attributeSet: 0
       staticFloat: 0
+      attributeSet: 0
       sourceAttributeType: 0
       preCoefficientAddition: 0
       coefficient: 0
@@ -32,8 +32,8 @@ MonoBehaviour:
     operation: 0
     attributeModifierValue:
       valueType: 0
-      attributeSet: 0
       staticFloat: 0
+      attributeSet: 0
       sourceAttributeType: 0
       preCoefficientAddition: 0
       coefficient: 0

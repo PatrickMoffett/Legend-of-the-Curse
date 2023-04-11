@@ -21,8 +21,8 @@ MonoBehaviour:
     operation: 0
     attributeModifierValue:
       valueType: 0
-      attributeSet: 0
       staticFloat: 0
+      attributeSet: 0
       sourceAttributeType: 0
       preCoefficientAddition: 0
       coefficient: 0

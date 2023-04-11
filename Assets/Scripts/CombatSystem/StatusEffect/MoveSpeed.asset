@@ -14,9 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durationType: 2
   duration: 0
+  isPeriodic: 1
   periodicRate: 0
   attributeModifiers:
+  - attribute: 0
+    operation: 0
+    attributeModifierValue:
+      valueType: 0
+      attributeSet: 0
+      staticFloat: 0
+      sourceAttributeType: 0
+      preCoefficientAddition: 0
+      coefficient: 0
+      postCoefficientAddition: 0
+      customValueCalculation: {fileID: 0}
   - attribute: 12
     operation: 0
-    modificationValue: 1
+    attributeModifierValue:
+      valueType: 0
+      attributeSet: 0
+      staticFloat: 0
+      sourceAttributeType: 0
+      preCoefficientAddition: 0
+      coefficient: 0
+      postCoefficientAddition: 0
+      customValueCalculation: {fileID: 0}
   grantedAbilities: []

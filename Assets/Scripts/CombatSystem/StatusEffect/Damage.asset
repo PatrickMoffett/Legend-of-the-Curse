@@ -17,15 +17,15 @@ MonoBehaviour:
   isPeriodic: 0
   periodicRate: 0
   attributeModifiers:
-  - attribute: 0
-    operation: 1
+  - attribute: 2
+    operation: 0
     attributeModifierValue:
-      valueType: 1
+      valueType: 0
       attributeSet: 0
-      staticFloat: 10
-      sourceAttributeType: 8
+      staticFloat: 0
+      sourceAttributeType: 0
       preCoefficientAddition: 0
-      coefficient: 0.5
+      coefficient: 0
       postCoefficientAddition: 0
       customValueCalculation: {fileID: 0}
   grantedAbilities: []

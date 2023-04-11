@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -7,56 +8,37 @@ using UnityEngine.UIElements;
 [CustomPropertyDrawer(typeof(AttributeModifier))]
 public class AttributeModifierPropertyDrawer : PropertyDrawer
 {
-    private VisualElement _root;
-    private SerializedProperty _property;
-    private Foldout _foldout;
+    private readonly List<VisualElement> _roots = new List<VisualElement>();
+    private readonly List<SerializedProperty> _properties = new List<SerializedProperty>();
+    private readonly List<Foldout> _foldouts = new List<Foldout>();
 
     public override VisualElement CreatePropertyGUI(SerializedProperty property)
     {
-        _property = property;
-        _root = new VisualElement();
+        int index = _properties.Count;
         
-        _foldout = new Foldout();
-        _foldout.value = false;
-        _foldout.text = "Attribute Modifier";
-        _root.Add(_foldout);
+        _properties.Add(property);
+        _roots.Add(new VisualElement());
+        
+        _foldouts.Add(new Foldout());
+        _foldouts[index].value = false;
+        _foldouts[index].text = "Attribute Modifier";
+        _roots[index].Add(_foldouts[index]);
         
         EnumField attributeType = new EnumField();
         attributeType.label = "Attribute:";
         attributeType.BindProperty(property.FindPropertyRelative("attribute"));
-        _foldout.Add(attributeType);
+        _foldouts[index].Add(attributeType);
         
         EnumField operationField = new EnumField();
         operationField.label = "Operation:";
         operationField.BindProperty(property.FindPropertyRelative("operation"));
-        _foldout.Add(operationField);
+        _foldouts[index].Add(operationField);
 
         PropertyField valueField = new PropertyField();
         valueField.BindProperty(property.FindPropertyRelative("attributeModifierValue"));
-        _foldout.Add(valueField);
-        
-        //attributeType.RegisterValueChangedCallback(OnAttributeChange);
-        //operationField.RegisterValueChangedCallback(OnOperationChange);
+        _foldouts[index].Add(valueField);
 
-        //UpdateFoldoutTitle();
-        
-        return _root;
+        return _roots[index];
     }
-
-    private void OnOperationChange(ChangeEvent<Enum> evt)
-    {
-        UpdateFoldoutTitle();
-    }
-
-    private void OnAttributeChange(ChangeEvent<Enum> evt)
-    {
-        UpdateFoldoutTitle();
-    }
-
-    private void UpdateFoldoutTitle()
-    {
-        string attributeString = Enum.GetNames(typeof(AttributeType))[_property.FindPropertyRelative("attribute").intValue];
-        string operationString = Enum.GetNames(typeof(AttributeModifier.Operator))[_property.FindPropertyRelative("operation").intValue];
-        _foldout.text = operationString + " " + attributeString;
-    }
+    
 }

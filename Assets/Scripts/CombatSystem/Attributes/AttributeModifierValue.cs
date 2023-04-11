@@ -34,31 +34,31 @@ public class AttributeModifierValue
     
     [SerializeField]private ValueType valueType;
     
-    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsStaticFloat))]
+    [ShowIf(nameof(ValueTypeEqualsStaticFloat))]
     [SerializeField]
     private float staticFloat;
     
-    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsAttributeBased))]
+    [ShowIf(nameof(ValueTypeEqualsAttributeBased))]
     [SerializeField]
     private AttributeSetToUse attributeSet;
 
-    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsAttributeBased))]
+    [ShowIf(nameof(ValueTypeEqualsAttributeBased))]
     [SerializeField]
     private AttributeType sourceAttributeType;
 
-    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsAttributeBased))]
+    [ShowIf( nameof(ValueTypeEqualsAttributeBased))]
     [SerializeField]
     private float preCoefficientAddition;
 
-    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsAttributeBased))]
+    [ShowIf( nameof(ValueTypeEqualsAttributeBased))]
     [SerializeField]
     private float coefficient;
     
-    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsAttributeBased))]
+    [ShowIf( nameof(ValueTypeEqualsAttributeBased))]
     [SerializeField]
     private float postCoefficientAddition;
 
-    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsCustomCalc))]
+    [ShowIf(nameof(ValueTypeEqualsCustomCalc))]
     [SerializeField]
     private CustomValueCalculation customValueCalculation;
 

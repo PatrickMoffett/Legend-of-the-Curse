@@ -24,10 +24,18 @@ public class ShowIfAttribute : PropertyAttribute
     public ConditionOperator Operator {get;private set;}
     public string[] Conditions {get;private set;}
 
-    public ShowIfAttribute(ActionOnConditionFail action, ConditionOperator conditionOperator, params string[] conditions)
+    public ShowIfAttribute(ActionOnConditionFail action = ActionOnConditionFail.DontDraw, ConditionOperator conditionOperator = ConditionOperator.Or, params string[] conditions)
     {
         Action  = action;
         Operator = conditionOperator;
+        Conditions = conditions;
+    }
+
+    
+    public ShowIfAttribute(params string[] conditions)
+    {
+        Action  = ActionOnConditionFail.DontDraw;
+        Operator = ConditionOperator.And;
         Conditions = conditions;
     }
 }

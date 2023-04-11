@@ -33,7 +33,7 @@ public class StatusEffect : ScriptableObject
     /// <summary>
     /// The Duration of the effect (Only applies to effects with DurationType = Duration)
     /// </summary>
-    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(DurationTypeEqualsDuration))]
+    [ShowIf(nameof(DurationTypeEqualsDuration))]
     public float duration = 0f;
     
     /// <summary>
@@ -45,8 +45,7 @@ public class StatusEffect : ScriptableObject
     /// <summary>
     /// How often to reapply the effect
     /// </summary>
-    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.Or, 
-        nameof(isPeriodic))]
+    [ShowIf(nameof(isPeriodic))]
     public float periodicRate = 0f;
     /// <summary>
     /// List of attribute modifiers this effect applies

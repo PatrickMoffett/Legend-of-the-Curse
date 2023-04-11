@@ -19,7 +19,7 @@ public class AttributeModifier
     /// Operator to apply to Attribute
     /// </summary>
     public Operator operation;
-
+    
     public AttributeModifierValue attributeModifierValue;
     
 }

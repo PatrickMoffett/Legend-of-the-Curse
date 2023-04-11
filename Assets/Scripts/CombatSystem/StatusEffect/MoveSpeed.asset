@@ -28,7 +28,7 @@ MonoBehaviour:
       coefficient: 0
       postCoefficientAddition: 0
       customValueCalculation: {fileID: 0}
-  - attribute: 12
+  - attribute: 0
     operation: 0
     attributeModifierValue:
       valueType: 0

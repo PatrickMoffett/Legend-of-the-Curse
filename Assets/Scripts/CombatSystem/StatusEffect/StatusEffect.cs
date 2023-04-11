@@ -33,14 +33,20 @@ public class StatusEffect : ScriptableObject
     /// <summary>
     /// The Duration of the effect (Only applies to effects with DurationType = Duration)
     /// </summary>
+    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(DurationTypeEqualsDuration))]
     public float duration = 0f;
+    
     /// <summary>
     /// Bool indicating if the effect happens at set intervals
     /// </summary>
+    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.Or, 
+        nameof(DurationTypeEqualsDuration), nameof(DurationTypeEqualsInfinite))]
     public bool isPeriodic = false;
     /// <summary>
     /// How often to reapply the effect
     /// </summary>
+    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.Or, 
+        nameof(isPeriodic))]
     public float periodicRate = 0f;
     /// <summary>
     /// List of attribute modifiers this effect applies
@@ -50,4 +56,14 @@ public class StatusEffect : ScriptableObject
     /// List of abilities granted while this effect is active
     /// </summary>
     public List<Ability> grantedAbilities = new List<Ability>();
+
+    public bool DurationTypeEqualsDuration()
+    {
+        return durationType == DurationType.Duration;
+    }
+
+    public bool DurationTypeEqualsInfinite()
+    {
+        return durationType == DurationType.Infinite;
+    }
 }

@@ -16,21 +16,51 @@ public class AttributeModifierValue
         Source,
         Target
     }
+    
+    public bool ValueTypeEqualsStaticFloat()
+    {
+        return valueType == ValueType.StaticFloat;
+    }
+
+    public bool ValueTypeEqualsAttributeBased()
+    {
+        return valueType == ValueType.AttributeBased;
+    }
+
+    public bool ValueTypeEqualsCustomCalc()
+    {
+        return valueType == ValueType.CustomCalculation;
+    }
+    
     [SerializeField]private ValueType valueType;
-
-    [SerializeField] private AttributeSetToUse attributeSet;
     
-    [SerializeField]private float staticFloat;
-
-    [SerializeField]private AttributeType sourceAttributeType;
-
-    [SerializeField]private float preCoefficientAddition;
-
-    [SerializeField]private float coefficient;
+    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsStaticFloat))]
+    [SerializeField]
+    private float staticFloat;
     
-    [SerializeField]private float postCoefficientAddition;
+    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsAttributeBased))]
+    [SerializeField]
+    private AttributeSetToUse attributeSet;
 
-    [SerializeField] private CustomValueCalculation customValueCalculation;
+    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsAttributeBased))]
+    [SerializeField]
+    private AttributeType sourceAttributeType;
+
+    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsAttributeBased))]
+    [SerializeField]
+    private float preCoefficientAddition;
+
+    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsAttributeBased))]
+    [SerializeField]
+    private float coefficient;
+    
+    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsAttributeBased))]
+    [SerializeField]
+    private float postCoefficientAddition;
+
+    [ShowIf(ActionOnConditionFail.DontDraw, ConditionOperator.And, nameof(ValueTypeEqualsCustomCalc))]
+    [SerializeField]
+    private CustomValueCalculation customValueCalculation;
 
     private CombatSystem _sourceCombatSystem;
     private CombatSystem _targetCombatSystem;

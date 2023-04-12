@@ -35,10 +35,10 @@ public class Trap : MonoBehaviour
             if (combatSystem)
             {
                 //Instantiate status effects
-                List<StatusEffectInstance> statusEffectInstances = new List<StatusEffectInstance>();
+                List<OutgoingStatusEffectInstance> statusEffectInstances = new List<OutgoingStatusEffectInstance>();
                 foreach (var effect in effectsToApplyOnHit)
                 {
-                    statusEffectInstances.Add(new StatusEffectInstance(effect,combatSystem));
+                    statusEffectInstances.Add(new OutgoingStatusEffectInstance(effect,combatSystem));
                 }
             }
         }

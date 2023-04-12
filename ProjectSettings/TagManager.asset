@@ -14,7 +14,7 @@ TagManager:
   - PlayerProjectile
   - EnemyProjectile
   - Enemy
-  - 
+  - Trap
   - 
   - 
   - 
@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Trap
+    uniqueID: 3226898931
+    locked: 0
   - name: DecorativeSprite
     uniqueID: 645483587
+    locked: 0
+  - name: Player
+    uniqueID: 658259427
     locked: 0

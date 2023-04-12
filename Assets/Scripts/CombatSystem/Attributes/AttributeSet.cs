@@ -19,18 +19,20 @@ public enum AttributeType
 }
 public class AttributeSet : MonoBehaviour
 {
-    public Attribute currentHealth = new Attribute(10f);
-    public Attribute maxHealth = new Attribute(10f);
-    public Attribute healthRegen = new Attribute(1f);
-    public Attribute currentMana = new Attribute(10f);
-    public Attribute maxMana = new Attribute(10f);
-    public Attribute manaRegen = new Attribute(1f);
-    public Attribute attackSpeed = new Attribute(2f);
-    public Attribute attackPower = new Attribute(10f);
-    public Attribute magicPower = new Attribute(10f);
-    public Attribute physicalDefense = new Attribute(10f);
-    public Attribute magicalDefense = new Attribute(10f);
-    public Attribute moveSpeed = new Attribute(5f);
+    public ModifiableAttributeValue currentHealth = new ModifiableAttributeValue(10f);
+    public ModifiableAttributeValue maxHealth = new ModifiableAttributeValue(10f);
+    public ModifiableAttributeValue healthRegen = new ModifiableAttributeValue(1f);
+    public ModifiableAttributeValue currentMana = new ModifiableAttributeValue(10f);
+    public ModifiableAttributeValue maxMana = new ModifiableAttributeValue(10f);
+    public ModifiableAttributeValue manaRegen = new ModifiableAttributeValue(1f);
+    public ModifiableAttributeValue attackSpeed = new ModifiableAttributeValue(2f);
+    public ModifiableAttributeValue attackPower = new ModifiableAttributeValue(10f);
+    public ModifiableAttributeValue magicPower = new ModifiableAttributeValue(10f);
+    public ModifiableAttributeValue physicalDefense = new ModifiableAttributeValue(10f);
+    public ModifiableAttributeValue magicalDefense = new ModifiableAttributeValue(10f);
+    public ModifiableAttributeValue moveSpeed = new ModifiableAttributeValue(5f);
+    
+    
 
     private void Start()
     {

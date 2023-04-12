@@ -3,6 +3,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/*
 [CustomEditor(typeof(MonoBehaviour), true)]
 public class IMGUIToToolkitWrapperMB: UnityEditor.Editor
 {
@@ -58,3 +59,4 @@ public class IMGUIToToolkitWrapperSO: UnityEditor.Editor
         return root;
     }
 }
+*/

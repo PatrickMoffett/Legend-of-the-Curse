@@ -1,6 +1,6 @@
 // Developed by Tom Kail at Inkle
 // Released under the MIT Licence as held at https://opensource.org/licenses/MIT
-/*
+
 // Must be placed within a folder named "Editor"
 using System;
 using System.Collections.Generic;
@@ -283,4 +283,3 @@ public class ExtendedScriptableObjectDrawer : PropertyDrawer {
 		return false;
 	}
 }
-*/

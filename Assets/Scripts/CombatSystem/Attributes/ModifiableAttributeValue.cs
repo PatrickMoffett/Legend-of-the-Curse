@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [Serializable]
-public class Attribute
+public class ModifiableAttributeValue
 {
-    public Attribute(){ }
+    public ModifiableAttributeValue(){ }
 
-    public Attribute(float value)
+    public ModifiableAttributeValue(float value)
     {
         baseValue = value;
     }
     /// <summary>
     /// Action Invoked whenever the CurrentValue of this Attribute changes
     /// </summary>
-    public event Action<Attribute> OnValueChanged;
+    public event Action<ModifiableAttributeValue> OnValueChanged;
 
     /// <summary>
     /// Dictionary of Attribute modifiers

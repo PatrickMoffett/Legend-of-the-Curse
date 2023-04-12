@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName="ScriptableObject/StatusEffect/Default")]
+[CreateAssetMenu(menuName="CombatSystem/StatusEffect")]
 public class StatusEffect : ScriptableObject
 {
     /// <summary>

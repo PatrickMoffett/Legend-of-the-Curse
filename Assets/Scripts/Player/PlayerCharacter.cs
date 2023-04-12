@@ -21,9 +21,9 @@ public class PlayerCharacter : MonoBehaviour
         basicAttack.Initialize(gameObject);
     }
 
-    private void HealthChanged(Attribute attribute)
+    private void HealthChanged(ModifiableAttributeValue modifiableAttributeValue)
     {
-        if (attribute.BaseValue <= 0f)
+        if (modifiableAttributeValue.BaseValue <= 0f)
         {
             ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<GameOverState>();
         }

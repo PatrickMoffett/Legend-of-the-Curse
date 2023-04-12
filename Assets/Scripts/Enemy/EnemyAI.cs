@@ -27,7 +27,7 @@ public class EnemyAI : MonoBehaviour
         basicAttack.Initialize(gameObject);
     }
 
-    private void HealthChanged(Attribute health)
+    private void HealthChanged(ModifiableAttributeValue health)
     {
         if (health.CurrentValue <= 0)
         {

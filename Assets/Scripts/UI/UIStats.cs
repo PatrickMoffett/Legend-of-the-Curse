@@ -19,7 +19,28 @@ public class UIStats : MonoBehaviour
         if (!shotsText) return;
         if (!hitsText) return;
         if (!stepsText) return;
-        // TODO:
-        // if value has changed, update a text
+
+        // only update text if value has changed (for better perf)
+
+        if (myStats.shots != prevShots) {
+            shotsText.text = "Shots fired: " + myStats.shots;
+            prevShots = myStats.shots;
+        }
+
+        if (myStats.hits != prevHits) {
+            hitsText.text = "Enemies Hit: " + myStats.hits;
+            prevHits = myStats.hits;
+        }
+
+            if (myStats.steps != prevSteps) {
+            stepsText.text = "Steps taken: " + myStats.steps;
+            prevSteps = myStats.steps;
+        }
+
+        // for debugging purposes only!
+        myStats.steps++;
+
+
+
     }
 }

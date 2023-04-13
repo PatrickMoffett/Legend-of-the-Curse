@@ -38,7 +38,7 @@ public class UIStats : MonoBehaviour
         }
 
         // for debugging purposes only!
-        myStats.steps++;
+        // myStats.steps++;
 
 
 

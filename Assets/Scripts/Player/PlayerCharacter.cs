@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    [SerializeField] private CharacterStats _stats;
     public Ability basicAttack;
     private CombatSystem _combatSystem;
     private AttributeSet _attributeSet;
@@ -31,5 +32,8 @@ public class PlayerCharacter : MonoBehaviour
     public void PerformBasicAttack()
     {
         basicAttack.Activate(transform.up);
+        
+        _stats.shots++;
+        
     }
 }

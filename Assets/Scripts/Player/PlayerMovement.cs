@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private AttributeSet _attributeSet;
+        [SerializeField] private CharacterStats _stats;
+        private AttributeSet _attributeSet;
+
     private void Start()
     {
         _attributeSet = GetComponent<AttributeSet>();
@@ -23,5 +25,8 @@ public class PlayerMovement : MonoBehaviour
         movement.x += direction.x * Time.deltaTime * _attributeSet.moveSpeed.CurrentValue;
         movement.y += direction.y * Time.deltaTime * _attributeSet.moveSpeed.CurrentValue;
         transform.position += movement;
+
+        _stats.totalDistance += movement.magnitude;
+        _stats.steps = Mathf.RoundToInt(_stats.totalDistance);
     }
 }

@@ -8,6 +8,7 @@
     {
         public const string UIRoot = "UIRoot";
         public const string UIGame = "UIGame";
+        public const string UIStats = "UIStats";
         public const string UIMainMenu = "UIMainMenu";
         public const string UIPauseMenu = "UIPauseMenu";
         public const string UISettings = "UISettings";

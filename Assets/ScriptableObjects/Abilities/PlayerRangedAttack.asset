@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: PlayerRangedAttack
   m_EditorClassIdentifier: 
   passiveAbility: 0
-  activationCost: {fileID: 0}
+  activationCost: {fileID: 11400000, guid: 22cad8bd1286e5941bfe89118c63b31c, type: 2}
   cooldown: {fileID: 11400000, guid: 8605cc5433aaaed4abc93d6cc2619c0f, type: 2}
   projectilePrefab: {fileID: 7477218898586871388, guid: d98ddf3dfd6a0ee4faff47afb6edc193, type: 3}
   projectileVelocity: 10
   effectsToApplyOnHit:
   - {fileID: 11400000, guid: fc47ecae5bfd9204eba28b979c635e5e, type: 2}
-  onCooldown: 0

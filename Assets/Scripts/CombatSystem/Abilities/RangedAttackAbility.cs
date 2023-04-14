@@ -14,8 +14,7 @@ namespace Abilities
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float projectileVelocity = 10f;
         [SerializeField] private List<StatusEffect> effectsToApplyOnHit;
-
-        public bool onCooldown = false;
+        
         protected override void Activate(Vector2 direction)
         {
             //set rotation and spawn projectile

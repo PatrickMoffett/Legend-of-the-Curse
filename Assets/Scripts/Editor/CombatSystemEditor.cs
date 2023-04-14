@@ -162,7 +162,10 @@ public class CombatSystemEditor : EditorWindow
         {
             GameObject[] gameObjects = new GameObject[1]; 
             gameObjects[0]= GameObject.Find("Player");
-            newCombatSystemSelected(gameObjects); 
+            if (gameObjects[0] != null)
+            {
+                newCombatSystemSelected(gameObjects);
+            }
         }
         else if(Selection.gameObjects.Length > 0 &&
                 !Selection.gameObjects.Contains(_lastSelectedCombatSystem.gameObject))

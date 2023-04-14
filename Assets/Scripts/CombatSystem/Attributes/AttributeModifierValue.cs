@@ -6,7 +6,7 @@ public class AttributeModifierValue
 {
     public enum ValueType
     {
-        StaticFloat,
+        Constant,
         AttributeBased,
         CustomCalculation
     }
@@ -19,7 +19,7 @@ public class AttributeModifierValue
     
     public bool ValueTypeEqualsStaticFloat()
     {
-        return valueType == ValueType.StaticFloat;
+        return valueType == ValueType.Constant;
     }
 
     public bool ValueTypeEqualsAttributeBased()
@@ -76,7 +76,7 @@ public class AttributeModifierValue
             }
             switch (valueType)
             {
-                case ValueType.StaticFloat:
+                case ValueType.Constant:
                     return staticFloat;
                 case ValueType.AttributeBased:
                     if (attributeSet == AttributeSetToUse.Source)

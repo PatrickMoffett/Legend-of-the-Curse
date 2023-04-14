@@ -32,9 +32,7 @@ public class AttributeSet : MonoBehaviour
     public ModifiableAttributeValue magicalDefense = new ModifiableAttributeValue(10f);
     public ModifiableAttributeValue moveSpeed = new ModifiableAttributeValue(5f);
     
-    
-
-    private void Start()
+    public void UpdateCurrentValues()
     {
         currentHealth.UpdateCurrentValue();
         maxHealth.UpdateCurrentValue();
@@ -155,6 +153,7 @@ public class AttributeSet : MonoBehaviour
                 break;
             case AttributeType.CurrentHealth:
                 currentHealth.InstantlyApply(attributeModifier);
+                currentHealth.BaseValue = Mathf.Min(currentHealth.BaseValue,maxHealth.CurrentValue);
                 break;
             case AttributeType.MaxHealth:
                 maxHealth.InstantlyApply(attributeModifier);
@@ -164,6 +163,7 @@ public class AttributeSet : MonoBehaviour
                 break;
             case AttributeType.CurrentMana:
                 currentMana.InstantlyApply(attributeModifier);
+                currentMana.BaseValue = Mathf.Min(currentMana.BaseValue,maxMana.CurrentValue);
                 break;
             case AttributeType.MaxMana:
                 maxMana.InstantlyApply(attributeModifier);

@@ -5,6 +5,7 @@ using Services;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Abilities
 {
@@ -14,6 +15,7 @@ namespace Abilities
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float projectileVelocity = 10f;
         [SerializeField] private List<StatusEffect> effectsToApplyOnHit;
+        [SerializeField] private List<AudioClip> attackSFX;
         
         protected override void Activate(Vector2 direction)
         {
@@ -33,6 +35,12 @@ namespace Abilities
             
             //Set projectile velocity
             projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileVelocity;
+
+            if (attackSFX.Count > 0)
+            {
+                int index =Random.Range(0, attackSFX.Count);
+                ServiceLocator.Instance.Get<AudioManager>().PlaySfxAtLocation(attackSFX[index], _combatSystem.gameObject.transform.position);
+            }
         }
     }
 }

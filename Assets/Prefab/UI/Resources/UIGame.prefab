@@ -123,9 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd159d4836f9ab489d7a03b2a6c921e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats: {fileID: 11400000, guid: c8527269a1d741342bdce0a1afb1dc67, type: 2}
-  _image: {fileID: 615753471175191552}
-  _lerp: 1
+  image: {fileID: 615753471175191552}
+  lerp: 1
+  isHealth: 0
+  lerpRate: 1
 --- !u!1 &1564876459537921057
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,9 +216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd159d4836f9ab489d7a03b2a6c921e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats: {fileID: 11400000, guid: c8527269a1d741342bdce0a1afb1dc67, type: 2}
-  _image: {fileID: 8901985704531070328}
-  _lerp: 0
+  image: {fileID: 8901985704531070328}
+  lerp: 0
+  isHealth: 1
+  lerpRate: 2
 --- !u!1 &5360831493411245092
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,9 +309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd159d4836f9ab489d7a03b2a6c921e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats: {fileID: 11400000, guid: c8527269a1d741342bdce0a1afb1dc67, type: 2}
-  _image: {fileID: 5023570688469536681}
-  _lerp: 0
+  image: {fileID: 5023570688469536681}
+  lerp: 1
+  isHealth: 0
+  lerpRate: 2
 --- !u!1 &6103163667761269053
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd159d4836f9ab489d7a03b2a6c921e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats: {fileID: 11400000, guid: c8527269a1d741342bdce0a1afb1dc67, type: 2}
-  _image: {fileID: 542784287906795903}
-  _lerp: 1
+  image: {fileID: 542784287906795903}
+  lerp: 1
+  isHealth: 1
+  lerpRate: 1

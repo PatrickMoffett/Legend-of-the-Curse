@@ -1,22 +1,59 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class UIFill : MonoBehaviour
 {
-    [SerializeField] private CharacterStats _stats;
-    [SerializeField] private Image _image;
-    [SerializeField] private bool _lerp;
-    private float lerpRate = 0.01f;
-    void Update()
+    [SerializeField] private Image image;
+    [SerializeField] private bool lerp;
+    [SerializeField] private bool isHealth;
+    [SerializeField] private float lerpRate = 1f;
+
+    private ModifiableAttributeValue maxAttribute;
+    private ModifiableAttributeValue currentAttribute;
+
+    private float _targetFillAmount = 0f;
+    private void Start()
     {
-        if (!_lerp)
+        GameObject player = GameObject.Find("Player");
+        AttributeSet attributeSet= player.GetComponent<AttributeSet>();
+        
+        if (isHealth)
         {
-            _image.fillAmount = _stats.health / _stats.maxHealth;
+            currentAttribute = attributeSet.currentHealth;
+            maxAttribute = attributeSet.maxHealth;
+            
+            attributeSet.currentHealth.OnValueChanged += OnValueChanged;
+            attributeSet.maxHealth.OnValueChanged += OnValueChanged;
         }
-        else 
+        else
         {
-            float newFillAmount = _stats.health / _stats.maxHealth;
-            _image.fillAmount = Mathf.Lerp(_image.fillAmount, newFillAmount, lerpRate);
+            currentAttribute = attributeSet.currentMana;
+            maxAttribute = attributeSet.maxMana;
+            
+            attributeSet.currentMana.OnValueChanged += OnValueChanged;
+            attributeSet.maxMana.OnValueChanged += OnValueChanged;
         }
     }
+
+    private void OnValueChanged(ModifiableAttributeValue attribute)
+    {
+        
+        _targetFillAmount = currentAttribute.CurrentValue/maxAttribute.CurrentValue;
+    }
+
+    private void Update()
+    {
+        if (lerp)
+        {
+            image.fillAmount = Mathf.Lerp(image.fillAmount, _targetFillAmount, lerpRate * Time.deltaTime);
+        }
+        else
+        {
+            image.fillAmount = _targetFillAmount;
+        }
+    }
+    
 }

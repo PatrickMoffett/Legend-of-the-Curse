@@ -31,9 +31,9 @@ public class PlayerCharacter : MonoBehaviour
 
     public void PerformBasicAttack()
     {
-        basicAttack.Activate(transform.up);
-        
-        _stats.shots++;
-        
+        if (basicAttack.TryActivate(transform.up))
+        {
+            _stats.shots++;
+        }
     }
 }

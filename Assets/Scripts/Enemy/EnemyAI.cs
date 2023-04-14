@@ -47,7 +47,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             dir.Normalize();
-            basicAttack.Activate(dir);
+            basicAttack.TryActivate(dir);
         }
     }
 }

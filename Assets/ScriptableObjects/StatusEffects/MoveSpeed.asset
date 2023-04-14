@@ -10,18 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6943579f74bd7fc4ea86b613b6153f51, type: 3}
-  m_Name: Damage
+  m_Name: MoveSpeed
   m_EditorClassIdentifier: 
-  durationType: 0
-  duration: 0
+  durationType: 2
+  duration:
+    valueType: 0
+    staticFloat: 0
+    attributeSet: 0
+    sourceAttributeType: 0
+    preCoefficientAddition: 0
+    coefficient: 0
+    postCoefficientAddition: 0
+    customValueCalculation: {fileID: 0}
   isPeriodic: 0
   periodicRate: 0
   attributeModifiers:
-  - attribute: 2
+  - attribute: 12
     operation: 0
     attributeModifierValue:
       valueType: 0
-      staticFloat: 0
+      staticFloat: 5
       attributeSet: 0
       sourceAttributeType: 0
       preCoefficientAddition: 0

@@ -25,7 +25,7 @@ public class OutgoingStatusEffectInstance
     /// <summary>
     /// The Duration of the effect (Only applies to effects with DurationType = Duration)
     /// </summary>
-    public float Duration 
+    public AttributeModifierValue Duration 
     {
         get => _effect.duration;
         set => _effect.duration = value;

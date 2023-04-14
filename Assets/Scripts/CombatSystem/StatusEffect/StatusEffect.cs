@@ -34,8 +34,7 @@ public class StatusEffect : ScriptableObject
     /// The Duration of the effect (Only applies to effects with DurationType = Duration)
     /// </summary>
     [ShowIf(nameof(DurationTypeEqualsDuration))]
-    public float duration = 0f;
-    
+    public AttributeModifierValue duration;
     /// <summary>
     /// Bool indicating if the effect happens at set intervals
     /// </summary>

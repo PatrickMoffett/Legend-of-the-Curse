@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(AttributeSet))]
@@ -30,6 +29,11 @@ public class CombatSystem : MonoBehaviour
         //set this as the targetCombatSystem
         StatusEffectInstance effectToApply = new StatusEffectInstance(effect, this);
 
+        return ApplyStatusEffectInstance(effectToApply);
+    }
+    
+    private StatusEffectInstance ApplyStatusEffectInstance(StatusEffectInstance effectToApply)
+    {
         if (effectToApply.DurationType == StatusEffect.DurationType.Instant)
         {
             //apply all modifiers instantly
@@ -66,7 +70,6 @@ public class CombatSystem : MonoBehaviour
         StatusEffectAdded?.Invoke();
         return effectToApply;
     }
-
     private IEnumerator ApplyPeriodicEffect(StatusEffectInstance effectToApply)
     {
         //While we have this effect
@@ -107,12 +110,40 @@ public class CombatSystem : MonoBehaviour
     }
     private IEnumerator WaitToRemoveStatusEffect(StatusEffectInstance effectToRemove)
     {
-        yield return new WaitForSeconds(effectToRemove.Duration);
+        yield return new WaitForSeconds(effectToRemove.Duration.Value);
         RemoveStatusEffect(effectToRemove);
     }
 
     public AttributeSet GetAttributeSet()
     {
         return _attributeSet;
+    }
+
+    public bool TryActivationCost(StatusEffect activationCost)
+    {
+        StatusEffectInstance statusEffectToApply = 
+            new StatusEffectInstance(new OutgoingStatusEffectInstance(activationCost, this),this);
+
+        //for every modifier
+        foreach (var modifier in statusEffectToApply.AttributeModifiers)
+        {
+#if UNITY_EDITOR
+            //we're pretty much assuming subtract only at this point
+            if (modifier.operation != AttributeModifier.Operator.Subtract)
+            {
+                Debug.LogWarning("Using a modifier other than subtract as an Activation Cost.");
+            }
+#endif
+            //if we subtract and the value is below 0
+            if (modifier.operation == AttributeModifier.Operator.Subtract &&
+                _attributeSet.GetCurrentAttributeValue(modifier.attribute) < modifier.attributeModifierValue.Value)
+            {
+                //don't apply the cost and return false
+                return false;
+            }
+        }
+        //apply the cost and return true
+        ApplyStatusEffectInstance(statusEffectToApply);
+        return true;
     }
 }

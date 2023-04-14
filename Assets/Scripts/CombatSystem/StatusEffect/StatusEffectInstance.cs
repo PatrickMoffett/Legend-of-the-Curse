@@ -21,6 +21,8 @@ public class StatusEffectInstance
             mod.attributeModifierValue.SetSourceCombatSystem(_effect._sourceCombatSystem);
             mod.attributeModifierValue.SetTargetCombatSystem(_targetCombatSystem);
         }
+        Duration.SetSourceCombatSystem(_effect._sourceCombatSystem);
+        Duration.SetTargetCombatSystem(_targetCombatSystem);
     }
 
     public StatusEffect.DurationType DurationType
@@ -31,7 +33,7 @@ public class StatusEffectInstance
     /// <summary>
     /// The Duration of the effect (Only applies to effects with DurationType = Duration)
     /// </summary>
-    public float Duration 
+    public AttributeModifierValue Duration 
     {
         get => _effect.Duration;
         set => _effect.Duration = value;

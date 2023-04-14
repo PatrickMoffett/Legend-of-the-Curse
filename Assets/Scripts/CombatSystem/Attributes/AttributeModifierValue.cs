@@ -17,7 +17,7 @@ public class AttributeModifierValue
         Target
     }
     
-    public bool ValueTypeEqualsStaticFloat()
+    public bool ValueTypeEqualsConstant()
     {
         return valueType == ValueType.Constant;
     }
@@ -34,9 +34,9 @@ public class AttributeModifierValue
     
     [SerializeField]private ValueType valueType;
     
-    [ShowIf(nameof(ValueTypeEqualsStaticFloat))]
+    [ShowIf(nameof(ValueTypeEqualsConstant))]
     [SerializeField]
-    private float staticFloat;
+    private float constantFloat;
     
     [ShowIf(nameof(ValueTypeEqualsAttributeBased))]
     [SerializeField]
@@ -77,7 +77,7 @@ public class AttributeModifierValue
             switch (valueType)
             {
                 case ValueType.Constant:
-                    return staticFloat;
+                    return constantFloat;
                 case ValueType.AttributeBased:
                     if (attributeSet == AttributeSetToUse.Source)
                     {

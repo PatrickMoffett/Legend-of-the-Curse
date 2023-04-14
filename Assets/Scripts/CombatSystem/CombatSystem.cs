@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(AttributeSet))]
 public class CombatSystem : MonoBehaviour
 {
+    [SerializeField]private List<StatusEffect> startingEffects = new List<StatusEffect>();
     private AttributeSet _attributeSet;
 
     private readonly List<StatusEffectInstance> _currentStatusEffects = new List<StatusEffectInstance>();
@@ -13,9 +15,19 @@ public class CombatSystem : MonoBehaviour
     public event Action StatusEffectAdded;
     public event Action StatusEffectRemoved;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _attributeSet = GetComponent<AttributeSet>();
+        //force update current values before apply effects
+        _attributeSet.UpdateCurrentValues();
+        
+        //apply starting effects
+        foreach (var effect in startingEffects)
+        {
+            StatusEffectInstance statusEffectToApply = 
+                new StatusEffectInstance(new OutgoingStatusEffectInstance(effect, this),this);
+            ApplyStatusEffectInstance(statusEffectToApply);
+        }
     }
 
     private void OnDestroy()

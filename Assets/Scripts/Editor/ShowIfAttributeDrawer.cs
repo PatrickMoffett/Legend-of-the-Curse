@@ -3,6 +3,8 @@ using UnityEditor;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using PlasticPipe.PlasticProtocol.Messages;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Object = System.Object;
@@ -124,16 +126,8 @@ public class ShowIfAttributeDrawer : PropertyDrawer
     private bool MeetsConditions(SerializedProperty property)
     {
         var showIfAttribute = this.attribute as ShowIfAttribute;
-        object target;
-        if (property.propertyPath.Contains("Array"))
-        {
-            target = GetTargetObjectParentOfProperty(property);
-        }
-        else
-        {
-            target = property.serializedObject.targetObject;
-        }
-
+        object target = GetTargetObjectParentOfProperty(property);
+        
         List<bool> conditionValues = new List<bool>();
 
         foreach (var condition in showIfAttribute.Conditions)
@@ -190,9 +184,25 @@ public class ShowIfAttributeDrawer : PropertyDrawer
         var showIfAttribute = this.attribute as ShowIfAttribute;
 
         if (!meetsCondition && showIfAttribute.Action == 
-                                       ActionOnConditionFail.DontDraw)
+            ActionOnConditionFail.DontDraw)
             return 0;
+
+        if (property.hasVisibleChildren && property.isExpanded)
+        {
+            float sum = 0f;
+            var it = property.Copy();
+            int depth = it.depth;
+            while (it.NextVisible(true)
+                   && it.depth> depth)
+            {
+                sum += EditorGUI.GetPropertyHeight(it);
+            }
+
+            return base.GetPropertyHeight(property, label) + sum + 30f;
+        }
+
         return base.GetPropertyHeight(property, label);
+        
     }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent 

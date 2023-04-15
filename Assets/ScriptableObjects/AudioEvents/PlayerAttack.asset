@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc54b5b708446ba9b30b46a09088f29, type: 3}
   m_Name: PlayerAttack
   m_EditorClassIdentifier: 
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: 42ff3399a226bb043828ba7d67f86421, type: 3}
   volume:
-    minValue: 0
-    maxValue: 0
+    minValue: 0.79352516
+    maxValue: 1
   pitch:
-    minValue: 0
-    maxValue: 0
+    minValue: 0.797835
+    maxValue: 1.202165

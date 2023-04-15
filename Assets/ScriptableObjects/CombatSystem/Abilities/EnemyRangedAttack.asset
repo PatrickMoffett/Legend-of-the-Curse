@@ -18,6 +18,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7477218898586871388, guid: b04ef8ca6464c0a46b6389069a162c15, type: 3}
   projectileVelocity: 10
   effectsToApplyOnHit: []
-  attackSFX:
-  - {fileID: 8300000, guid: 7ca0ed19b4249244c8e0e0b7cef4933d, type: 3}
-  - {fileID: 8300000, guid: 66ccbf9f8672648469b1590114b34e39, type: 3}
+  audioEvent: {fileID: 11400000, guid: 2424ed9879cf3d7428f68c15ca7ea425, type: 2}

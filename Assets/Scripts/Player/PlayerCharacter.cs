@@ -11,9 +11,11 @@ public class PlayerCharacter : MonoBehaviour
     public Ability basicAttack;
     private CombatSystem _combatSystem;
     private AttributeSet _attributeSet;
+    private PlayerMovement _playerMovement;
 
     public void Start()
     {
+        _playerMovement = GetComponent<PlayerMovement>();
         _combatSystem = GetComponent<CombatSystem>();
         _attributeSet = GetComponent<AttributeSet>();
         _attributeSet.currentHealth.OnValueChanged += HealthChanged;
@@ -31,7 +33,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void PerformBasicAttack()
     {
-        if (basicAttack.TryActivate(transform.up))
+        if (basicAttack.TryActivate(_playerMovement.GetDirection()))
         {
             _stats.shots++;
         }

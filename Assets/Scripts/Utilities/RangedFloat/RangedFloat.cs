@@ -1,8 +1,8 @@
 using System;
 
 [Serializable]
-public struct RangedFloat
+public class RangedFloat
 {
-    public float minValue;
-    public float maxValue;
+    public float minValue = 1f;
+    public float maxValue = 1f;
 }

@@ -15,9 +15,9 @@ public class Trap : MonoBehaviour
     [SerializeField] private AudioEvent SpikeActivatedSound;
     [SerializeField] private AudioEvent SpikeDeactivatedSound;
 
-    
-    
-    private GameObject objectOnSpike;
+    private List<CombatSystem> _previouslyHit = new List<CombatSystem>();
+
+    private List<GameObject> _objectsOnSpike = new List<GameObject>();
     
     void Awake()
     {
@@ -33,16 +33,19 @@ public class Trap : MonoBehaviour
 
     void Update()
     {
-        if(spikeActivated && isOnSpike) 
-        {        
-            CombatSystem combatSystem = objectOnSpike.gameObject.GetComponent<CombatSystem>();
-            if (combatSystem)
-            {
-                //Instantiate status effects
-                List<OutgoingStatusEffectInstance> statusEffectInstances = new List<OutgoingStatusEffectInstance>();
-                foreach (var effect in effectsToApplyOnHit)
+        if(spikeActivated) 
+        {
+            foreach(GameObject objectOnSpike in _objectsOnSpike){
+                CombatSystem combatSystem = objectOnSpike.GetComponent<CombatSystem>();
+                if (combatSystem && !_previouslyHit.Contains(combatSystem))
                 {
-                    statusEffectInstances.Add(new OutgoingStatusEffectInstance(effect,combatSystem));
+                    //Instantiate status effects
+                    List<OutgoingStatusEffectInstance> statusEffectInstances = new List<OutgoingStatusEffectInstance>();
+                    foreach (var effect in effectsToApplyOnHit)
+                    {
+                        combatSystem.ApplyStatusEffect(new OutgoingStatusEffectInstance(effect, combatSystem));
+                        _previouslyHit.Add(combatSystem);
+                    }
                 }
             }
         }
@@ -53,18 +56,17 @@ public class Trap : MonoBehaviour
         StopAllCoroutines();
         spikeActivated = true;
         spikeAnimator.Play(activatedAnimationName);
+        _previouslyHit.Clear();
         StartCoroutine(ResetTrap());
     }
 
     private void OnTriggerEnter2D(Collider2D collider){
-        isOnSpike = true;
-        objectOnSpike = collider.gameObject;
+        _objectsOnSpike.Add(collider.gameObject);
     }
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        isOnSpike = false;
-        objectOnSpike = null;
+        _objectsOnSpike.Remove(collider.gameObject);
     }
     
     private IEnumerator ResetTrap()

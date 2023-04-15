@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 8901985704531070328}
-  lerp: 0
+  lerp: 1
   isHealth: 1
   lerpRate: 2
 --- !u!1 &5360831493411245092

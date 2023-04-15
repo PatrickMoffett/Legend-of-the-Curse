@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
-        [SerializeField] private CharacterStats _stats;
         private AttributeSet _attributeSet;
         private Vector2 _direction;
         private Animator _animator;
@@ -22,9 +21,11 @@ public class PlayerMovement : MonoBehaviour
     {
         _direction = direction;
         _direction.Normalize();
-        _animator.SetFloat(XDirection,_direction.x);
-        _animator.SetFloat(YDirection,_direction.y);
-        //transform.up = direction;
+        if (_animator)
+        {
+            _animator.SetFloat(XDirection, _direction.x);
+            _animator.SetFloat(YDirection, _direction.y);
+        }
     }
 
     public Vector2 GetDirection()
@@ -32,15 +33,12 @@ public class PlayerMovement : MonoBehaviour
         return _direction;
     }
 
-    public void Move(Vector2 direction)
+    public virtual void Move(Vector2 direction)
     {
         direction.Normalize();
-        Vector3 movement = Vector2.zero;
+        Vector3 movement = Vector3.zero;
         movement.x += direction.x * Time.deltaTime * _attributeSet.moveSpeed.CurrentValue;
         movement.y += direction.y * Time.deltaTime * _attributeSet.moveSpeed.CurrentValue;
         transform.position += movement;
-
-        _stats.totalDistance += movement.magnitude;
-        _stats.steps = Mathf.RoundToInt(_stats.totalDistance);
     }
 }

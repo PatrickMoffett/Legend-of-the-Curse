@@ -61,7 +61,7 @@ public class CombatSystemEditor : EditorWindow
         VisualElement root = rootVisualElement;
 
         // Import UXML
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Editor/CombatSystemEditor.uxml");
+        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/CombatSystem/Editor/CombatSystemEditor.uxml");
         VisualElement labelFromUxml = visualTree.Instantiate();
         root.Add(labelFromUxml);
     

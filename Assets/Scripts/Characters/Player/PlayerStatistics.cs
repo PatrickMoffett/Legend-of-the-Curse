@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterStats : ScriptableObject 
+public class PlayerStatistics : ScriptableObject 
 {
     [SerializeField] public int shots;
     [SerializeField] public int hits;

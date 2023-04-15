@@ -4,7 +4,7 @@ using TMPro;
 
 public class UIStats : MonoBehaviour
 {
-    public CharacterStats myStats;
+    public PlayerStatistics myStats;
     public TextMeshProUGUI shotsText;
     public TextMeshProUGUI hitsText;
     public TextMeshProUGUI stepsText;

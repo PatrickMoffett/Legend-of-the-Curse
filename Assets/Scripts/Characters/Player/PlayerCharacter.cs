@@ -5,20 +5,16 @@ using Services;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class PlayerCharacter : MonoBehaviour
+public class PlayerCharacter : Character
 {
-    [SerializeField] private CharacterStats _stats;
+    [SerializeField] private PlayerStatistics _stats;
     public Ability basicAttack;
-    private CombatSystem _combatSystem;
-    private AttributeSet _attributeSet;
-    private PlayerMovement _playerMovement;
 
-    public void Start()
+    protected override void Start()
     {
-        _playerMovement = GetComponent<PlayerMovement>();
-        _combatSystem = GetComponent<CombatSystem>();
-        _attributeSet = GetComponent<AttributeSet>();
-        _attributeSet.currentHealth.OnValueChanged += HealthChanged;
+        base.Start();
+        
+        AttributeSet.currentHealth.OnValueChanged += HealthChanged;
         basicAttack = Instantiate(basicAttack);
         basicAttack.Initialize(gameObject);
     }
@@ -33,7 +29,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void PerformBasicAttack()
     {
-        if (basicAttack.TryActivate(_playerMovement.GetDirection()))
+        if (basicAttack.TryActivate(CharacterMovement.GetDirection()))
         {
             _stats.shots++;
         }

@@ -16,7 +16,7 @@ public class SimpleAudioEvent : AudioEvent
     [Range(0f,1f)]
     public float spatialBlend = 1f; 
 
-    public override void Play(Vector3 position)
+    public override void Play(GameObject gameObject)
     {
         if (clips.Length == 0) return;
 
@@ -25,7 +25,12 @@ public class SimpleAudioEvent : AudioEvent
         float volume_ = Random.Range(volume.minValue, volume.maxValue);
         float pitch_ = Random.Range(pitch.minValue, pitch.maxValue);
         
-        ServiceLocator.Instance.Get<AudioManager>().PlaySfxAtLocation(clip, position, volume_, pitch_, spatialBlend);
+        GameObject sfx = ServiceLocator.Instance.Get<AudioManager>()
+            .PlaySfxAtLocation(clip, gameObject.transform.position, volume_, pitch_, spatialBlend)
+            .gameObject;
+
+        sfx.transform.parent = gameObject.transform;
+        
     }
 
     public override void Preview(AudioSource previewer)

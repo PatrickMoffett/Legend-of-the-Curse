@@ -38,7 +38,7 @@ namespace Abilities
 
             if (audioEvent)
             {
-                audioEvent.Play(_owner.transform.position);
+                audioEvent.Play(_owner);
             }
         }
     }

@@ -71,11 +71,11 @@ public class Trap : MonoBehaviour
     
     private IEnumerator ResetTrap()
     {
-        SpikeActivatedSound?.Play(transform.position);
+        SpikeActivatedSound?.Play(gameObject);
         yield return new WaitForSeconds(trapOnTime);
         spikeActivated = false;
         spikeAnimator.Play(idleAnimationName);
-        SpikeDeactivatedSound?.Play(transform.position);
+        SpikeDeactivatedSound?.Play(gameObject);
         yield return new WaitForSeconds(trapOffTime);
         StartTrap();
     }

@@ -136,20 +136,24 @@ namespace Services
 
             return linear;
         }
-        
+
         /// <summary>
         /// Plays a sound effect at the specified location in the game world.
         /// </summary>
         /// <param name="clipToPlay">The AudioClip to play.</param>
         /// <param name="location">The position in the game world where the sound effect should be played.</param>
+        /// <param name="volume"></param>
+        /// <param name="pitch"></param>
         /// <returns>The AudioSource component used to play the sound effect.</returns>
-        public AudioSource PlaySfxAtLocation(AudioClip clipToPlay, Vector3 location)
+        public AudioSource PlaySfxAtLocation(AudioClip clipToPlay, Vector3 location, float volume = 1f, float pitch = 1f)
         {
             GameObject temp = new GameObject("SFX");
             temp.transform.position = location;
             AudioSource audioSource = temp.AddComponent<AudioSource>();
             audioSource.outputAudioMixerGroup = _params.sfxGroup;
             audioSource.clip = clipToPlay;
+            audioSource.volume = volume;
+            audioSource.pitch = pitch;
             audioSource.Play();
             Object.Destroy(audioSource.gameObject,clipToPlay.length);
             return audioSource;

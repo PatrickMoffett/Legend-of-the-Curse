@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6943579f74bd7fc4ea86b613b6153f51, type: 3}
   m_Name: AttackSpeed
   m_EditorClassIdentifier: 
-  durationType: 1
+  durationType: 2
   duration:
-    valueType: 1
-    staticFloat: 0
+    valueType: 0
+    constantFloat: 0
     attributeSet: 0
     sourceAttributeType: 0
     preCoefficientAddition: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
     operation: 0
     attributeModifierValue:
       valueType: 0
-      staticFloat: 1
+      constantFloat: 1
       attributeSet: 0
       sourceAttributeType: 0
       preCoefficientAddition: 0

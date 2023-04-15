@@ -15,7 +15,7 @@ namespace Abilities
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private float projectileVelocity = 10f;
         [SerializeField] private List<StatusEffect> effectsToApplyOnHit;
-        [SerializeField] private List<AudioClip> attackSFX;
+        [SerializeField] private SimpleAudioEvent audioEvent;
         
         protected override void Activate(Vector2 direction)
         {
@@ -36,10 +36,9 @@ namespace Abilities
             //Set projectile velocity
             projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileVelocity;
 
-            if (attackSFX.Count > 0)
+            if (audioEvent)
             {
-                int index =Random.Range(0, attackSFX.Count);
-                ServiceLocator.Instance.Get<AudioManager>().PlaySfxAtLocation(attackSFX[index], _combatSystem.gameObject.transform.position);
+                audioEvent.Play(_owner.transform.position);
             }
         }
     }

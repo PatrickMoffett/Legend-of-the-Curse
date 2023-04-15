@@ -19,3 +19,5 @@ MonoBehaviour:
   projectileVelocity: 10
   effectsToApplyOnHit:
   - {fileID: 11400000, guid: fc47ecae5bfd9204eba28b979c635e5e, type: 2}
+  attackSFX:
+  - {fileID: 8300000, guid: 42ff3399a226bb043828ba7d67f86421, type: 3}

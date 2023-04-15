@@ -12,6 +12,10 @@ public class Trap : MonoBehaviour
     [SerializeField] private bool isOnSpike;
     [SerializeField] private string activatedAnimationName;
     [SerializeField] private string idleAnimationName;
+    [SerializeField] private AudioEvent SpikeActivatedSound;
+    [SerializeField] private AudioEvent SpikeDeactivatedSound;
+
+    
     
     private GameObject objectOnSpike;
     
@@ -65,9 +69,11 @@ public class Trap : MonoBehaviour
     
     private IEnumerator ResetTrap()
     {
+        SpikeActivatedSound?.Play(transform.position);
         yield return new WaitForSeconds(trapOnTime);
         spikeActivated = false;
         spikeAnimator.Play(idleAnimationName);
+        SpikeDeactivatedSound?.Play(transform.position);
         yield return new WaitForSeconds(trapOffTime);
         StartTrap();
     }

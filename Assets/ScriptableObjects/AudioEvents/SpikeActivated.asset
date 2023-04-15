@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dc54b5b708446ba9b30b46a09088f29, type: 3}
-  m_Name: BatAttack
+  m_Name: SpikeActivated
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 7ca0ed19b4249244c8e0e0b7cef4933d, type: 3}
+  - {fileID: 8300000, guid: 1a9dd058190c3d74f904fe114120accd, type: 3}
   volume:
-    minValue: 0.3828806
-    maxValue: 0.58504546
+    minValue: 1
+    maxValue: 1
   pitch:
-    minValue: 0.80184424
-    maxValue: 1.1987572
+    minValue: 1
+    maxValue: 1

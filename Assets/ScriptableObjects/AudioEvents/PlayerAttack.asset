@@ -20,3 +20,4 @@ MonoBehaviour:
   pitch:
     minValue: 0.797835
     maxValue: 1.202165
+  spatialBlend: 0

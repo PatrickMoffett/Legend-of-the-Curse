@@ -1,6 +1,7 @@
-using UnityEngine;
 using Services;
+using UnityEngine;
 using Random = UnityEngine.Random;
+
 
 [CreateAssetMenu(menuName="Audio Events/Simple")]
 public class SimpleAudioEvent : AudioEvent
@@ -23,6 +24,20 @@ public class SimpleAudioEvent : AudioEvent
         AudioClip clip = clips[Random.Range(0, clips.Length)];
         float volume_ = Random.Range(volume.minValue, volume.maxValue);
         float pitch_ = Random.Range(pitch.minValue, pitch.maxValue);
+        
         ServiceLocator.Instance.Get<AudioManager>().PlaySfxAtLocation(clip, position, volume_, pitch_, spatialBlend);
+    }
+
+    public override void Preview(AudioSource previewer)
+    {
+        AudioClip clip = clips[Random.Range(0, clips.Length)];
+        float volume_ = Random.Range(volume.minValue, volume.maxValue);
+        float pitch_ = Random.Range(pitch.minValue, pitch.maxValue);
+        
+        previewer.clip = clip;
+        previewer.volume = volume_;
+        previewer.pitch = pitch_;
+        previewer.spatialBlend = spatialBlend;
+        previewer.Play();
     }
 }

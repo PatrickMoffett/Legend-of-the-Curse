@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: basicAttack
       value: 
       objectReference: {fileID: 11400000, guid: d782ab8f4ec12174d8b4cc41f6232e26, type: 2}
+    - target: {fileID: 5421869499343826757, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
+      propertyPath: distanceToPerformAttack
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826758, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_Color.b
       value: 0.21791363

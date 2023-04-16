@@ -47,6 +47,9 @@ TagManager:
   - name: DecorativeSprite
     uniqueID: 645483587
     locked: 0
+  - name: Object
+    uniqueID: 2668553829
+    locked: 0
   - name: Player
     uniqueID: 658259427
     locked: 0

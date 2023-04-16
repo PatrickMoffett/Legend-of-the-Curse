@@ -29,7 +29,12 @@ public class PlayerCharacter : Character
 
     public void PerformBasicAttack()
     {
-        if (basicAttack.TryActivate(CharacterMovement.GetDirection()))
+        AbilityTargetData targetData = new AbilityTargetData();
+        targetData.sourceCharacterDirection = CharacterMovement.GetDirection();
+        targetData.sourceCharacterLocation = transform.position;
+        //targetData.targetLocation
+        //targetData.targetGameObject
+        if (basicAttack.TryActivate(targetData))
         {
             _stats.shots++;
         }

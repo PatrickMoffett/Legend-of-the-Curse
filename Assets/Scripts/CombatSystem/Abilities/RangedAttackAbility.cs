@@ -17,8 +17,9 @@ namespace Abilities
         [SerializeField] private List<StatusEffect> effectsToApplyOnHit;
         [SerializeField] private SimpleAudioEvent audioEvent;
         
-        protected override void Activate(Vector2 direction)
+        protected override void Activate(AbilityTargetData activationData)
         {
+            Vector2 direction = activationData.sourceCharacterDirection;
             //set rotation and spawn projectile
             var rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90));
             GameObject projectile = Instantiate(projectilePrefab,_owner.transform.position,rotation);

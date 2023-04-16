@@ -45,7 +45,12 @@ public class EnemyCharacter : MonoBehaviour
         }
         else
         {
-            basicAttack.TryActivate(dir);
+            AbilityTargetData targetData = new AbilityTargetData();
+            targetData.sourceCharacterDirection = dir;
+            targetData.sourceCharacterLocation = transform.position;
+            targetData.targetLocation = _player.transform.position;
+            targetData.targetGameObject = _player;
+            basicAttack.TryActivate(targetData);
         }
     }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerSpreadshot
   m_EditorClassIdentifier: 
   passiveAbility: 0
-  activationCost: {fileID: 11400000, guid: 22cad8bd1286e5941bfe89118c63b31c, type: 2}
-  cooldown: {fileID: 11400000, guid: 8605cc5433aaaed4abc93d6cc2619c0f, type: 2}
+  activationCost: {fileID: 11400000, guid: aea7e805a6e6998419dbc0d18b8bf49d, type: 2}
+  cooldown: {fileID: 11400000, guid: 188b75543e60d0d498151ce990f94db8, type: 2}
   projectilePrefab: {fileID: 7477218898586871388, guid: d98ddf3dfd6a0ee4faff47afb6edc193, type: 3}
   projectileVelocity: 10
   effectsToApplyOnHit:

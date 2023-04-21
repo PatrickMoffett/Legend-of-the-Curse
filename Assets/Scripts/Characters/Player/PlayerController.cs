@@ -21,15 +21,19 @@ public class PlayerController : MonoBehaviour
         
         //get PlayerMovement
         _characterMovement = GetComponent<CharacterMovement>();
-        
-        ;
 
 #if UNITY_EDITOR
         //Bind Debug Controls
         _playerControls.Player.DebugTeleport.performed += DebugTeleportPressed;
 #endif
-
+        _playerControls.Player.SpecialAttack.performed += SpecialAttackPressed;
     }
+
+    private void SpecialAttackPressed(InputAction.CallbackContext obj)
+    {
+        _playerCharacter.PerformSpecialAttack();
+    }
+
     private void OnEnable()
     {
         _playerControls.Enable();

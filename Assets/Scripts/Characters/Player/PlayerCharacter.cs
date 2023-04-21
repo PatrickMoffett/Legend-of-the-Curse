@@ -9,6 +9,7 @@ public class PlayerCharacter : Character
 {
     [SerializeField] private PlayerStatistics _stats;
     public Ability basicAttack;
+    public Ability specialAttack;
 
     protected override void Start()
     {
@@ -17,6 +18,8 @@ public class PlayerCharacter : Character
         AttributeSet.currentHealth.OnValueChanged += HealthChanged;
         basicAttack = Instantiate(basicAttack);
         basicAttack.Initialize(gameObject);
+        specialAttack = Instantiate(specialAttack);
+        specialAttack.Initialize(gameObject);
     }
 
     private void HealthChanged(ModifiableAttributeValue modifiableAttributeValue)
@@ -38,5 +41,15 @@ public class PlayerCharacter : Character
         {
             _stats.shots++;
         }
+    }
+
+    public void PerformSpecialAttack()
+    {
+        AbilityTargetData targetData = new AbilityTargetData();
+        targetData.sourceCharacterDirection = CharacterMovement.GetDirection();
+        targetData.sourceCharacterLocation = transform.position;
+        //targetData.targetLocation
+        //targetData.targetGameObject
+        specialAttack.TryActivate(targetData);
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class Projectile : MonoBehaviour
 {
-    private List<OutgoingStatusEffectInstance> _effectsToApply = new List<OutgoingStatusEffectInstance>();
+    private readonly List<OutgoingStatusEffectInstance> _effectsToApply = new List<OutgoingStatusEffectInstance>();
 
     private static GameObject _bucket;
     private void Start()
@@ -31,8 +31,25 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        CombatSystem combatSystem = col.gameObject.GetComponent<CombatSystem>();
+        if (combatSystem)
+        {
+            foreach (var effect in _effectsToApply)
+            {
+                combatSystem.ApplyStatusEffect(effect);
+            }
+        }
+        Destroy(gameObject);
+    }
+
     public void AddStatusEffects(List<OutgoingStatusEffectInstance> effects)
     {
+        if(effects[0]._sourceCombatSystem == null)
+        {
+            Debug.Log("Wat");
+        }
         _effectsToApply.AddRange(effects);
     }
 }

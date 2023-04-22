@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(PrefabPlacer), editorForChildClasses: true)]
+[CustomEditor(typeof(LevelGenerator), editorForChildClasses: true)]
 public class GameEventEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -10,8 +10,10 @@ public class GameEventEditor : Editor
 
         GUI.enabled = Application.isPlaying;
 
-        PrefabPlacer e = target as PrefabPlacer;
+        LevelGenerator e = target as LevelGenerator;
         if (GUILayout.Button("DrawPrefab"))
             e.TestDraw();
+        if (GUILayout.Button("DrawPath"))
+            e.TestDrawPath();
     }
 }

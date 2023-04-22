@@ -69,7 +69,16 @@ public class AttributeModifierValue
     {
         get
         {
-            if (!( _sourceCombatSystem && _targetCombatSystem))
+            if (valueType == ValueType.AttributeBased
+                && attributeSet == AttributeSetToUse.Source
+                && !_sourceCombatSystem)
+            {
+                //TODO: Fix bug where source target has died and this prevents applying their effects
+                //try snapshotting their attribute set
+                Debug.LogError("No Source Combat System Found (May have been destroyed");
+                return 0f;
+            }
+            if (!( _targetCombatSystem))
             {
                 Debug.LogError("Attribute Modifier Value missing properties");
                 return 0f;

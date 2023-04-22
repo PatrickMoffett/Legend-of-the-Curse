@@ -33,7 +33,7 @@ namespace Services
             {
                 _statsWidget.UIObject.SetActive(true);
             }
-
+            
             Time.timeScale = 1f;
         }
 
@@ -55,6 +55,7 @@ namespace Services
         {
             _uiWidget = ServiceLocator.Instance.Get<UIManager>().LoadUI(UI_PREFAB);
             _statsWidget = ServiceLocator.Instance.Get<UIManager>().LoadUI(STATS_UI_PREFAB);
+            ServiceLocator.Instance.Get<MusicManager>().StartSong(Resources.Load<AudioClip>("cave_music_reduced"),0f,false);
             //ServiceLocator.Instance.Get<LevelSceneManager>().LoadLevel(SCENE_INDEX);
             //ServiceLocator.Instance.Get<MusicManager>().StartSong(_mainMenuMusic, 1f);
         }

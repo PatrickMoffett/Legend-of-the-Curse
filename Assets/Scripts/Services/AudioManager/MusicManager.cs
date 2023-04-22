@@ -13,6 +13,8 @@ namespace Services
         /// </summary>
         private AudioSource _currentSongSource;
 
+        private Coroutine _fadeInCoroutine;
+
         public MusicManager() { }
 
         ~MusicManager() { }
@@ -38,6 +40,10 @@ namespace Services
             {
                 if (_currentSongSource.isPlaying)
                 {
+                    if (_fadeInCoroutine != null)
+                    {
+                        ServiceLocator.Instance.Get<MonoBehaviorService>().StopCoroutine(_fadeInCoroutine);
+                    }
                     ServiceLocator.Instance.Get<MonoBehaviorService>()
                         .StartCoroutine(FadeOutAndStopSong(_currentSongSource, transitionTime));
                     //get new Audio Source
@@ -47,8 +53,16 @@ namespace Services
 
             _currentSongSource.clip = songToPlay;
             _currentSongSource.loop = true;
-            ServiceLocator.Instance.Get<MonoBehaviorService>()
-                .StartCoroutine(PlayAndFadeIn(_currentSongSource, transitionTime));
+            if (transitionTime != 0f)
+            {
+                _fadeInCoroutine = ServiceLocator.Instance.Get<MonoBehaviorService>()
+                    .StartCoroutine(PlayAndFadeIn(_currentSongSource, transitionTime));
+            }
+            else
+            {
+                _currentSongSource.volume = 1f;
+            }
+
             _currentSongSource.Play();
         }
 
@@ -60,7 +74,6 @@ namespace Services
         /// <returns>An <see cref="IEnumerator"/> used for coroutine.</returns>
         IEnumerator FadeOutAndStopSong(AudioSource sourceToFade, float fadeTime)
         {
-            sourceToFade.volume = 1f;
             float elapsedTime = 0f;
             while (elapsedTime < fadeTime)
             {

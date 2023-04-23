@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(LevelGenerator), editorForChildClasses: true)]
-public class GameEventEditor : Editor
+public class LevelGeneratorEditor : Editor
 {
     public override void OnInspectorGUI()
     {
@@ -11,9 +11,7 @@ public class GameEventEditor : Editor
         GUI.enabled = Application.isPlaying;
 
         LevelGenerator e = target as LevelGenerator;
-        if (GUILayout.Button("DrawPrefab"))
-            e.TestDraw();
-        if (GUILayout.Button("DrawPath"))
-            e.TestDrawPath();
+        if (GUILayout.Button("SpawnLevel"))
+            e.SpawnLevel();
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 namespace LevelGeneration
 {
-    [CreateAssetMenu(menuName="LevelGenerator/Test")]
+    [CreateAssetMenu(menuName="LevelGenerator/Settings/Test")]
     public class LevelGeneratorSettings : ScriptableObject
     {
         public BoundsInt levelSizeBounds;

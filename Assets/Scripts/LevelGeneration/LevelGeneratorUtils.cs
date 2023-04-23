@@ -1,8 +1,17 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Object = UnityEngine.Object;
+
+[Serializable]
+public class SpawnedRoom
+{
+    public string name = String.Empty;
+    public BoundsInt bounds = new BoundsInt();
+    public List<Vector3Int> connectionPositions = new List<Vector3Int>();
+}
 
 public static class LevelGeneratorUtils
 {
@@ -47,7 +56,7 @@ public static class LevelGeneratorUtils
         {
             name = roomToSpawn.name,
             bounds = new BoundsInt(bounds.position + positionToSpawn, bounds.size),
-            _connectionPositions = connectionPositions,
+            connectionPositions = connectionPositions,
         };
         return newRoom;
     }
@@ -126,9 +135,9 @@ public static class LevelGeneratorUtils
         finishRoomPosition = default;
         float minSqrMagnitude = float.PositiveInfinity;
 
-        foreach (var startPos in startRoom._connectionPositions)
+        foreach (var startPos in startRoom.connectionPositions)
         {
-            foreach (var finishPos in finishRoom._connectionPositions)
+            foreach (var finishPos in finishRoom.connectionPositions)
             {
                 if ((finishPos - startPos).sqrMagnitude < minSqrMagnitude)
                 {

@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 1206410732}
   - component: {fileID: 1206410733}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: =====TILEMAPS=====
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206410730}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff3c8f8f95235ec4099f7a595d737836, type: 3}
   m_Name: 

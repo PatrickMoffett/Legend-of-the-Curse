@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c06da815b7b24a69b9dc4c4122b681dc, type: 3}
-  m_Name: Test
+  m_Name: SettingsTest
   m_EditorClassIdentifier: 
   levelSizeBounds:
     m_Position: {x: -1000, y: -1000, z: 0}
     m_Size: {x: 2000, y: 2000, z: 1}
   connectionPathTile: {fileID: 11400000, guid: 02680d1568ebd3b4fb1e1a7ef306e179, type: 2}
   connectionWallTile: {fileID: 11400000, guid: 64a43f58a2fa48248951a496509e8c79, type: 2}
-  connectionPathWidth: 4
+  connectionPathWidth: 2

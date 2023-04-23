@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         _bucket = new GameObject(this.gameObject.name + "_Bucket");
+        _bucket.transform.parent = transform.parent;
     }
 
     // Update is called once per frame

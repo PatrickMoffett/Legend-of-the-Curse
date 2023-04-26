@@ -11,44 +11,54 @@ public class LinearLevelGenerator : LevelGenerator
 
     public BoundsInt levelSizeBounds = new BoundsInt(-1000,-1000,0,2000,2000,1);
     
+    public Vector3Int linearDirection = new Vector3Int(0,1,0);
+    
     public int numberOfRoomsToSpawn = 5;
     public int distanceBetweenRooms = 5;
     
     public GameObject initialRoom;
     public List<GameObject> possibleRooms;
-    
+
     public TileBase connectionPathTile;
     public TileBase connectionWallTile;
     public int connectionPathWidth = 1;
+
+    public TileBase testTile;
+    public Vector3Int testPosition;
     
     private readonly Dictionary<string, Tilemap> _tilemaps = new Dictionary<string, Tilemap>();
+    private readonly List<Tilemap> _collidableTileMaps = new List<Tilemap>();
     private GameObject _roomsBucket;
-    private List<SpawnedRoom> _rooms = new List<SpawnedRoom>();
+    private readonly List<SpawnedRoom> _rooms = new List<SpawnedRoom>();
+    private readonly List<Vector3Int> _pathBuffer = new List<Vector3Int>();
     
     public override void SpawnLevel()
     {
         Setup();
-        SpawnRooms();
+        SpawnRooms(linearDirection);
         SpawnPaths();
     }
     void Setup()
     {
-        Tilemap[] tilemapsInScene = FindObjectsOfType<Tilemap>();
         _tilemaps.Clear();
         _rooms.Clear();
+        _collidableTileMaps.Clear();
+
+        Tilemap[] tilemapsInScene = FindObjectsOfType<Tilemap>();
         foreach (Tilemap tilemap in tilemapsInScene)
         {
             _tilemaps.Add(tilemap.name,tilemap);
         }
+        
         //Hide the connection tilemap, it's not meant to be visible
         _tilemaps["Connections"].gameObject.SetActive(false);
         
         //Create a bucket to put spawned rooms under
         _roomsBucket = new GameObject("=====ROOMS=====");
     }
-    protected virtual void SpawnRooms()
+    protected virtual void SpawnRooms(Vector3Int direction)
     {
-        Vector3Int currentPosition = Vector3Int.zero;
+        Vector3Int currentPosition = TilemapUtils.GetBoundsOfAllTilemaps(initialRoom.GetComponentsInChildren<Tilemap>()).size/-2;
         var newRoom = LevelGeneratorUtils.SpawnRoom(initialRoom, currentPosition,_tilemaps,_roomsBucket);
         _rooms.Add(newRoom);
         
@@ -62,12 +72,29 @@ public class LinearLevelGenerator : LevelGenerator
             var bounds = TilemapUtils.GetBoundsOfAllTilemaps(tilemapsInPrefab);
 
             //move position
-            currentPosition.y += distanceBetweenRooms + bounds.size.y / 2 + newRoom.bounds.size.y / 2;
+            if (direction.x > 0)
+            {
+                currentPosition.x += newRoom.bounds.size.x;
+            }else if (direction.x < 0)
+            {
+                currentPosition.x -= bounds.size.x;
+            }
+
+            if (direction.y > 0)
+            {
+                currentPosition.y += newRoom.bounds.size.y;
+            }else if (direction.y < 0)
+            {
+                currentPosition.y -= bounds.size.y;
+            }
+            currentPosition += new Vector3Int(distanceBetweenRooms, distanceBetweenRooms, distanceBetweenRooms) * direction;
             
             //spawn room
             newRoom= LevelGeneratorUtils.SpawnRoom(possibleRooms[randomIndex], currentPosition,_tilemaps,_roomsBucket);
             
             _rooms.Add(newRoom);
+            Debug.Log("Spawned New Room:");
+            newRoom.LogInfo();
         }
     }
     protected virtual void SpawnPaths()
@@ -81,18 +108,21 @@ public class LinearLevelGenerator : LevelGenerator
             //get additional starting positions to widen path
             int pathWidth = connectionPathWidth;
             
-            var pathBuffer = GetPathConnectingRooms(startRoom, finishRoom, pathWidth);
+            var pathBuffer = LevelGeneratorUtils.GetPathConnectingRooms(startRoom, finishRoom, pathWidth,levelSizeBounds,_collidableTileMaps);
 
-            //check all path positions for empty adjacent tiles and add a wall
+            //draw paths
             foreach (var pos in pathBuffer)
             {
-                ClearPosition(pos);
+                LevelGeneratorUtils.ClearPosition(pos,_tilemaps);
                 _tilemaps["Floors"].SetTile(pos, connectionPathTile);
             }
             //check all path positions for empty adjacent tiles and add a wall
             foreach (var pos in pathBuffer)
             {
-                var neighbors= GetNeighbors(pos);
+                List<Tilemap> collidableLayers = new List<Tilemap>();
+                collidableLayers.Add(_tilemaps["Walls"]);
+                collidableLayers.Add(_tilemaps["Floors"]);
+                var neighbors = LevelGeneratorUtils.GetOpenSquares4D(pos,levelSizeBounds,collidableLayers);
                 foreach (var emptyPos in neighbors)
                 {
                     _tilemaps["Walls"].SetTile(emptyPos,connectionWallTile);
@@ -101,96 +131,4 @@ public class LinearLevelGenerator : LevelGenerator
         }
     }
 
-    private List<Vector3Int> GetPathConnectingRooms(SpawnedRoom startRoom, SpawnedRoom finishRoom, int pathWidth)
-    {
-        //get closest connection positions
-        LevelGeneratorUtils.GetClosestConnectionPositions(startRoom, finishRoom,
-            out var startPosition, out var finishPosition);
-
-        //get path initial direction for start and finish
-        Vector3Int startDirection = GetInitialPathDirection(startPosition);
-        bool startHorizontal = Math.Abs(startDirection.x) != 0;
-
-        Vector3Int finishDirection = GetInitialPathDirection(finishPosition);
-        bool finishHorizontal = Math.Abs(finishDirection.x) != 0;
-
-        //get path
-        List<Vector3Int> pathBuffer = new List<Vector3Int>();
-        if (startHorizontal && finishHorizontal)
-        {
-            int halfXDistance = (Math.Abs(startPosition.x - finishPosition.x) + 1) / 2;
-            pathBuffer.AddRange(
-                LevelGeneratorUtils.GetHorizontalZPath(startPosition, finishPosition, pathWidth, halfXDistance));
-        }
-        else if (!startHorizontal && !finishHorizontal)
-        {
-            int halfYDistance = (Math.Abs(startPosition.x - finishPosition.x) + 1) / 2;
-            pathBuffer.AddRange(
-                LevelGeneratorUtils.GetVerticalZPath(startPosition, finishPosition, pathWidth, halfYDistance));
-        }
-        else if (startHorizontal)
-        {
-            pathBuffer.AddRange(LevelGeneratorUtils.GetVerticalZPath(startPosition, finishPosition, pathWidth, 0));
-        }
-        else
-        {
-            pathBuffer.AddRange(LevelGeneratorUtils.GetHorizontalZPath(startPosition, finishPosition, pathWidth, 0));
-        }
-
-        return pathBuffer;
-    }
-
-    private Vector3Int GetInitialPathDirection(Vector3Int startPosition)
-    {
-        //determine if start is horizontal or vertical wall
-        var neighbors = GetNeighbors(startPosition);
-        if (neighbors.Count is 0 or > 1)
-        {
-            Debug.LogError("Path start position has an unexpected amount of empty neighbors");
-            return Vector3Int.zero;
-        }
-        return startPosition - neighbors[0];
-        
-    }
-
-    public void ClearPosition(Vector3Int position)
-    {
-        foreach (var tilemap in _tilemaps)
-        {
-            tilemap.Value.SetTile(position,null);
-        }
-    }
-    private List<Vector3Int> GetNeighbors(Vector3Int position)
-    {
-        List<Vector3Int> neighbors = new List<Vector3Int>();
-        if (!levelSizeBounds.Contains(position)) return neighbors;
-        for (int i = 0; i < 4; i++)
-        {
-            Vector3Int neighbor = position;
-            switch (i)
-            {
-                case 0:
-                    neighbor.x += 1;
-                    break;
-                case 1:
-                    neighbor.x -= 1;
-                    break;
-                case 2:
-                    neighbor.y += 1;
-                    break;
-                case 3:
-                    neighbor.y -= 1;
-                    break;
-            }
-
-            if (_tilemaps["Floors"].GetTile<TileBase>(neighbor) == null)
-            {
-                if(_tilemaps["Walls"].GetTile<TileBase>(neighbor) == null)
-                {
-                    neighbors.Add(neighbor);
-                }
-            }
-        }
-        return neighbors;
-    }
 }

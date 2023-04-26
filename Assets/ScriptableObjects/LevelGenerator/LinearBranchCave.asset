@@ -9,20 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a783861e930485e8c5681835348eb50, type: 3}
-  m_Name: LinearCave
+  m_Script: {fileID: 11500000, guid: d1488089cb6e489681943895a3092ef0, type: 3}
+  m_Name: LinearBranchCave
   m_EditorClassIdentifier: 
   levelSizeBounds:
     m_Position: {x: -1000, y: -1000, z: 0}
     m_Size: {x: 2000, y: 2000, z: 1}
   linearDirection: {x: 0, y: 1, z: 0}
-  numberOfRoomsToSpawn: 2
+  numberOfLinearRoomsToSpawn: 6
   distanceBetweenRooms: 5
+  numberOfBranchesToSpawn: 3
+  numberOfRoomsPerBranch: 3
   initialRoom: {fileID: 2995055011651839578, guid: 3a8e06f0397359d4bad58e0a44ea7424, type: 3}
   possibleRooms:
   - {fileID: 2995055011651839578, guid: 3a8e06f0397359d4bad58e0a44ea7424, type: 3}
-  connectionPathTile: {fileID: 11400000, guid: 86a93572f8d3242488d5547a9a8f9f8b, type: 2}
-  connectionWallTile: {fileID: 11400000, guid: 9dd7b0d0f6df6784e8621232fbb06b76, type: 2}
-  connectionPathWidth: 3
-  testTile: {fileID: 11400000, guid: 2da20bbc1f41d0940addc8989ffe0a19, type: 2}
-  testPosition: {x: -2, y: 9, z: 0}
+  - {fileID: 2995055011651839578, guid: fde67b415bc28a04db8cd1e854591c7d, type: 3}
+  - {fileID: 2995055011651839578, guid: 2d1749b5e134dd34eb728a698218309f, type: 3}
+  connectionPathTile: {fileID: 11400000, guid: 154dd38d16b6c4145b3e88053e99b455, type: 2}
+  connectionWallTile: {fileID: 11400000, guid: e88d0dea81cda35449bc3a549cad77cb, type: 2}
+  connectionPathWidth: 2

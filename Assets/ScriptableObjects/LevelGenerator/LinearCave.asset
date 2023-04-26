@@ -16,12 +16,14 @@ MonoBehaviour:
     m_Position: {x: -1000, y: -1000, z: 0}
     m_Size: {x: 2000, y: 2000, z: 1}
   linearDirection: {x: 0, y: 1, z: 0}
-  numberOfRoomsToSpawn: 2
-  distanceBetweenRooms: 5
+  numberOfRoomsToSpawn: 5
+  distanceBetweenRooms: 0
   initialRoom: {fileID: 2995055011651839578, guid: 3a8e06f0397359d4bad58e0a44ea7424, type: 3}
   possibleRooms:
   - {fileID: 2995055011651839578, guid: 3a8e06f0397359d4bad58e0a44ea7424, type: 3}
-  connectionPathTile: {fileID: 11400000, guid: 86a93572f8d3242488d5547a9a8f9f8b, type: 2}
+  - {fileID: 2995055011651839578, guid: fde67b415bc28a04db8cd1e854591c7d, type: 3}
+  - {fileID: 2995055011651839578, guid: 2d1749b5e134dd34eb728a698218309f, type: 3}
+  connectionPathTile: {fileID: 11400000, guid: 4b7e3f80473b505478e310547f800d08, type: 2}
   connectionWallTile: {fileID: 11400000, guid: 9dd7b0d0f6df6784e8621232fbb06b76, type: 2}
   connectionPathWidth: 3
   testTile: {fileID: 11400000, guid: 2da20bbc1f41d0940addc8989ffe0a19, type: 2}

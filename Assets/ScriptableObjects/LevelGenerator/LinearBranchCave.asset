@@ -16,10 +16,10 @@ MonoBehaviour:
     m_Position: {x: -1000, y: -1000, z: 0}
     m_Size: {x: 2000, y: 2000, z: 1}
   linearDirection: {x: 0, y: 1, z: 0}
-  numberOfLinearRoomsToSpawn: 6
-  distanceBetweenRooms: 5
-  numberOfBranchesToSpawn: 3
-  numberOfRoomsPerBranch: 3
+  numberOfLinearRoomsToSpawn: 8
+  distanceBetweenRooms: 0
+  numberOfBranchesToSpawn: 6
+  numberOfRoomsPerBranch: 2
   initialRoom: {fileID: 2995055011651839578, guid: 3a8e06f0397359d4bad58e0a44ea7424, type: 3}
   possibleRooms:
   - {fileID: 2995055011651839578, guid: 3a8e06f0397359d4bad58e0a44ea7424, type: 3}
@@ -28,3 +28,5 @@ MonoBehaviour:
   connectionPathTile: {fileID: 11400000, guid: 154dd38d16b6c4145b3e88053e99b455, type: 2}
   connectionWallTile: {fileID: 11400000, guid: e88d0dea81cda35449bc3a549cad77cb, type: 2}
   connectionPathWidth: 2
+  useTestSeed: 1
+  testSeed: 116259

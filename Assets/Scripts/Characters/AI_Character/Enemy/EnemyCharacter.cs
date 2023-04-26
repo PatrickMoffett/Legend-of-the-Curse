@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyCharacter : MonoBehaviour
 {
+
+    [SerializeField] private float aggroRange = 8f;
     [SerializeField] private float distanceToPerformAttack;
     [SerializeField] private Ability basicAttack;
 
@@ -38,6 +40,8 @@ public class EnemyCharacter : MonoBehaviour
     {
         var dir = _player.transform.position - transform.position;
         float sqrDistance = dir.sqrMagnitude;
+        //if outside of aggro range do nothing
+        if (sqrDistance > aggroRange * aggroRange) return;
         dir.Normalize();
         if (sqrDistance > distanceToPerformAttack * distanceToPerformAttack)
         {

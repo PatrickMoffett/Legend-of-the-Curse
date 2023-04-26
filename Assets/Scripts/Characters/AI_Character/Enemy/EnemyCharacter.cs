@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class EnemyCharacter : MonoBehaviour
     [SerializeField] private float distanceToPerformAttack;
     [SerializeField] private Ability basicAttack;
 
+    public event Action<GameObject> OnEnemyDied;
+    
     private CombatSystem _combatSystem;
     private GameObject _player;
     private CharacterMovement _characterMovement;
@@ -31,6 +34,7 @@ public class EnemyCharacter : MonoBehaviour
     {
         if (health.CurrentValue <= 0)
         {
+            OnEnemyDied?.Invoke(gameObject);
             Destroy(gameObject);
         }
     }

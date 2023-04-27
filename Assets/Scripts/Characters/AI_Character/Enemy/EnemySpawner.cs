@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
         // increase time
         _timeSinceLastSpawn += Time.deltaTime;
         //return if max amount of enemies spawned
-        if (_spawnedEnemyCharacters.Count > 10) return;
+        if (_spawnedEnemyCharacters.Count > maxToSpawn) return;
         //check if it is time to spawn an enemy
         if (_timeSinceLastSpawn > spawnTime)
         {

@@ -15,8 +15,9 @@ public class EnemyCharacter : MonoBehaviour
     private CombatSystem _combatSystem;
     private GameObject _player;
     private CharacterMovement _characterMovement;
-
+    private Animator _animator;
     private AttributeSet _attributeSet;
+    private static readonly int Speed = Animator.StringToHash("Speed");
 
     // Start is called before the first frame update
     private void Start()
@@ -26,6 +27,7 @@ public class EnemyCharacter : MonoBehaviour
         _attributeSet = GetComponent<AttributeSet>();
         _attributeSet.currentHealth.OnValueChanged += HealthChanged;
         _player = GameObject.Find("Player");
+        _animator = GetComponent<Animator>();
         basicAttack = Instantiate(basicAttack);
         basicAttack.Initialize(gameObject);
     }
@@ -44,8 +46,13 @@ public class EnemyCharacter : MonoBehaviour
     {
         var dir = _player.transform.position - transform.position;
         float sqrDistance = dir.sqrMagnitude;
+        
         //if outside of aggro range do nothing
-        if (sqrDistance > aggroRange * aggroRange) return;
+        if (sqrDistance > aggroRange * aggroRange)
+        {
+            _animator.SetFloat(Speed, 0);
+            return;
+        }
         dir.Normalize();
         _characterMovement.Rotate(dir);
         if (sqrDistance > distanceToPerformAttack * distanceToPerformAttack)
@@ -54,6 +61,7 @@ public class EnemyCharacter : MonoBehaviour
         }
         else
         {
+            _animator.SetFloat(Speed, 0);
             AbilityTargetData targetData = new AbilityTargetData();
             targetData.sourceCharacterDirection = dir;
             targetData.sourceCharacterLocation = transform.position;

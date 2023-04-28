@@ -8,8 +8,9 @@ public class CharacterMovement : MonoBehaviour
         private AttributeSet _attributeSet;
         private Vector2 _direction;
         private Animator _animator;
-        private static readonly int XDirection = Animator.StringToHash("xDirection");
-        private static readonly int YDirection = Animator.StringToHash("yDirection");
+        private static readonly int XDirectionHash = Animator.StringToHash("xDirection");
+        private static readonly int YDirectionHash = Animator.StringToHash("yDirection");
+        private static readonly int SpeedHash = Animator.StringToHash("Speed");
 
         private void Start()
     {
@@ -23,8 +24,8 @@ public class CharacterMovement : MonoBehaviour
         _direction.Normalize();
         if (_animator)
         {
-            _animator.SetFloat(XDirection, _direction.x);
-            _animator.SetFloat(YDirection, _direction.y);
+            _animator.SetFloat(XDirectionHash, _direction.x);
+            _animator.SetFloat(YDirectionHash, _direction.y);
         }
     }
 
@@ -39,6 +40,7 @@ public class CharacterMovement : MonoBehaviour
         Vector3 movement = Vector3.zero;
         movement.x += direction.x * Time.deltaTime * _attributeSet.moveSpeed.CurrentValue;
         movement.y += direction.y * Time.deltaTime * _attributeSet.moveSpeed.CurrentValue;
+        _animator.SetFloat(SpeedHash, movement.magnitude);
         transform.position += movement;
     }
 }

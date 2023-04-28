@@ -47,6 +47,7 @@ public class EnemyCharacter : MonoBehaviour
         //if outside of aggro range do nothing
         if (sqrDistance > aggroRange * aggroRange) return;
         dir.Normalize();
+        _characterMovement.Rotate(dir);
         if (sqrDistance > distanceToPerformAttack * distanceToPerformAttack)
         {
             _characterMovement.Move(dir);

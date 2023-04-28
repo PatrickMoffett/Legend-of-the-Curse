@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 public class Projectile : MonoBehaviour
 {
+    public bool destroyOnCollision = true;
+    public event Action<GameObject> OnHitObject;
+    public event Action OnDestroyed;
     private readonly List<OutgoingStatusEffectInstance> _effectsToApply = new List<OutgoingStatusEffectInstance>();
 
     private static GameObject _bucket;
@@ -18,6 +21,11 @@ public class Projectile : MonoBehaviour
         transform.parent = _bucket.transform;
     }
 
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke();
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         CombatSystem combatSystem = col.gameObject.GetComponent<CombatSystem>();
@@ -28,7 +36,11 @@ public class Projectile : MonoBehaviour
                 combatSystem.ApplyStatusEffect(effect);
             }
         }
-        Destroy(gameObject);
+
+        if (destroyOnCollision)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -41,15 +53,14 @@ public class Projectile : MonoBehaviour
                 combatSystem.ApplyStatusEffect(effect);
             }
         }
-        Destroy(gameObject);
+        if (destroyOnCollision)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void AddStatusEffects(List<OutgoingStatusEffectInstance> effects)
     {
-        if(effects[0]._sourceCombatSystem == null)
-        {
-            Debug.Log("Wat");
-        }
         _effectsToApply.AddRange(effects);
     }
 }

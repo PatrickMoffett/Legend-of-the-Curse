@@ -29,7 +29,7 @@ public abstract class Ability : ScriptableObject
         _combatSystem = _owner.GetComponent<CombatSystem>();
         _attributes = _owner.GetComponent<AttributeSet>();
     }
-    public bool TryActivate(AbilityTargetData activationData)
+    public virtual bool TryActivate(AbilityTargetData activationData)
     {
         if ((_appliedCooldown == null || !_combatSystem.GetStatusEffects().Contains(_appliedCooldown)) 
             &&

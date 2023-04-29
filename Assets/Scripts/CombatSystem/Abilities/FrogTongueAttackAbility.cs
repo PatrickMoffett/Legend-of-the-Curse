@@ -93,33 +93,52 @@ namespace Abilities
             //WAIT/////////////////////////////////////////////////////
             yield return new WaitForSeconds(speed / acceleration);
             //////////////////////////////////////////////////////////
-            
+
             //play return sfx
-            if (attackReturning)
+            if (attackReturning && _owner != null)
             {
                 attackReturning.Play(_owner);
             }
+            //WAIT/////////////////////////////////////////////////////
+            yield return new WaitForSeconds(speed / acceleration);
+            //////////////////////////////////////////////////////////
+            Destroy(projectile);
         }
         
 
         private void OnProjectileDestroyed()
         {
-            _owner.GetComponent<Animator>().SetBool(Attacking, false);
+            _projectile.OnDestroyed -= OnProjectileDestroyed;
+            if (_owner != null)
+            {
+                _owner.GetComponent<Animator>().SetBool(Attacking, false);
+            }
+
             if (_updateProjectileCoroutine != null)
             {
                 ServiceLocator.Instance.Get<MonoBehaviorService>().StopCoroutine(_updateProjectileCoroutine);
             }
-            _combatSystem.RemoveStatusEffect(_immobilizeEffect);
+
+            if (_combatSystem != null)
+            {
+                _combatSystem.RemoveStatusEffect(_immobilizeEffect);
+            }
         }
 
         private IEnumerator UpdateProjectile()
         {
             while (_projectileRb != null)
             {
+                if (_owner == null)
+                {
+                    Destroy(_projectile.gameObject);
+                    break;
+                }
                 _projectileRb.velocity -= _initialDirection * (acceleration * Time.deltaTime);
-                _lineRenderer.SetPosition(0,_owner.transform.position);
-                _lineRenderer.SetPosition(1,_projectile.gameObject.transform.position);
+                _lineRenderer.SetPosition(0, _owner.transform.position);
+                _lineRenderer.SetPosition(1, _projectile.gameObject.transform.position);
                 yield return null;
+                
             }
         }
     }

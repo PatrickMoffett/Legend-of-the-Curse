@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5359838405857084512, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359838405857084512, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.88
+      objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826752, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_Name
       value: Frog
@@ -14,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 5421869499343826757, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: basicAttack
       value: 
-      objectReference: {fileID: 11400000, guid: d782ab8f4ec12174d8b4cc41f6232e26, type: 2}
+      objectReference: {fileID: 11400000, guid: 5262b1b5abecace408a8a6c44c4a5eb7, type: 2}
     - target: {fileID: 5421869499343826757, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: distanceToPerformAttack
       value: 4
@@ -41,11 +49,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826759, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.673183
+      value: -6.97
       objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826759, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5413048
+      value: 6.46
       objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826759, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_LocalPosition.z

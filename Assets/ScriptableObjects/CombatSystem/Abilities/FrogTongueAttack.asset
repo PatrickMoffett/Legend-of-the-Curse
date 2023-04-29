@@ -22,4 +22,5 @@ MonoBehaviour:
   effectsToApplyOnHit:
   - {fileID: 11400000, guid: 2c99dfdcf23327c42b9dd5b02021c9f6, type: 2}
   selfImmobilize: {fileID: 11400000, guid: f63840497e305a64dabb82da64434369, type: 2}
-  audioEvent: {fileID: 0}
+  attackStarted: {fileID: 11400000, guid: c00fcb503cfa6f443b6492fe3e01df1b, type: 2}
+  attackReturning: {fileID: 11400000, guid: c79918b3b2a0cca4ea72e53a534e47ef, type: 2}

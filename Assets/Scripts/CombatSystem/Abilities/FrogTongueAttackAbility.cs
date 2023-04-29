@@ -15,7 +15,8 @@ namespace Abilities
         [SerializeField] private float launchDelay = .5f;
         [SerializeField] private List<StatusEffect> effectsToApplyOnHit;
         [SerializeField] private StatusEffect selfImmobilize;
-        [SerializeField] private SimpleAudioEvent audioEvent;
+        [SerializeField] private SimpleAudioEvent attackStarted;
+        [SerializeField] private SimpleAudioEvent attackReturning;
         
         private static readonly int Attacking = Animator.StringToHash("Attacking");
 
@@ -39,16 +40,19 @@ namespace Abilities
             _initialDirection = activationData.sourceCharacterDirection;
             ServiceLocator.Instance.Get<MonoBehaviorService>().StartCoroutine(FireProjectile());
             _immobilizeEffect = _combatSystem.ApplyStatusEffect(new OutgoingStatusEffectInstance(selfImmobilize, _combatSystem));
-
-            if (audioEvent)
-            {
-                audioEvent.Play(_owner);
-            }
         }
 
         private IEnumerator FireProjectile()
         {
+            /////WAIT//////////////////////////////////////
             yield return new WaitForSeconds(launchDelay);
+            //////////////////////////////////////////////
+            
+            if (attackStarted)
+            {
+                attackStarted.Play(_owner);
+            }
+            
             //set rotation and spawn projectile
             var rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(_initialDirection.y, _initialDirection.x) * Mathf.Rad2Deg - 90));
             GameObject projectile = Instantiate(tongueProjectilePrefab,_owner.transform.position,rotation);
@@ -85,7 +89,18 @@ namespace Abilities
             }
 
             _updateProjectileCoroutine = ServiceLocator.Instance.Get<MonoBehaviorService>().StartCoroutine(UpdateProjectile());
+
+            //WAIT/////////////////////////////////////////////////////
+            yield return new WaitForSeconds(speed / acceleration);
+            //////////////////////////////////////////////////////////
+            
+            //play return sfx
+            if (attackReturning)
+            {
+                attackReturning.Play(_owner);
+            }
         }
+        
 
         private void OnProjectileDestroyed()
         {

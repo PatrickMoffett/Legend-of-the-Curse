@@ -22,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 5421869499343826758, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 294564983c0cec94e9a67c3d27a28f82, type: 3}
+      objectReference: {fileID: -890627051, guid: 8f6a45beca5c9d34f890ae63ebd40459, type: 3}
     - target: {fileID: 5421869499343826758, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -41,11 +41,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826759, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.1513982
+      value: -1.81
       objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826759, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.9810607
+      value: 1.67
       objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826759, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -100,7 +100,7 @@ Animator:
   m_GameObject: {fileID: 8731821873577166397}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d42a3a46734165d42ac12c8e821a1aa5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   durationType: 1
   duration:
     valueType: 0
-    constantFloat: 3
+    constantFloat: 1
     attributeSet: 0
     sourceAttributeType: 0
     preCoefficientAddition: 0

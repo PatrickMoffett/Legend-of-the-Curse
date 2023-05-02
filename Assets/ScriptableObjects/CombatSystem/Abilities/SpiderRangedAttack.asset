@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2d4a3589a741b68006b53c55fc312a, type: 3}
-  m_Name: EnemyRangedAttack
+  m_Name: SpiderRangedAttack
   m_EditorClassIdentifier: 
   passiveAbility: 0
   activationCost: {fileID: 0}
@@ -19,5 +19,5 @@ MonoBehaviour:
   projectileLifetime: 5
   projectileVelocity: 3
   effectsToApplyOnHit:
-  - {fileID: 11400000, guid: 3fff7fdecfb9e5a41b4d94911ca79801, type: 2}
+  - {fileID: 11400000, guid: 8442be83bf27d754b966fc706c96945e, type: 2}
   audioEvent: {fileID: 11400000, guid: 2424ed9879cf3d7428f68c15ca7ea425, type: 2}

@@ -15,7 +15,7 @@ MonoBehaviour:
   passiveAbility: 0
   activationCost: {fileID: 0}
   cooldown: {fileID: 11400000, guid: 8605cc5433aaaed4abc93d6cc2619c0f, type: 2}
-  projectilePrefab: {fileID: 7477218898586871388, guid: b04ef8ca6464c0a46b6389069a162c15, type: 3}
+  projectilePrefab: {fileID: 7109536191647011216, guid: c31462e37355f134aa88db892f2a5db6, type: 3}
   projectileLifetime: 5
   projectileVelocity: 3
   effectsToApplyOnHit:

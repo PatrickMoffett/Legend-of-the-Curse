@@ -37,7 +37,7 @@ public class LevelSceneManager : IService
         SceneManager.sceneLoaded -= GenerateLevelAfterSceneLoaded;
         LevelLoaded?.Invoke();
     }
-    public void LoadLevelGenerationScene()
+    private void LoadLevelGenerationScene()
     {
         SceneManager.LoadScene("LevelGenerationScene");
     }

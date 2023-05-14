@@ -51,7 +51,7 @@ public class LinearLevelGenerator : LevelGenerator
         }
         
         //Hide the connection tilemap, it's not meant to be visible
-        _tilemaps["Connections"].gameObject.SetActive(false);
+        //_tilemaps["Connections"].gameObject.SetActive(false);
         
         //Create a bucket to put spawned rooms under
         _roomsBucket = new GameObject("=====ROOMS=====");

@@ -3,6 +3,7 @@ using Services;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 
+
 public static class Bootstrapper
 {
     
@@ -35,7 +36,6 @@ public static class Bootstrapper
         int currentLevelIndex = ServiceLocator.Instance.Get<LevelSceneManager>().GetLevelIndex();
         if (currentLevelIndex == 0) return;
         ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<GameState>();
-        ServiceLocator.Instance.Get<LevelSceneManager>().LoadLevel(currentLevelIndex);
 #endif
     }
 }

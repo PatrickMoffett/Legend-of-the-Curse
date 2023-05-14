@@ -31,7 +31,7 @@ namespace Services
             VisualElement root = rootVisualElement;
 
             // Import UXML
-            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Editor/ApplicationStateManagerEditor.uxml");
+            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Services/ApplicationStateManager/Editor/ApplicationStateManagerEditor.uxml");
             VisualElement labelFromUxml = visualTree.Instantiate();
             root.Add(labelFromUxml);
         

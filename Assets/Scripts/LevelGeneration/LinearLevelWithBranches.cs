@@ -19,6 +19,7 @@ public class LinearLevelWithBranches : LevelGenerator
     
     public GameObject initialRoom;
     public List<GameObject> possibleRooms;
+    public List<GameObject> exitRoom;
     
     public TileBase connectionPathTile;
     public TileBase connectionWallTile;
@@ -37,11 +38,17 @@ public class LinearLevelWithBranches : LevelGenerator
     {
         Setup();
         SpawnStartingRoom();
-        SpawnRooms(_rooms[0],linearDirection,numberOfLinearRoomsToSpawn);
+        SpawnRooms(_rooms[0],linearDirection, possibleRooms,numberOfLinearRoomsToSpawn);
+        SpawnRooms(_rooms[^1],linearDirection, exitRoom,1);
         AddLinearPathToBuffer();
         SpawnBranches();
         DrawPathBuffer();
         EmptyPathBuffer();
+    }
+
+    private void SpawnExit()
+    {
+        
     }
 
     private void Setup()
@@ -85,19 +92,20 @@ public class LinearLevelWithBranches : LevelGenerator
         Debug.Log("Spawned New Room:");
         newRoom.LogInfo();
     }
-    protected virtual void SpawnRooms(SpawnedRoom startingRoom,Vector3Int direction,int numberOfRoomsToSpawn)
+    protected virtual void SpawnRooms(SpawnedRoom startingRoom, Vector3Int direction, List<GameObject> roomsToSpawn,
+        int numberOfRoomsToSpawn)
     {
         
         Vector3Int currentPosition = startingRoom.bounds.position;
         SpawnedRoom newRoom = startingRoom;
         
-        for (int i = 1; i < numberOfRoomsToSpawn; ++i)
+        for (int i = 0; i < numberOfRoomsToSpawn; ++i)
         {
             //get a random index
-            int randomIndex = Random.Range(0, possibleRooms.Count);
+            int randomIndex = Random.Range(0, roomsToSpawn.Count);
             
             //get the bounds of the room to spawn
-            Tilemap[] tilemapsInPrefab = possibleRooms[randomIndex].GetComponentsInChildren<Tilemap>();
+            Tilemap[] tilemapsInPrefab = roomsToSpawn[randomIndex].GetComponentsInChildren<Tilemap>();
             var bounds = TilemapUtils.GetBoundsOfAllTilemaps(tilemapsInPrefab);
 
             //move position
@@ -119,7 +127,7 @@ public class LinearLevelWithBranches : LevelGenerator
             currentPosition += new Vector3Int(distanceBetweenRooms, distanceBetweenRooms, distanceBetweenRooms) * direction;
 
             //spawn room
-            newRoom= LevelGeneratorUtils.SpawnRoom(possibleRooms[randomIndex], currentPosition,_tilemaps,_roomsBucket);
+            newRoom= LevelGeneratorUtils.SpawnRoom(roomsToSpawn[randomIndex], currentPosition,_tilemaps,_roomsBucket);
             
             _rooms.Add(newRoom);
             Debug.Log("Spawned New Room:");
@@ -141,7 +149,7 @@ public class LinearLevelWithBranches : LevelGenerator
     {
         //Get indexes
         List<int> index = new List<int>();
-        for (int i = 0; i < _rooms.Count; i++)
+        for (int i = 1; i < _rooms.Count-1; i++)
         {
             index.Add(i);
         }
@@ -175,7 +183,7 @@ public class LinearLevelWithBranches : LevelGenerator
             //get index of next room to spawn
             int startingIndex = _rooms.Count;
             //spawn rooms
-            SpawnRooms(roomToBranchFrom,branchDirection,numberOfRoomsPerBranch);
+            SpawnRooms(roomToBranchFrom,branchDirection, possibleRooms, numberOfRoomsPerBranch);
             //connect first room in branch
             _pathBuffer.AddRange(LevelGeneratorUtils.GetPathConnectingRooms(
                 _rooms[roomIndex], 

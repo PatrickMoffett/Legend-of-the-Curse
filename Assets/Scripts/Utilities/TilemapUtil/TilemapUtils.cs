@@ -8,13 +8,15 @@ using Object = UnityEngine.Object;
 
 public static class TilemapUtils
 {
+    
     // A* finds a path from start to goal.
     // h is the heuristic function. h(n) estimates the cost to reach goal from node n.
-    public static List<Vector3Int> Astar(Vector3Int start, Vector3Int finish, Func<Vector3Int,List<Vector3Int>>getNeighbors)
+    public static List<Vector3Int> Astar(Vector3Int start, Vector3Int finish, List<Tilemap> collidableTilemaps)
     {
         if (start == finish) return null;
         
-
+        //TODO: MAKE THIS A PARAMETER INSTEAD OF HARDCODED? or maybe some global setting?
+        BoundsInt levelBounds = new BoundsInt(new Vector3Int(-1000, -1000,0), new Vector3Int(2000, 2000,1));
 
         // For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from the start
         // to n currently known.
@@ -51,7 +53,7 @@ public static class TilemapUtils
 
             openSet.Dequeue();
             openHashSet.Remove(current);
-            List<Vector3Int> neighbors= getNeighbors(current);
+            List<Vector3Int> neighbors= LevelGeneratorUtils.GetOpenSquares4D(current,levelBounds,collidableTilemaps);
 
             foreach (var neighbor in neighbors)
             {

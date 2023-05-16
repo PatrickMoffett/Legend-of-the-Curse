@@ -39,17 +39,13 @@ public class LinearLevelWithBranches : LevelGenerator
         Setup();
         SpawnStartingRoom();
         SpawnRooms(_rooms[0],linearDirection, possibleRooms,numberOfLinearRoomsToSpawn);
-        SpawnRooms(_rooms[^1],linearDirection, exitRoom,1);
+        SpawnRooms(_rooms[^1],linearDirection, exitRoom,1); // Spawn Exit Room
         AddLinearPathToBuffer();
         SpawnBranches();
         DrawPathBuffer();
         EmptyPathBuffer();
     }
-
-    private void SpawnExit()
-    {
-        
-    }
+    
 
     private void Setup()
     {
@@ -95,13 +91,13 @@ public class LinearLevelWithBranches : LevelGenerator
     protected virtual void SpawnRooms(SpawnedRoom startingRoom, Vector3Int direction, List<GameObject> roomsToSpawn,
         int numberOfRoomsToSpawn)
     {
-        
+        //get position of the starting room (lower left corner)
         Vector3Int currentPosition = startingRoom.bounds.position;
-        SpawnedRoom newRoom = startingRoom;
         
+        //spawn a number of rooms
         for (int i = 0; i < numberOfRoomsToSpawn; ++i)
         {
-            //get a random index
+            //get a random index to pick a room
             int randomIndex = Random.Range(0, roomsToSpawn.Count);
             
             //get the bounds of the room to spawn
@@ -111,27 +107,32 @@ public class LinearLevelWithBranches : LevelGenerator
             //move position
             if (direction.x > 0)
             {
-                currentPosition.x += newRoom.bounds.size.x;
+                //when moving to the right, we need to move the size of the starting room
+                currentPosition.x += startingRoom.bounds.size.x;
             }else if (direction.x < 0)
             {
+                //when moving left, we need to move the size of the room we are about to place
                 currentPosition.x -= bounds.size.x;
             }
 
             if (direction.y > 0)
             {
-                currentPosition.y += newRoom.bounds.size.y;
+                //when moving to the up, we need to move the size of the starting room
+                currentPosition.y += startingRoom.bounds.size.y;
             }else if (direction.y < 0)
             {
+                //when moving down, we need to move the size of the room we are about to place
                 currentPosition.y -= bounds.size.y;
             }
+            //increase the distance by the distance between rooms
             currentPosition += new Vector3Int(distanceBetweenRooms, distanceBetweenRooms, distanceBetweenRooms) * direction;
 
             //spawn room
-            newRoom= LevelGeneratorUtils.SpawnRoom(roomsToSpawn[randomIndex], currentPosition,_tilemaps,_roomsBucket);
+            startingRoom= LevelGeneratorUtils.SpawnRoom(roomsToSpawn[randomIndex], currentPosition,_tilemaps,_roomsBucket);
             
-            _rooms.Add(newRoom);
+            _rooms.Add(startingRoom);
             Debug.Log("Spawned New Room:");
-            newRoom.LogInfo();
+            startingRoom.LogInfo();
         }
     }
     protected virtual void AddLinearPathToBuffer()

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1488089cb6e489681943895a3092ef0, type: 3}
+  m_Name: New Linear Level With Branches
+  m_EditorClassIdentifier: 
+  levelSizeBounds:
+    m_Position: {x: -1000, y: -1000, z: 0}
+    m_Size: {x: 2000, y: 2000, z: 1}
+  linearDirection: {x: 0, y: 1, z: 0}
+  numberOfLinearRoomsToSpawn: 5
+  distanceBetweenRooms: 5
+  numberOfBranchesToSpawn: 2
+  numberOfRoomsPerBranch: 2
+  initialRoom: {fileID: 0}
+  possibleRooms: []
+  exitRoom: []
+  connectionPathTile: {fileID: 0}
+  connectionWallTile: {fileID: 0}
+  connectionPathWidth: 1
+  useTestSeed: 0
+  testSeed: 0

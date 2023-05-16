@@ -144,6 +144,7 @@ MonoBehaviour:
   aggroRange: 8
   distanceToPerformAttack: 5
   basicAttack: {fileID: 11400000, guid: 6b63785248329bf488fd83564cd6f467, type: 2}
+  projectileSize: 1
 --- !u!114 &6348248489396451972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth:
-    baseValue: 100
+    baseValue: 30
   maxHealth:
     baseValue: 10
   healthRegen:

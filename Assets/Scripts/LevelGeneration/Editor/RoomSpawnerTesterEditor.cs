@@ -13,7 +13,5 @@ public class RoomSpawnerTesterEditor : Editor
         RoomSpawnerTester e = target as RoomSpawnerTester;
         if (GUILayout.Button("DrawPrefab"))
             e.TestDraw();
-        if (GUILayout.Button("DrawPath"))
-            e.TestDrawPath();
     }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SpiderAttack
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 7ca0ed19b4249244c8e0e0b7cef4933d, type: 3}
-  - {fileID: 8300000, guid: b8340c5ea0e04344796f06b6dedd2eb4, type: 3}
+  - {fileID: 8300000, guid: aa60866e03daac5438c03ca76aa9312e, type: 3}
+  - {fileID: 8300000, guid: a5696ecaf9b658e479f0b1b2e800282f, type: 3}
   volume:
     minValue: 0.84516305
     maxValue: 1

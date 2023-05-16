@@ -122,31 +122,12 @@ public class RoomSpawnerTester : MonoBehaviour
         
     }
 
-    public void TestDrawPath()
-    {
-        DrawShortestPath(startTestPath,finishTestPath);
-    }
-
     public void ClearPosition(Vector3Int position)
     {
         foreach (var tilemap in _tilemaps)
         {
             tilemap.Value.SetTile(position,null);
         }
-    }
-    private List<Vector3Int> DrawShortestPath(Vector3Int start, Vector3Int finish)
-    {
-        List<Vector3Int> path = TilemapUtils.Astar(start, finish,GetNeighbors);
-        if (path == null)
-        {
-            Debug.LogWarning("No Path Found");
-            return null;
-        }
-        foreach (var pos in path)
-        {
-            _tilemaps["Floors"].SetTile(pos,levelGeneratorSettings.connectionPathTile);
-        }
-        return path;
     }
     private List<Vector3Int> GetNeighbors(Vector3Int position)
     {

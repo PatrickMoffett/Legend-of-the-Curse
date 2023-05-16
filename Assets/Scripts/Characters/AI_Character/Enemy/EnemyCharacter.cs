@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Services;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EnemyCharacter : Character
 {
@@ -10,6 +13,8 @@ public class EnemyCharacter : Character
     [SerializeField] private float distanceToPerformAttack;
     [SerializeField] private Ability basicAttack;
 
+    [SerializeField] private float projectileSize = 1f;
+    
     public event Action<GameObject> OnEnemyDied;
     
     private GameObject _player;
@@ -43,8 +48,8 @@ public class EnemyCharacter : Character
     // Update is called once per frame
     private void Update()
     {
-        var dir = _player.transform.position - transform.position;
-        float sqrDistance = dir.sqrMagnitude;
+        var playerDirection = _player.transform.position - transform.position;
+        float sqrDistance = playerDirection.sqrMagnitude;
         
         //if outside of aggro range do nothing
         if (sqrDistance > aggroRange * aggroRange)
@@ -52,21 +57,73 @@ public class EnemyCharacter : Character
             _animator.SetFloat(Speed, 0);
             return;
         }
-        dir.Normalize();
-        CharacterMovement.Rotate(dir);
-        if (sqrDistance > distanceToPerformAttack * distanceToPerformAttack)
+        
+        //check what is between this character and the player
+        //RaycastHit2D hitResult = Physics2D.Raycast(transform.position, playerDirection, playerDirection.magnitude, LayerMask.GetMask("Player", "Default"));
+
+        RaycastHit2D hitResult = Physics2D.CircleCast(transform.position, projectileSize, playerDirection,playerDirection.magnitude,
+            LayerMask.GetMask("Player", "Default"));
+        //if we got the player we can see them
+        if (hitResult.transform.gameObject.CompareTag("Player")) 
         {
-            CharacterMovement.Move(dir);
+            //since we can see them, either  attack, or move closer directly towards them
+            if (sqrDistance < distanceToPerformAttack * distanceToPerformAttack)
+            {
+                PerformBasicAttack(playerDirection);
+            }
+            else
+            {
+                MoveInDirection(playerDirection);
+            }
         }
-        else
+        else //if we can't see the player, find a path to them
         {
-            _animator.SetFloat(Speed, 0);
-            AbilityTargetData targetData = new AbilityTargetData();
-            targetData.sourceCharacterDirection = dir;
-            targetData.sourceCharacterLocation = transform.position;
-            targetData.targetLocation = _player.transform.position;
-            targetData.targetGameObject = _player;
-            basicAttack.TryActivate(targetData);
+            var tilemapDictionary= ServiceLocator.Instance.Get<LevelSceneManager>().GetTilemapDictionary();
+            var playerPosition= tilemapDictionary["Walls"].WorldToCell(_player.transform.position);
+            var position= tilemapDictionary["Walls"].WorldToCell(transform.position);
+
+            List<Tilemap> collidableTilemaps = new List<Tilemap>();
+            collidableTilemaps.Add(tilemapDictionary["Walls"]);
+            var path = TilemapUtils.Astar(position, playerPosition, collidableTilemaps);
+            
+            //Move via Astar
+            if (path != null && path.Count > 0)
+            {
+                Vector3 destination = tilemapDictionary["Walls"].CellToWorld(path[1]);
+                destination += new Vector3(.5f, .5f, 0);
+                Vector3 direction =  destination- transform.position;
+                MoveInDirection(direction.normalized);
+            }
+            Debug.Log("Can't See Player");
         }
+    }
+
+    private void MoveInDirection(Vector3 playerDirection)
+    {
+        //face the direction
+        playerDirection.Normalize();
+        CharacterMovement.Rotate(playerDirection);
+        //move
+        CharacterMovement.Move(playerDirection);
+    }
+
+    private void PerformBasicAttack(Vector3 direction)
+    {
+        //face the player
+        direction.Normalize();
+        CharacterMovement.Rotate(direction);
+
+        //set animator move speed
+        _animator.SetFloat(Speed, 0);
+
+        //setup targetdata
+        AbilityTargetData targetData = new AbilityTargetData();
+        targetData.sourceCharacterDirection = direction;
+        targetData.sourceCharacterLocation = transform.position;
+        targetData.targetLocation = _player.transform.position;
+        targetData.targetGameObject = _player;
+
+        //activate ability
+        basicAttack.TryActivate(targetData);
     }
 }

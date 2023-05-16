@@ -13,19 +13,19 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - targetPlatform: StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-            channel: mac
+#          - targetPlatform: StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+#            channel: mac
 #          - StandaloneWindows # Build a Windows standalone.
 #            channel: win
-          - targetPlatform: StandaloneWindows64 # Build a Windows 64-bit standalone.
-            channel: win
+#          - targetPlatform: StandaloneWindows64 # Build a Windows 64-bit standalone.
+#            channel: win
 #          - StandaloneLinux64 # Build a Linux 64-bit standalone.
 #            channel: linux
 #          - iOS # Build an iOS player.
 #          - Android # Build an Android .apk standalone app.
 #            channel: android
-#          - targetPlatform: WebGL # WebGL.
-#            channel: html5
+           - targetPlatform: WebGL # WebGL.
+             channel: html5
     steps:
       - uses: actions/checkout@v3
         with:
@@ -45,7 +45,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: ${{ matrix.channel }}
-          ITCH_GAME: testcontinuousdeployment
+          ITCH_GAME: legend-of-the-curse
           ITCH_USER: PatrickMoffett
           PACKAGE: build/${{ matrix.targetPlatform }}
           VERSION: ${{github.ref_name}}

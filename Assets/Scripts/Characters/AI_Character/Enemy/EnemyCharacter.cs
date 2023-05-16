@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCharacter : MonoBehaviour
+public class EnemyCharacter : Character
 {
 
     [SerializeField] private float aggroRange = 8f;
@@ -12,20 +12,19 @@ public class EnemyCharacter : MonoBehaviour
 
     public event Action<GameObject> OnEnemyDied;
     
-    private CombatSystem _combatSystem;
     private GameObject _player;
-    private CharacterMovement _characterMovement;
     private Animator _animator;
-    private AttributeSet _attributeSet;
     private static readonly int Speed = Animator.StringToHash("Speed");
 
     // Start is called before the first frame update
     private void Start()
     {
-        _combatSystem=GetComponent<CombatSystem>();
-        _characterMovement = GetComponent<CharacterMovement>();
-        _attributeSet = GetComponent<AttributeSet>();
-        _attributeSet.currentHealth.OnValueChanged += HealthChanged;
+        base.Start();
+        
+        CombatSystem=GetComponent<CombatSystem>();
+        CharacterMovement = GetComponent<CharacterMovement>();
+        AttributeSet = GetComponent<AttributeSet>();
+        AttributeSet.currentHealth.OnValueChanged += HealthChanged;
         _player = GameObject.Find("Player");
         _animator = GetComponent<Animator>();
         basicAttack = Instantiate(basicAttack);
@@ -54,10 +53,10 @@ public class EnemyCharacter : MonoBehaviour
             return;
         }
         dir.Normalize();
-        _characterMovement.Rotate(dir);
+        CharacterMovement.Rotate(dir);
         if (sqrDistance > distanceToPerformAttack * distanceToPerformAttack)
         {
-            _characterMovement.Move(dir);
+            CharacterMovement.Move(dir);
         }
         else
         {

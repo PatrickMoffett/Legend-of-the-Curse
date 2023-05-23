@@ -30,13 +30,28 @@ public class EnemyCharacter : Character
         CharacterMovement = GetComponent<CharacterMovement>();
         AttributeSet = GetComponent<AttributeSet>();
         AttributeSet.currentHealth.OnValueChanged += HealthChanged;
-        _player = GameObject.Find("Player");
+        _player = ServiceLocator.Instance.Get<PlayerManager>().GetPlayer();
         _animator = GetComponent<Animator>();
         basicAttack = Instantiate(basicAttack);
         basicAttack.Initialize(gameObject);
     }
 
-    private void HealthChanged(ModifiableAttributeValue health)
+    private void OnEnable()
+    {
+        ServiceLocator.Instance.Get<PlayerManager>().OnPlayerSpawned += OnPlayerSpawned;
+    }
+
+    private void OnDisable()
+    {
+        ServiceLocator.Instance.Get<PlayerManager>().OnPlayerSpawned -= OnPlayerSpawned;
+    }
+
+    private void OnPlayerSpawned(GameObject player)
+    {
+        _player = player;
+    }
+
+    private void HealthChanged(ModifiableAttributeValue health, float prevValue)
     {
         if (health.CurrentValue <= 0)
         {
@@ -48,6 +63,11 @@ public class EnemyCharacter : Character
     // Update is called once per frame
     private void Update()
     {
+        if (!_player)
+        {
+            Debug.LogWarning(gameObject.name + " has no value set for _player. Taking no action.");
+            return;
+        }
         var playerDirection = _player.transform.position - transform.position;
         float sqrDistance = playerDirection.sqrMagnitude;
         
@@ -73,28 +93,45 @@ public class EnemyCharacter : Character
             }
             else
             {
-                MoveInDirection(playerDirection);
+                hitResult = Physics2D.CircleCast(transform.position, projectileSize, playerDirection,playerDirection.magnitude,
+                    LayerMask.GetMask("Player", "Pit"));
+                //if there is no pit between us and the player
+                //move directly towrards them
+                if (hitResult.transform.gameObject.CompareTag("Player"))
+                {
+                    MoveInDirection(playerDirection);
+                }
+                else
+                {
+                    MoveTowardsPosition(_player.transform.position);
+                }
+                
             }
         }
         else //if we can't see the player, find a path to them
         {
-            var tilemapDictionary= ServiceLocator.Instance.Get<LevelSceneManager>().GetTilemapDictionary();
-            var playerPosition= tilemapDictionary["Walls"].WorldToCell(_player.transform.position);
-            var position= tilemapDictionary["Walls"].WorldToCell(transform.position);
+            MoveTowardsPosition(_player.transform.position);
+        }
+    }
 
-            List<Tilemap> collidableTilemaps = new List<Tilemap>();
-            collidableTilemaps.Add(tilemapDictionary["Walls"]);
-            var path = TilemapUtils.Astar(position, playerPosition, collidableTilemaps);
-            
-            //Move via Astar
-            if (path != null && path.Count > 0)
-            {
-                Vector3 destination = tilemapDictionary["Walls"].CellToWorld(path[1]);
-                destination += new Vector3(.5f, .5f, 0);
-                Vector3 direction =  destination- transform.position;
-                MoveInDirection(direction.normalized);
-            }
-            Debug.Log("Can't See Player");
+    private void MoveTowardsPosition(Vector3 transformPosition)
+    {
+        var tilemapDictionary = ServiceLocator.Instance.Get<LevelSceneManager>().GetTilemapDictionary();
+        var playerPosition = tilemapDictionary["Walls"].WorldToCell(transformPosition);
+        var position = tilemapDictionary["Walls"].WorldToCell(transform.position);
+
+        List<Tilemap> collidableTilemaps = new List<Tilemap>();
+        collidableTilemaps.Add(tilemapDictionary["Walls"]);
+        collidableTilemaps.Add(tilemapDictionary["Pit"]);
+        var path = TilemapUtils.Astar(position, playerPosition, collidableTilemaps);
+
+        //Move via Astar
+        if (path != null && path.Count > 0)
+        {
+            Vector3 destination = tilemapDictionary["Walls"].CellToWorld(path[1]);
+            destination += new Vector3(.5f, .5f, 0);
+            Vector3 direction = destination - transform.position;
+            MoveInDirection(direction.normalized);
         }
     }
 

@@ -55,16 +55,19 @@ public class SpriteFlash : MonoBehaviour
 
     private IEnumerator FlashRoutine()
     {
-        // Swap to the flashMaterial.
-        spriteRenderer.material = flashMaterial;
+        if (spriteRenderer)
+        {
+            // Swap to the flashMaterial.
+            spriteRenderer.material = flashMaterial;
 
-        // Pause the execution of this function for "duration" seconds.
-        yield return new WaitForSeconds(duration);
+            // Pause the execution of this function for "duration" seconds.
+            yield return new WaitForSeconds(duration);
 
-        // After the pause, swap back to the original material.
-        spriteRenderer.material = originalMaterial;
+            // After the pause, swap back to the original material.
+            spriteRenderer.material = originalMaterial;
 
-        // Set the routine to null, signaling that it's finished.
-        flashRoutine = null;
+            // Set the routine to null, signaling that it's finished.
+            flashRoutine = null;
+        }
     }
 }

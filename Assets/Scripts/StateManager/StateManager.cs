@@ -40,20 +40,21 @@ namespace StateManager
             {
                 prevState = _states.Peek();
             }
-        
-            //Create a new state of type T and add it to the stack
-            BaseState newState = new TStateType();
-            _states.Push(newState);
-        
+
             //pop the current state or put it into a background state
             if (popCurrentState)
             {
-                PopState();
+                PopState(false);
             }
             else
             {
                 prevState?.Transition(BaseState.StateStatus.Background);
             }
+            
+            //Create a new state of type T and add it to the stack
+            BaseState newState = new TStateType();
+            _states.Push(newState);
+            
             // Transition new state to active
             newState.Transition(BaseState.StateStatus.Active, prevState, options);
             StatePushed?.Invoke(newState);
@@ -62,7 +63,7 @@ namespace StateManager
         /// <summary>
         /// Pops the current state off of the stack
         /// </summary>
-        public void PopState()
+        public void PopState(bool setTopActive = true)
         {
             //Pop top state and set to inactive
             BaseState popState;
@@ -76,10 +77,13 @@ namespace StateManager
             {
                 popState = null;
             }
-            
-            //Set new top state to active if it exists
-            BaseState newTopState = _states.Count == 0 ? null : _states.Peek();
-            newTopState?.Transition(BaseState.StateStatus.Active,popState);
+
+            if (setTopActive)
+            {
+                //Set new top state to active if it exists
+                BaseState newTopState = _states.Count == 0 ? null : _states.Peek();
+                newTopState?.Transition(BaseState.StateStatus.Active, popState);
+            }
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private PlayerControls _playerControls;
     private PlayerCharacter _playerCharacter;
     private CharacterMovement _characterMovement;
+    private InteractionRadius _interactionRadius;
 
     // used to swap between mouse aim and thumbstick during game
     private bool hasTwinStickedRecently = false;
@@ -22,11 +23,15 @@ public class PlayerController : MonoBehaviour
         //get PlayerMovement
         _characterMovement = GetComponent<CharacterMovement>();
 
+        //get InteractionRadius
+        _interactionRadius = GetComponent<InteractionRadius>();
+
 #if UNITY_EDITOR
         //Bind Debug Controls
         _playerControls.Player.DebugTeleport.performed += DebugTeleportPressed;
 #endif
         _playerControls.Player.SpecialAttack.performed += SpecialAttackPressed;
+        _playerControls.Player.Interact.performed += Interact;
     }
 
     private void SpecialAttackPressed(InputAction.CallbackContext obj)
@@ -80,5 +85,10 @@ public class PlayerController : MonoBehaviour
         {
             _playerCharacter.PerformBasicAttack();
         }
+    }
+
+    void Interact(InputAction.CallbackContext obj)
+    {
+        _interactionRadius.GiveInteraction(gameObject);
     }
 }

@@ -20,8 +20,11 @@ public class Character : MonoBehaviour
         AttributeSet.currentHealth.OnValueChanged += OnHealthChanged;
     }
 
-    protected void OnHealthChanged(ModifiableAttributeValue value)
+    protected void OnHealthChanged(ModifiableAttributeValue value, float previousValue)
     {
-        SpriteFlash.Flash();
+        if (previousValue > value.CurrentValue)
+        {
+            SpriteFlash.Flash();
+        }
     }
 }

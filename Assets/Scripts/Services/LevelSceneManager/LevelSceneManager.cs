@@ -21,6 +21,7 @@ public class LevelSceneManager : IService
     {
         if (_nextLevel < _levelSettings.levels.Count)
         {
+            ServiceLocator.Instance.Get<PlayerManager>().SetPlayerLocation(Vector3.zero);
             //listen for scene loaded so we can do stuff after we load a clean scene
             SceneManager.sceneLoaded += GenerateLevelAfterSceneLoaded;
             //Clear out the tilemaps variable since we are about to load a new scene

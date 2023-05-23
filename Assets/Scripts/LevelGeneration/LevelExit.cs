@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LevelExit : MonoBehaviour
 {
+    private bool prevHit = false;
     private void GoToNextLevel()
     {
         ServiceLocator.Instance.Get<LevelSceneManager>().LoadNextLevel();
@@ -12,8 +13,9 @@ public class LevelExit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !prevHit)
         {
+            prevHit = true;
             GoToNextLevel();
         }
     }

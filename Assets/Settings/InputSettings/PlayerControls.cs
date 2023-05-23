@@ -80,6 +80,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""52a90712-bc35-431c-b36e-2e7f2046edaf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -322,6 +331,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b0f26f0d-4d78-4111-8699-2fe13f5d165b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -915,6 +935,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_SpecialAttack = m_Player.FindAction("SpecialAttack", throwIfNotFound: true);
         m_Player_DebugTeleport = m_Player.FindAction("DebugTeleport", throwIfNotFound: true);
         m_Player_TwinstickAiming = m_Player.FindAction("TwinstickAiming", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -994,6 +1015,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpecialAttack;
     private readonly InputAction m_Player_DebugTeleport;
     private readonly InputAction m_Player_TwinstickAiming;
+    private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1004,6 +1026,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SpecialAttack => m_Wrapper.m_Player_SpecialAttack;
         public InputAction @DebugTeleport => m_Wrapper.m_Player_DebugTeleport;
         public InputAction @TwinstickAiming => m_Wrapper.m_Player_TwinstickAiming;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1031,6 +1054,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @TwinstickAiming.started += instance.OnTwinstickAiming;
             @TwinstickAiming.performed += instance.OnTwinstickAiming;
             @TwinstickAiming.canceled += instance.OnTwinstickAiming;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1053,6 +1079,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @TwinstickAiming.started -= instance.OnTwinstickAiming;
             @TwinstickAiming.performed -= instance.OnTwinstickAiming;
             @TwinstickAiming.canceled -= instance.OnTwinstickAiming;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1241,6 +1270,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSpecialAttack(InputAction.CallbackContext context);
         void OnDebugTeleport(InputAction.CallbackContext context);
         void OnTwinstickAiming(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

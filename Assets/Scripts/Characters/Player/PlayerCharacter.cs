@@ -11,6 +11,8 @@ public class PlayerCharacter : Character
     public Ability basicAttack;
     public Ability specialAttack;
 
+    public event Action OnPlayerDied;
+
     protected override void Start()
     {
         base.Start();
@@ -22,11 +24,12 @@ public class PlayerCharacter : Character
         specialAttack.Initialize(gameObject);
     }
 
-    private void HealthChanged(ModifiableAttributeValue modifiableAttributeValue)
+    private void HealthChanged(ModifiableAttributeValue modifiableAttributeValue, float previousValue)
     {
         if (modifiableAttributeValue.BaseValue <= 0f)
         {
-            ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<GameOverState>();
+            ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<GameOverState>(true);
+            OnPlayerDied?.Invoke();
         }
     }
 

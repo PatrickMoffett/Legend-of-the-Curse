@@ -65,7 +65,7 @@ namespace Services
 #else
             ServiceLocator.Instance.Get<LevelSceneManager>().LoadNextLevel();
 #endif
-            
+            ServiceLocator.Instance.Get<PlayerManager>().SpawnPlayer(Vector3.zero);
         }
 
         private void FinishStateSetup()
@@ -85,6 +85,7 @@ namespace Services
         protected override void TeardownState(BaseState prevState, Dictionary<string, object> options)
         {
             ServiceLocator.Instance.Get<LevelSceneManager>().ResetLevelCount();
+            ServiceLocator.Instance.Get<PlayerManager>().Reset();
             if (_uiWidget != null)
             {
                 ServiceLocator.Instance.Get<UIManager>().RemoveUIByGuid(_uiWidget.GUID);

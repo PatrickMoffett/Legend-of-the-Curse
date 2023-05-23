@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 6503062553585002300}
   - component: {fileID: 6503062553585002303}
   - component: {fileID: -2983719880953258199}
+  - component: {fileID: 7332440888986491746}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -280,4 +281,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: 1b6e03c6056ae344dbf8cac0ec111624, type: 2}
   duration: 0.2
-  _flashToggle: 1
+--- !u!114 &7332440888986491746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6503062553585002290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781fcb1cd80cc9a4d86ef597e8bab36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionDistance: 2
+  _promptText: 
+  _UIPrompt: {fileID: 0}

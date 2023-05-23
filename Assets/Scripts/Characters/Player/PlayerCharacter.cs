@@ -28,7 +28,7 @@ public class PlayerCharacter : Character
     {
         if (modifiableAttributeValue.BaseValue <= 0f)
         {
-            ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<GameOverState>();
+            ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<GameOverState>(true);
             OnPlayerDied?.Invoke();
         }
     }

@@ -24,7 +24,7 @@ public class PlayerCharacter : Character
         specialAttack.Initialize(gameObject);
     }
 
-    private void HealthChanged(ModifiableAttributeValue modifiableAttributeValue)
+    private void HealthChanged(ModifiableAttributeValue modifiableAttributeValue, float previousValue)
     {
         if (modifiableAttributeValue.BaseValue <= 0f)
         {

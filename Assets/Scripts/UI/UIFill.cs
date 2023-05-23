@@ -15,9 +15,10 @@ public class UIFill : MonoBehaviour
     private ModifiableAttributeValue maxAttribute;
     private ModifiableAttributeValue currentAttribute;
 
-    private float _targetFillAmount = 0f;
+    private float _targetFillAmount = 1f;
     private void Start()
     {
+        image.fillAmount = 1f;
         GameObject player = ServiceLocator.Instance.Get<PlayerManager>().GetPlayer();
         if (player == null) return;
         
@@ -72,7 +73,7 @@ public class UIFill : MonoBehaviour
             attributeSet.maxMana.OnValueChanged += OnValueChanged;
         }
     }
-    private void OnValueChanged(ModifiableAttributeValue attribute)
+    private void OnValueChanged(ModifiableAttributeValue attribute, float prevValue)
     {
         
         _targetFillAmount = currentAttribute.CurrentValue/maxAttribute.CurrentValue;

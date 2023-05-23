@@ -15,7 +15,7 @@ public class ModifiableAttributeValue
     /// <summary>
     /// Action Invoked whenever the CurrentValue of this Attribute changes
     /// </summary>
-    public event Action<ModifiableAttributeValue> OnValueChanged;
+    public event Action<ModifiableAttributeValue,float> OnValueChanged;
 
     /// <summary>
     /// Dictionary of Attribute modifiers
@@ -38,9 +38,15 @@ public class ModifiableAttributeValue
         }
         set
         {
+            float previous = CurrentValue;
             baseValue = value;
             UpdateCurrentValue();
-            OnValueChanged?.Invoke(this);
+            //TODO: Find a better way to announce changes made here
+            //Event can't be announced here because this might be the health attribute,
+            //and we might need to clamp this value
+            //but we can't clamp the value here, because the attribute might not be one with a MAX amount
+            //CATCH 22
+            //OnValueChanged?.Invoke(this,previous);
         }
     }
     
@@ -90,9 +96,10 @@ public class ModifiableAttributeValue
     /// <param name="modifier"></param>
     public void AddModifier(AttributeModifier modifier)
     {
+        float previous = CurrentValue;
         _modifiers.Add(modifier);
         UpdateCurrentValue();
-        OnValueChanged?.Invoke(this);
+        OnValueChanged?.Invoke(this,previous);
     }
     /// <summary>
     /// Remove a modifier that was changing the value of the attribute
@@ -100,13 +107,15 @@ public class ModifiableAttributeValue
     /// <param name="modifier"></param>
     public void RemoveModifier(AttributeModifier modifier)
     {
+        float previous = CurrentValue;
         _modifiers.Remove(modifier);
         UpdateCurrentValue();
-        OnValueChanged?.Invoke(this);
+        OnValueChanged?.Invoke(this,previous);
     }
 
     public void InstantlyApply(AttributeModifier modifier)
     {
+        float previous = CurrentValue;
         switch (modifier.operation)
         {
             case AttributeModifier.Operator.Add:
@@ -129,6 +138,6 @@ public class ModifiableAttributeValue
                 break;
         }
         UpdateCurrentValue();
-        OnValueChanged?.Invoke(this);
+        OnValueChanged?.Invoke(this,previous);
     }
 }

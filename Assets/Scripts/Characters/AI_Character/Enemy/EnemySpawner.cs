@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
         _attributeSet.currentHealth.OnValueChanged += HealthChanged;
     }
 
-    private void HealthChanged(ModifiableAttributeValue health)
+    private void HealthChanged(ModifiableAttributeValue health, float prevValue)
     {
         if (health.CurrentValue <= 0)
         {

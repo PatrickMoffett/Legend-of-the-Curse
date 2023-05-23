@@ -51,7 +51,7 @@ public class EnemyCharacter : Character
         _player = player;
     }
 
-    private void HealthChanged(ModifiableAttributeValue health)
+    private void HealthChanged(ModifiableAttributeValue health, float prevValue)
     {
         if (health.CurrentValue <= 0)
         {

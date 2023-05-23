@@ -7,6 +7,7 @@ namespace Services
     public class GameWonState : BaseApplicationState
     {
         public readonly string UI_PREFAB = UIPrefabs.UIGameWon;
+        public readonly int SCENE_INDEX = (int)SceneIndexes.INITIAL_SCENE;
         private UIWidget _uiWidget;
 
         public GameWonState()
@@ -32,6 +33,7 @@ namespace Services
 
         protected override void SetupState(BaseState prevState, Dictionary<string, object> options)
         {
+            ServiceLocator.Instance.Get<LevelSceneManager>().LoadLevel(SCENE_INDEX);
             _uiWidget = ServiceLocator.Instance.Get<UIManager>().LoadUI(UI_PREFAB);
         }
 

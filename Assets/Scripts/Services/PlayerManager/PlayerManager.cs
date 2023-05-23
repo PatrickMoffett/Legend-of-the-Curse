@@ -34,6 +34,14 @@ public class PlayerManager : IService
         _player = null;
     }
 
+    public void Reset()
+    {
+        if (!_player) return;
+        _player.GetComponent<PlayerCharacter>().OnPlayerDied -= OnPlayerDied;
+        Object.Destroy(_player);
+        _player = null;
+    }
+
     public GameObject GetPlayer()
     {
         return _player;

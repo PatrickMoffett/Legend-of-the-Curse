@@ -85,6 +85,7 @@ namespace Services
         protected override void TeardownState(BaseState prevState, Dictionary<string, object> options)
         {
             ServiceLocator.Instance.Get<LevelSceneManager>().ResetLevelCount();
+            ServiceLocator.Instance.Get<PlayerManager>().Reset();
             if (_uiWidget != null)
             {
                 ServiceLocator.Instance.Get<UIManager>().RemoveUIByGuid(_uiWidget.GUID);

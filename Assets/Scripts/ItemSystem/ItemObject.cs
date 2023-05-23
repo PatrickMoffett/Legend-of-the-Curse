@@ -50,8 +50,6 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void ReceiveInteraction(GameObject interactor)
     {
-        Debug.Log("Interaction received");
-        Debug.Log("picking up item:");
         Debug.Log(itemData.displayName);
     }
 }

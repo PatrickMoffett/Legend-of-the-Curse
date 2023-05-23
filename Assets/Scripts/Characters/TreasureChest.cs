@@ -6,10 +6,17 @@ public class TreasureChest : MonoBehaviour, IInteractable
 {
     public string Prompt { get; set; }
     public bool InteractionEnabled { get; set; }
+
+    [SerializeField] string prompt;
+
+    void Start()
+    {
+        Prompt = prompt;
+        InteractionEnabled = true;
+    }
+
     public void ReceiveInteraction(GameObject interactor)
     {
-        Debug.Log("interaction received");
-        Debug.Log("treasure chest opened");
         InteractionEnabled = false;
     }
 }

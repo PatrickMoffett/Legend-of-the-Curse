@@ -58,7 +58,10 @@ public class InteractionRadius : MonoBehaviour
 
     public void GiveInteraction(GameObject interactor)
     {
-        interactables.Last().ReceiveInteraction(gameObject);
+        if (interactables.Count > 0)
+        {
+            interactables.Last().ReceiveInteraction(gameObject);
+        }
     }
 
     void SetPrompt(string prompt)

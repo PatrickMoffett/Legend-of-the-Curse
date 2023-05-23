@@ -65,7 +65,7 @@ namespace Services
 #else
             ServiceLocator.Instance.Get<LevelSceneManager>().LoadNextLevel();
 #endif
-            
+            ServiceLocator.Instance.Get<PlayerManager>().SpawnPlayer(Vector3.zero);
         }
 
         private void FinishStateSetup()

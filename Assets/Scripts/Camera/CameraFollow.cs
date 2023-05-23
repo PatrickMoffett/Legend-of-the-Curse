@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Services;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -8,9 +9,24 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        followTarget = ServiceLocator.Instance.Get<PlayerManager>().GetPlayer();
     }
 
+    private void OnEnable()
+    {
+        ServiceLocator.Instance.Get<PlayerManager>().OnPlayerSpawned += OnPlayerSpawned;
+    }
+
+    private void OnDisable()
+    {
+        ServiceLocator.Instance.Get<PlayerManager>().OnPlayerSpawned -= OnPlayerSpawned;
+    }
+
+    private void OnPlayerSpawned(GameObject player)
+    {
+        followTarget = player;
+    }
+    
     // Update is called once per frame
     void LateUpdate()
     {

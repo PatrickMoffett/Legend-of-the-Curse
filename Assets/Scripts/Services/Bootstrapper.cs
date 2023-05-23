@@ -29,6 +29,7 @@ public static class Bootstrapper
         ServiceLocator.Instance.Register(new MusicManager());
         ServiceLocator.Instance.Register(new LevelSceneManager());
         ServiceLocator.Instance.Register(new UIManager());
+        ServiceLocator.Instance.Register(new PlayerManager());
 
         //Start MainMenuState
         ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<MainMenuState>();

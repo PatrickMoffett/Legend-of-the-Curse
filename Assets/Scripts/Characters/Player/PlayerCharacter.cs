@@ -11,6 +11,8 @@ public class PlayerCharacter : Character
     public Ability basicAttack;
     public Ability specialAttack;
 
+    public event Action OnPlayerDied;
+
     protected override void Start()
     {
         base.Start();
@@ -27,6 +29,7 @@ public class PlayerCharacter : Character
         if (modifiableAttributeValue.BaseValue <= 0f)
         {
             ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<GameOverState>();
+            OnPlayerDied?.Invoke();
         }
     }
 

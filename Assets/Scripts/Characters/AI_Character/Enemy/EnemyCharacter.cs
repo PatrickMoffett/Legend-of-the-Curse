@@ -30,10 +30,25 @@ public class EnemyCharacter : Character
         CharacterMovement = GetComponent<CharacterMovement>();
         AttributeSet = GetComponent<AttributeSet>();
         AttributeSet.currentHealth.OnValueChanged += HealthChanged;
-        _player = GameObject.Find("Player");
+        _player = ServiceLocator.Instance.Get<PlayerManager>().GetPlayer();
         _animator = GetComponent<Animator>();
         basicAttack = Instantiate(basicAttack);
         basicAttack.Initialize(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        ServiceLocator.Instance.Get<PlayerManager>().OnPlayerSpawned += OnPlayerSpawned;
+    }
+
+    private void OnDisable()
+    {
+        ServiceLocator.Instance.Get<PlayerManager>().OnPlayerSpawned -= OnPlayerSpawned;
+    }
+
+    private void OnPlayerSpawned(GameObject player)
+    {
+        _player = player;
     }
 
     private void HealthChanged(ModifiableAttributeValue health)

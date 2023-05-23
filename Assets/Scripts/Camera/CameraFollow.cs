@@ -30,11 +30,17 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Vector3 newPosition;
-        newPosition.x = followTarget.transform.position.x;
-        newPosition.y = followTarget.transform.position.y;
-        newPosition.z = transform.position.z;
-        transform.position = newPosition;
-
+        if (followTarget)
+        {
+            Vector3 newPosition;
+            newPosition.x = followTarget.transform.position.x;
+            newPosition.y = followTarget.transform.position.y;
+            newPosition.z = transform.position.z;
+            transform.position = newPosition;
+        }
+        else
+        {
+            Debug.LogWarning("Camera has no follow target.");
+        }
     }
 }

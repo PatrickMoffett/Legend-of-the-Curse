@@ -63,6 +63,11 @@ public class EnemyCharacter : Character
     // Update is called once per frame
     private void Update()
     {
+        if (!_player)
+        {
+            Debug.LogWarning(gameObject.name + " has no value set for _player. Taking no action.");
+            return;
+        }
         var playerDirection = _player.transform.position - transform.position;
         float sqrDistance = playerDirection.sqrMagnitude;
         

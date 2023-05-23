@@ -14,12 +14,18 @@ public class SimpleAudioEvent : AudioEvent
     public RangedFloat pitch;
 
     [Range(0f,1f)]
-    public float spatialBlend = 1f; 
+    public float spatialBlend = 1f;
+
+    public float minimumReplayTime = 0f;
+
+    private float lastTimePlayed = 0f;
 
     public override void Play(GameObject gameObject)
     {
         if (clips.Length == 0) return;
 
+        if (Time.fixedUnscaledTime - lastTimePlayed < minimumReplayTime) return;
+        lastTimePlayed = Time.fixedUnscaledTime;
         
         AudioClip clip = clips[Random.Range(0, clips.Length)];
         float volume_ = Random.Range(volume.minValue, volume.maxValue);

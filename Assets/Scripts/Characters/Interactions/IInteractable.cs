@@ -6,5 +6,5 @@ public interface IInteractable
 {
     string Prompt {get; set; }
     bool InteractionEnabled {get; set; }
-    void ReceiveInteraction(Character character);
+    void ReceiveInteraction(GameObject interactor);
 }

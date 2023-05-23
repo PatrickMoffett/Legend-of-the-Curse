@@ -2,14 +2,20 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class ItemObject : MonoBehaviour
+public class ItemObject : MonoBehaviour, IInteractable
 {
     [SerializeField] private ItemData itemData;
 
     private SpriteRenderer _renderer;
 
+    public string Prompt { get; set; }
+
+    public bool InteractionEnabled { get; set; }
+
     private void Start()
     {
+        Prompt = "Pick up: " + itemData.displayName;
+        InteractionEnabled = true;
         _renderer = GetComponent<SpriteRenderer>();
         SetItemData(itemData);
     }
@@ -40,5 +46,12 @@ public class ItemObject : MonoBehaviour
             inventory.AddItem(itemData);
             Destroy(gameObject);
         }
+    }
+
+    public void ReceiveInteraction(GameObject interactor)
+    {
+        Debug.Log("Interaction received");
+        Debug.Log("picking up item:");
+        Debug.Log(itemData.displayName);
     }
 }

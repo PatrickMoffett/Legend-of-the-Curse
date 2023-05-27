@@ -16,19 +16,21 @@ MonoBehaviour:
     m_Position: {x: -1000, y: -1000, z: 0}
     m_Size: {x: 2000, y: 2000, z: 1}
   linearDirection: {x: 0, y: 1, z: 0}
-  numberOfLinearRoomsToSpawn: 8
+  numberOfLinearRoomsToSpawn: 12
   distanceBetweenRooms: 3
-  numberOfBranchesToSpawn: 6
+  numberOfBranchesToSpawn: 2
   numberOfRoomsPerBranch: 2
   initialRoom: {fileID: 2995055011651839578, guid: 3c39ab318e758734db563bee4b3c0312, type: 3}
   possibleRooms:
   - {fileID: 2995055011651839578, guid: 3a8e06f0397359d4bad58e0a44ea7424, type: 3}
   - {fileID: 2995055011651839578, guid: fde67b415bc28a04db8cd1e854591c7d, type: 3}
   - {fileID: 2995055011651839578, guid: 2d1749b5e134dd34eb728a698218309f, type: 3}
+  treasureRooms:
+  - {fileID: 2995055011651839578, guid: 573c1a102839fc14d9807501f0af7586, type: 3}
   exitRoom:
   - {fileID: 2995055011651839578, guid: 573c1a102839fc14d9807501f0af7586, type: 3}
   connectionPathTile: {fileID: 11400000, guid: 154dd38d16b6c4145b3e88053e99b455, type: 2}
   connectionWallTile: {fileID: 11400000, guid: e88d0dea81cda35449bc3a549cad77cb, type: 2}
-  connectionPathWidth: 2
+  connectionPathWidth: 3
   useTestSeed: 1
   testSeed: 116259

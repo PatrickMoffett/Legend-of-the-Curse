@@ -17,3 +17,6 @@ public class StringColorArrayDictionary : SerializableDictionary<string, Color[]
 
 [Serializable]
 public class FloatIntDictionary : SerializableDictionary<float, int> {}
+
+[Serializable]
+public class ItemFloatDictionary : SerializableDictionary<ItemData, float> {}

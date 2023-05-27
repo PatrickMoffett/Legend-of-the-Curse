@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1626413467
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 80f32ec5bc3482e4ba961a64fbe70c88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,4 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c5a6ec4b2151f42852991ce7b0cefe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropTable: {fileID: 11400000, guid: d52194b06ee7fdd4ca2d79eed9f6927a, type: 2}
   prompt: Open chest

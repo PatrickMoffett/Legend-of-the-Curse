@@ -19,6 +19,7 @@ public class LinearLevelWithBranches : LevelGenerator
     
     public GameObject initialRoom;
     public List<GameObject> possibleRooms;
+    public List<GameObject> treasureRooms;
     public List<GameObject> exitRoom;
     
     public TileBase connectionPathTile;
@@ -38,8 +39,8 @@ public class LinearLevelWithBranches : LevelGenerator
     {
         Setup();
         SpawnStartingRoom();
-        SpawnRooms(_rooms[0],linearDirection, possibleRooms,numberOfLinearRoomsToSpawn);
-        SpawnRooms(_rooms[^1],linearDirection, exitRoom,1); // Spawn Exit Room
+        SpawnRooms(_rooms[0],linearDirection, possibleRooms,numberOfLinearRoomsToSpawn,true);
+        SpawnRooms(_rooms[^1],linearDirection, exitRoom,1,true); // Spawn Exit Room
         AddLinearPathToBuffer();
         SpawnBranches();
         DrawPathBuffer();
@@ -89,7 +90,7 @@ public class LinearLevelWithBranches : LevelGenerator
         newRoom.LogInfo();
     }
     protected virtual void SpawnRooms(SpawnedRoom startingRoom, Vector3Int direction, List<GameObject> roomsToSpawn,
-        int numberOfRoomsToSpawn)
+        int numberOfRoomsToSpawn, bool centerRooms)
     {
         //get position of the starting room (lower left corner)
         Vector3Int currentPosition = startingRoom.bounds.position;
@@ -113,6 +114,13 @@ public class LinearLevelWithBranches : LevelGenerator
             {
                 //when moving left, we need to move the size of the room we are about to place
                 currentPosition.x -= bounds.size.x;
+            }else if (direction.x == 0)
+            {
+                //if center
+                if (centerRooms)
+                {
+                    currentPosition.x = 0 + bounds.x / 2;
+                }
             }
 
             if (direction.y > 0)
@@ -123,6 +131,13 @@ public class LinearLevelWithBranches : LevelGenerator
             {
                 //when moving down, we need to move the size of the room we are about to place
                 currentPosition.y -= bounds.size.y;
+            }else if (direction.y == 0)
+            {
+                //if center
+                if (centerRooms)
+                {
+                    currentPosition.y = 0 - bounds.y / 2;
+                }
             }
             //increase the distance by the distance between rooms
             currentPosition += new Vector3Int(distanceBetweenRooms, distanceBetweenRooms, distanceBetweenRooms) * direction;
@@ -184,7 +199,12 @@ public class LinearLevelWithBranches : LevelGenerator
             //get index of next room to spawn
             int startingIndex = _rooms.Count;
             //spawn rooms
-            SpawnRooms(roomToBranchFrom,branchDirection, possibleRooms, numberOfRoomsPerBranch);
+            SpawnRooms(roomToBranchFrom,branchDirection, possibleRooms, numberOfRoomsPerBranch,false);
+
+            SpawnedRoom lastBranchRoom = _rooms[^1];
+            //spawn Treasure Room
+            SpawnRooms(lastBranchRoom,branchDirection, treasureRooms, 1,false);
+            
             //connect first room in branch
             _pathBuffer.AddRange(LevelGeneratorUtils.GetPathConnectingRooms(
                 _rooms[roomIndex], 

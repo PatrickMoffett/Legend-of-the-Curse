@@ -1,10 +1,12 @@
+using System;
 using Services;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 
 [CreateAssetMenu(menuName="Audio Events/Simple")]
-public class SimpleAudioEvent : AudioEvent
+public class SimpleAudioEvent : AudioEvent , IResetOnExitPlay
 {
     public AudioClip[] clips;
 
@@ -18,14 +20,24 @@ public class SimpleAudioEvent : AudioEvent
 
     public float minimumReplayTime = 0f;
 
-    private float lastTimePlayed = 0f;
+    private float _lastTimePlayed = 0f;
+    
+    private void OnEnable()
+    {
+        _lastTimePlayed = 0f;
+    }
+
+    private void OnDisable()
+    {
+        _lastTimePlayed = 0f;
+    }
 
     public override void Play(GameObject gameObject)
     {
         if (clips.Length == 0) return;
 
-        if (Time.fixedUnscaledTime - lastTimePlayed < minimumReplayTime) return;
-        lastTimePlayed = Time.fixedUnscaledTime;
+        if (Time.fixedUnscaledTime - _lastTimePlayed < minimumReplayTime) return;
+        _lastTimePlayed = Time.fixedUnscaledTime;
         
         AudioClip clip = clips[Random.Range(0, clips.Length)];
         float volume_ = Random.Range(volume.minValue, volume.maxValue);
@@ -50,5 +62,10 @@ public class SimpleAudioEvent : AudioEvent
         previewer.pitch = pitch_;
         previewer.spatialBlend = spatialBlend;
         previewer.Play();
+    }
+
+    public void ResetOnExitPlay()
+    {
+        _lastTimePlayed = 0f;
     }
 }

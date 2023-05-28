@@ -57,6 +57,7 @@ public class LevelSceneManager : IService
 
     private void AddTilemapsInSceneToDictionary()
     {
+        _tilemaps.Clear();
         //store all the tilemaps in the scene
         Tilemap[] tilemapsInScene = Object.FindObjectsOfType<Tilemap>();
         foreach (Tilemap tilemap in tilemapsInScene)

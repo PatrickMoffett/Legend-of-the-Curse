@@ -15,10 +15,13 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(ItemData itemToAdd)
     {
-        items.Add(itemToAdd);
+        if (!itemToAdd.itemConsumedOnPickup)
+        {
+            items.Add(itemToAdd);
+        }
+
         foreach (var effect in itemToAdd.itemEffects)
         {
-
             _combatSystem.ApplyStatusEffect(new OutgoingStatusEffectInstance(effect, _combatSystem));
         }
     }

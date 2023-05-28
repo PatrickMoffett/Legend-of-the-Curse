@@ -28,12 +28,12 @@ MonoBehaviour:
   - attribute: 0
     operation: 1
     attributeModifierValue:
-      valueType: 0
+      valueType: 1
       constantFloat: 10
       attributeSet: 0
-      sourceAttributeType: 0
+      sourceAttributeType: 8
       preCoefficientAddition: 0
-      coefficient: 0
+      coefficient: 1
       postCoefficientAddition: 0
       customValueCalculation: {fileID: 0}
   grantedAbilities: []

@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ItemObject : MonoBehaviour, IInteractable
 {
@@ -8,26 +6,35 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     private SpriteRenderer _renderer;
 
+    public static void SpawnItemObject(Vector3 position, ItemData itemData)
+    {
+        GameObject item = new GameObject(itemData.name,typeof(ItemObject),typeof(SpriteRenderer));
+        item.transform.position = position;
+        item.GetComponent<ItemObject>().SetItemData(itemData);
+        Debug.Log("Spawned item" + itemData.name);
+    }
     public string Prompt { get; set; }
-
     public bool InteractionEnabled { get; set; }
 
     private void Start()
     {
-        Prompt = "Pick up: " + itemData.displayName;
         InteractionEnabled = true;
         _renderer = GetComponent<SpriteRenderer>();
-        SetItemData(itemData);
+        _renderer.sortingLayerName = "Object";
     }
 
-    public void SetItemData(ItemData itemData)
+    public void SetItemData(ItemData itemData_)
     {
-        if (itemData == null) return;
-        _renderer.sprite = this.itemData.sprite;
+        if (itemData_ == null) return;
+        itemData = itemData_;
+        _renderer = GetComponent<SpriteRenderer>();
+        Prompt = "Pick up: " + itemData.displayName;
+        _renderer.sprite = itemData.sprite;
     }
-
+/*
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (itemData == null) return;
         Debug.Log("Col: " + col.gameObject.name);
         Inventory inventory = col.gameObject.GetComponent<Inventory>();
         if (inventory != null)
@@ -47,9 +54,15 @@ public class ItemObject : MonoBehaviour, IInteractable
             Destroy(gameObject);
         }
     }
-
+*/
     public void ReceiveInteraction(GameObject interactor)
     {
-        Debug.Log(itemData.displayName);
+        Inventory inventory = interactor.GetComponent<Inventory>();
+        if (inventory != null)
+        {
+            inventory.AddItem(itemData);
+            Destroy(gameObject);
+            Debug.Log("Player picked up" + itemData.displayName);
+        }
     }
 }

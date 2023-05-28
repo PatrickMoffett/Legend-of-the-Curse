@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using Services;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class EnemyCharacter : Character
 {
@@ -12,8 +14,11 @@ public class EnemyCharacter : Character
     [SerializeField] private float aggroRange = 8f;
     [SerializeField] private float distanceToPerformAttack;
     [SerializeField] private Ability basicAttack;
-
     [SerializeField] private float projectileSize = 1f;
+    
+    [Range(0,1f)]
+    [SerializeField] private float dropChance;
+    [SerializeField] private DropTable dropTable;
     
     public event Action<GameObject> OnEnemyDied;
     
@@ -57,6 +62,12 @@ public class EnemyCharacter : Character
         {
             OnEnemyDied?.Invoke(gameObject);
             Destroy(gameObject);
+
+            if (Random.Range(0, 1f) <= dropChance)
+            {
+                ItemData item = dropTable.GetDrop();
+                ItemObject.SpawnItemObject(transform.position, item);
+            }
         }
     }
 

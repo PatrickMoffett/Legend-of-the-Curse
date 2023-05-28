@@ -10,5 +10,7 @@ public class ItemData : ScriptableObject
 
     public Sprite sprite;
 
+    public bool itemConsumedOnPickup = false;
+    
     public List<StatusEffect> itemEffects;
 }

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5398614ea42447e9ad67e73107e98aa6, type: 3}
-  m_Name: Sword of Alacrity 3
+  m_Name: Bandaid
   m_EditorClassIdentifier: 
-  displayName: Sword of Alacrity
-  description: Grants the user swiftness
-  sprite: {fileID: 21300000, guid: aac7208bb870564488812abf5f91cfe5, type: 3}
+  displayName: Bandaid
+  description: Restore Health
+  sprite: {fileID: 21300000, guid: a461aa1faef3bc54aab77a5382d52bb4, type: 3}
+  itemConsumedOnPickup: 1
   itemEffects:
-  - {fileID: 11400000, guid: 652628b4411720042a8ee5e3177bef5c, type: 2}
+  - {fileID: 11400000, guid: 95572ba4234c82a46af2f146716b1922, type: 2}

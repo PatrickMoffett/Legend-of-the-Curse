@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5398614ea42447e9ad67e73107e98aa6, type: 3}
-  m_Name: Sword of Alacrity 4
+  m_Name: Boots of Speed
   m_EditorClassIdentifier: 
-  displayName: Sword of Alacrity
-  description: Grants the user swiftness
+  displayName: Boots of Speed
+  description: Grants the user movement speed
   sprite: {fileID: 21300000, guid: aac7208bb870564488812abf5f91cfe5, type: 3}
+  itemConsumedOnPickup: 0
   itemEffects:
-  - {fileID: 11400000, guid: 652628b4411720042a8ee5e3177bef5c, type: 2}
+  - {fileID: 11400000, guid: fe2cca1b08cc4f744ba04ff62e6b799c, type: 2}

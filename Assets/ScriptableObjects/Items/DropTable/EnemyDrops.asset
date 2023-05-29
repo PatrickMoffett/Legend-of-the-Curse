@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: EnemyDrops
   m_EditorClassIdentifier: 
   dropTable:
-    m_keys: []
-    m_values: []
+    m_keys:
+    - {fileID: 11400000, guid: a26465f0b70897a4b92fdd097477887f, type: 2}
+    - {fileID: 11400000, guid: 7d6e9671bd79c534cbbbc46f322f472e, type: 2}
+    m_values:
+    - 1
+    - 1

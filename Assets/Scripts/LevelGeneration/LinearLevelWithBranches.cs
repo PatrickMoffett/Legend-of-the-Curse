@@ -21,6 +21,8 @@ public class LinearLevelWithBranches : LevelGenerator
     public List<GameObject> possibleRooms;
     public List<GameObject> treasureRooms;
     public List<GameObject> exitRoom;
+
+    public Color backgroundColor;
     
     public TileBase connectionPathTile;
     public TileBase connectionWallTile;
@@ -45,6 +47,8 @@ public class LinearLevelWithBranches : LevelGenerator
         SpawnBranches();
         DrawPathBuffer();
         EmptyPathBuffer();
+
+        if (Camera.main != null) Camera.main.backgroundColor = backgroundColor;
     }
     
 

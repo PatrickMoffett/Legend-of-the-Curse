@@ -26,6 +26,9 @@ public class ModifiableAttributeValue
     /// base value of this attribute before modifiers
     /// </summary>
     [SerializeField]private float baseValue;
+
+    //Attribute representing the max base value of this attribute
+    private ModifiableAttributeValue _maxBaseAttribute;
     
     /// <summary>
     /// Base Value of the attribute before modifiers
@@ -39,7 +42,15 @@ public class ModifiableAttributeValue
         set
         {
             float previous = CurrentValue;
-            baseValue = value;
+            if (_maxBaseAttribute != null)
+            {
+                baseValue = Mathf.Min(value, _maxBaseAttribute.CurrentValue);
+            }
+            else
+            {
+                baseValue = value;
+            }
+
             UpdateCurrentValue();
             //TODO: Find a better way to announce changes made here
             //Event can't be announced here because this might be the health attribute,
@@ -55,12 +66,17 @@ public class ModifiableAttributeValue
     /// </summary>
     public float CurrentValue { get; private set; }
 
+    public void SetMaxAttribute(ModifiableAttributeValue modifiableAttributeValue)
+    {
+        _maxBaseAttribute = modifiableAttributeValue;
+    }
     // ReSharper disable Unity.PerformanceAnalysis
     /// <summary>
     /// Updates the current value of this attribute including all the modifiers affecting it
     /// </summary>
     public void UpdateCurrentValue()
     {
+        float previousValue = CurrentValue;
         float sumToAdd = 0f;
         float multiplier = 1f;
         foreach (var modifier in _modifiers)
@@ -88,6 +104,7 @@ public class ModifiableAttributeValue
             }
         }
         CurrentValue = (baseValue + sumToAdd) * multiplier;
+        OnValueChanged?.Invoke(this,previousValue);
     }
     
     /// <summary>
@@ -96,10 +113,8 @@ public class ModifiableAttributeValue
     /// <param name="modifier"></param>
     public void AddModifier(AttributeModifier modifier)
     {
-        float previous = CurrentValue;
         _modifiers.Add(modifier);
         UpdateCurrentValue();
-        OnValueChanged?.Invoke(this,previous);
     }
     /// <summary>
     /// Remove a modifier that was changing the value of the attribute
@@ -107,10 +122,8 @@ public class ModifiableAttributeValue
     /// <param name="modifier"></param>
     public void RemoveModifier(AttributeModifier modifier)
     {
-        float previous = CurrentValue;
         _modifiers.Remove(modifier);
         UpdateCurrentValue();
-        OnValueChanged?.Invoke(this,previous);
     }
 
     public void InstantlyApply(AttributeModifier modifier)
@@ -119,25 +132,26 @@ public class ModifiableAttributeValue
         switch (modifier.operation)
         {
             case AttributeModifier.Operator.Add:
-                baseValue += modifier.attributeModifierValue.Value;
+                BaseValue += modifier.attributeModifierValue.Value;
                 break;
             case AttributeModifier.Operator.Subtract:
-                baseValue -= modifier.attributeModifierValue.Value;
+                BaseValue -= modifier.attributeModifierValue.Value;
                 break;
             case AttributeModifier.Operator.Multiply:
-                baseValue *= modifier.attributeModifierValue.Value;
+                BaseValue *= modifier.attributeModifierValue.Value;
                 break;
             case AttributeModifier.Operator.Divide:
-                baseValue /= modifier.attributeModifierValue.Value;
+                BaseValue /= modifier.attributeModifierValue.Value;
                 break;
             case AttributeModifier.Operator.Set:
-                baseValue = modifier.attributeModifierValue.Value;
+                BaseValue = modifier.attributeModifierValue.Value;
                 return;
             default:
                 Debug.LogError("Unexpected Operator in attributeMod");
                 break;
         }
         UpdateCurrentValue();
-        OnValueChanged?.Invoke(this,previous);
     }
+
+    private const float TOLERANCE = 0.001f;
 }

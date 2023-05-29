@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Boots of Speed
   description: Grants the user movement speed
-  sprite: {fileID: 21300000, guid: aac7208bb870564488812abf5f91cfe5, type: 3}
+  sprite: {fileID: 21300000, guid: d3b69d46aeffb3c42b37bd124a19879f, type: 3}
   itemConsumedOnPickup: 0
   itemEffects:
   - {fileID: 11400000, guid: fe2cca1b08cc4f744ba04ff62e6b799c, type: 2}

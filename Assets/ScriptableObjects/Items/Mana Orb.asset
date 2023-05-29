@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Mana Orb
   description: Grants the user additional Mana Capacity
-  sprite: {fileID: 21300000, guid: aac7208bb870564488812abf5f91cfe5, type: 3}
+  sprite: {fileID: 21300000, guid: 4544be8168a6ccc49a252ff983effe36, type: 3}
   itemConsumedOnPickup: 0
   itemEffects:
   - {fileID: 11400000, guid: f5ec5c12aa8ea2a459ff6ced95b539cc, type: 2}

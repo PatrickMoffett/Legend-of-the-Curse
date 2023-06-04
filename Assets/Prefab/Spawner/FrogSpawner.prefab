@@ -103,7 +103,7 @@ MonoBehaviour:
   enemyToSpawn: {fileID: 6149530785933253896, guid: 0f93c07402336ef428f15ab21ab3f48d, type: 3}
   spawnTime: 2
   maxToSpawn: 10
-  rangeToSpawn: 5
+  rangeToSpawn: 3
 --- !u!114 &-8400235632720178926
 MonoBehaviour:
   m_ObjectHideFlags: 0

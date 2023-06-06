@@ -20,4 +20,4 @@ MonoBehaviour:
   projectileVelocity: 3
   effectsToApplyOnHit:
   - {fileID: 11400000, guid: 3fff7fdecfb9e5a41b4d94911ca79801, type: 2}
-  audioEvent: {fileID: 11400000, guid: 2424ed9879cf3d7428f68c15ca7ea425, type: 2}
+  audioEvent: {fileID: 11400000, guid: 396a296ba18656b4aa8908dce5334296, type: 2}

@@ -26,6 +26,8 @@ public class EnemyCharacter : Character
     private Animator _animator;
     private static readonly int Speed = Animator.StringToHash("Speed");
 
+    public bool isTurret = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -74,6 +76,12 @@ public class EnemyCharacter : Character
     // Update is called once per frame
     private void Update()
     {
+        if (isTurret)
+        {
+            PerformBasicAttack(transform.right);
+            return;
+        }
+
         if (!_player)
         {
             Debug.LogWarning(gameObject.name + " has no value set for _player. Taking no action.");

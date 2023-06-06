@@ -72,7 +72,6 @@ namespace Services
         {
             _uiWidget = ServiceLocator.Instance.Get<UIManager>().LoadUI(UI_PREFAB);
             _statsWidget = ServiceLocator.Instance.Get<UIManager>().LoadUI(STATS_UI_PREFAB);
-            ServiceLocator.Instance.Get<MusicManager>().StartSong(Resources.Load<AudioClip>("cave_music_reduced"),0f,false);
             ServiceLocator.Instance.Get<LevelSceneManager>().LevelLoaded -= FinishStateSetup;
         }
 

@@ -33,5 +33,6 @@ MonoBehaviour:
   connectionPathTile: {fileID: 11400000, guid: 154dd38d16b6c4145b3e88053e99b455, type: 2}
   connectionWallTile: {fileID: 11400000, guid: e88d0dea81cda35449bc3a549cad77cb, type: 2}
   connectionPathWidth: 3
+  music: {fileID: 8300000, guid: 807374c63efcd5649b8c1b3a567431ee, type: 3}
   useTestSeed: 1
   testSeed: 116259

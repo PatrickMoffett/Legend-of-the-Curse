@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Services;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -28,6 +29,8 @@ public class LinearLevelWithBranches : LevelGenerator
     public TileBase connectionWallTile;
     public int connectionPathWidth = 1;
 
+    public AudioClip music;
+
     public bool useTestSeed = false;
     public int testSeed;
     
@@ -47,7 +50,7 @@ public class LinearLevelWithBranches : LevelGenerator
         SpawnBranches();
         DrawPathBuffer();
         EmptyPathBuffer();
-
+        ServiceLocator.Instance.Get<MusicManager>().StartSong(music,1f);
         if (Camera.main != null) Camera.main.backgroundColor = backgroundColor;
     }
     

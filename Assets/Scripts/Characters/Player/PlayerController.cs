@@ -77,6 +77,34 @@ public class PlayerController : MonoBehaviour
             hasTwinStickedRecently = true;
         }
         
+        /*
+        // dodge ability - work in progress
+        bool dodgeState = false;
+        if (dodgeTimeleft > 0f) {
+            dodgeTimeleft -= Time.deltaTime;
+            if (dodgeTimeleft > 0f)
+            {
+                dodgeState = true;
+            }
+            else 
+            {
+                Debug.Log("dodge completed!");
+                dodgeCooldownTimeLeft = 2.0f;
+                dodgeState = false;
+            }
+        }
+        dodgeCooldownTimeLeft -= Time.deltaTime;
+        if (dodgeTimeleft <=0 && dodgeCooldownTimeLeft <= 0f) 
+        {
+            if (_playerControls.Player.Dodge.ReadValue<float>()) 
+            {
+                Debug.Log("Starting a DODGE!");
+                dodgeTimeleft = 1.0f;
+                dodgeState = true;
+            }
+        }
+        */
+
         //Move Player towards input
         Vector2 input = _playerControls.Player.Move.ReadValue<Vector2>();
         _characterMovement.Move(input);

@@ -140,9 +140,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b8f39b36987af4b94646c76e8ff69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stats: {fileID: 11400000, guid: c8527269a1d741342bdce0a1afb1dc67, type: 2}
   aggroRange: 8
   distanceToPerformAttack: 5
   basicAttack: {fileID: 11400000, guid: 6b63785248329bf488fd83564cd6f467, type: 2}
+  projectileSize: 1
+  dropChance: 0
+  dropTable: {fileID: 0}
+  isTurret: 0
 --- !u!114 &6348248489396451972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936a72a35d85ddb44b5febed773ed238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dust: {fileID: 0}
 --- !u!95 &4509596724667498618
 Animator:
   serializedVersion: 5

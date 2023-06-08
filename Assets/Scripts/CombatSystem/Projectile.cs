@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private PlayerStatistics _stats;            
     public bool destroyOnCollision = true;
     public event Action<GameObject> OnHitObject;
     public event Action OnDestroyed;
@@ -31,6 +32,8 @@ public class Projectile : MonoBehaviour
         CombatSystem combatSystem = col.gameObject.GetComponent<CombatSystem>();
         if (combatSystem)
         {
+            if (_stats) _stats.hits++;
+
             foreach (var effect in _effectsToApply)
             {
                 combatSystem.ApplyStatusEffect(effect);
@@ -48,6 +51,8 @@ public class Projectile : MonoBehaviour
         CombatSystem combatSystem = col.gameObject.GetComponent<CombatSystem>();
         if (combatSystem)
         {
+            if (_stats) _stats.hits++;
+            
             foreach (var effect in _effectsToApply)
             {
                 combatSystem.ApplyStatusEffect(effect);

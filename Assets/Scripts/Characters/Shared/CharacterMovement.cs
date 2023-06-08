@@ -47,6 +47,8 @@ public class CharacterMovement : MonoBehaviour
     }
 
     void CreateDust(){
-        dust.Play();
+        if (dust) { // make sure it isn't undefined
+            dust.Play();
+        }
     }
 }

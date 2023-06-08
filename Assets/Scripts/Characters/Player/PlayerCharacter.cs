@@ -30,6 +30,7 @@ public class PlayerCharacter : Character
         {
             ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<GameOverState>(true);
             OnPlayerDied?.Invoke();
+            if (_stats) _stats.deaths++;
         }
     }
 
@@ -42,7 +43,7 @@ public class PlayerCharacter : Character
         //targetData.targetGameObject
         if (basicAttack.TryActivate(targetData))
         {
-            _stats.shots++;
+            if (_stats) _stats.shots++;
         }
     }
 

@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea65e441548931e4f947984d033b6bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stats: {fileID: 11400000, guid: c8527269a1d741342bdce0a1afb1dc67, type: 2}
   destroyOnCollision: 1
 --- !u!50 &8356845642922828520
 Rigidbody2D:

@@ -11,6 +11,7 @@ using Random = UnityEngine.Random;
 public class EnemyCharacter : Character
 {
 
+    [SerializeField] private PlayerStatistics _stats;            
     [SerializeField] private float aggroRange = 8f;
     [SerializeField] private float distanceToPerformAttack;
     [SerializeField] private Ability basicAttack;
@@ -60,8 +61,13 @@ public class EnemyCharacter : Character
 
     private void HealthChanged(ModifiableAttributeValue health, float prevValue)
     {
+
+        // if (_stats) _stats.hits++; // FIXME: this gets called many times per arrow...
+        
         if (health.CurrentValue <= 0)
         {
+            if (_stats) _stats.kills++;
+
             OnEnemyDied?.Invoke(gameObject);
             Destroy(gameObject);
 

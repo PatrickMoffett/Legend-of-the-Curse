@@ -45,6 +45,7 @@ public static class LevelGeneratorUtils
             if (tilemap.name == "Objects")
             {
                 CopyChildObjects(tilemap, bounds, positionToSpawn, roomObject);
+                CopyTilemapAtPosition(tilemap, bounds, positionToSpawn, tilemapLayers[tilemap.name]);
             }
             else if (tilemap.name == "Connections")
             {

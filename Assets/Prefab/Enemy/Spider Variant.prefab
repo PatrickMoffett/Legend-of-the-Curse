@@ -12,6 +12,10 @@ PrefabInstance:
       value: Spider Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826757, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
+      propertyPath: dropTable
+      value: 
+      objectReference: {fileID: 11400000, guid: 2fd1cbcb7320b0a43aee2cc2dcb5a235, type: 2}
+    - target: {fileID: 5421869499343826757, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: basicAttack
       value: 
       objectReference: {fileID: 11400000, guid: 57820b7f515ddb245a356025c249a30d, type: 2}

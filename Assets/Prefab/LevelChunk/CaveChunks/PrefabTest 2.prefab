@@ -11891,6 +11891,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1824690105876945767}
     m_Modifications:
+    - target: {fileID: 3998083003677306889, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
+      propertyPath: rangeToSpawn
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3998083003677306890, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_Name
       value: SpiderSpawner
@@ -11913,7 +11917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3998083003677307895, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.5
+      value: -12.91
       objectReference: {fileID: 0}
     - target: {fileID: 3998083003677307895, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11987,11 +11991,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3998083003677307895, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.5
+      value: -30.8
       objectReference: {fileID: 0}
     - target: {fileID: 3998083003677307895, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 4.75
       objectReference: {fileID: 0}
     - target: {fileID: 3998083003677307895, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12061,11 +12065,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3998083003677307895, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.5
+      value: -30.76
       objectReference: {fileID: 0}
     - target: {fileID: 3998083003677307895, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.5
+      value: 12.9
       objectReference: {fileID: 0}
     - target: {fileID: 3998083003677307895, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12113,6 +12117,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1824690105876945767}
     m_Modifications:
+    - target: {fileID: 3998083003677306889, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
+      propertyPath: rangeToSpawn
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3998083003677306890, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_Name
       value: SpiderSpawner
@@ -12135,7 +12143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3998083003677307895, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.5
+      value: -12.91
       objectReference: {fileID: 0}
     - target: {fileID: 3998083003677307895, guid: 0e13c0d3e6dd5cd40a29638133331c2d, type: 3}
       propertyPath: m_LocalPosition.y

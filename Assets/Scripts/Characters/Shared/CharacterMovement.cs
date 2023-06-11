@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-        public ParticleSystem dust;
-        private AttributeSet _attributeSet;
+    private AttributeSet _attributeSet;
         private Vector2 _direction;
         private Animator _animator;
         private static readonly int XDirectionHash = Animator.StringToHash("xDirection");
@@ -43,12 +42,5 @@ public class CharacterMovement : MonoBehaviour
         movement.y += direction.y * Time.deltaTime * _attributeSet.moveSpeed.CurrentValue;
         _animator.SetFloat(SpeedHash, movement.magnitude);
         transform.position += movement;
-        CreateDust();
-    }
-
-    void CreateDust(){
-        if (dust) { // make sure it isn't undefined
-            dust.Play();
-        }
     }
 }

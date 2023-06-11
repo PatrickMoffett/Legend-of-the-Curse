@@ -95,7 +95,8 @@ PrefabInstance:
       propertyPath: attackSpeed.baseValue
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5421869499343826757, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
 --- !u!1 &2928568374789753510 stripped
 GameObject:
@@ -123,3 +124,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1935611527347908405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928568374789753510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c765ada071ca455f8bafd6320f6ae1ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats: {fileID: 11400000, guid: c8527269a1d741342bdce0a1afb1dc67, type: 2}
+  aggroRange: 8
+  distanceToPerformAttack: 0
+  basicAttack: {fileID: 11400000, guid: c22c11ab51c82844996848a0e9ac48ed, type: 2}
+  projectileSize: 1
+  dropChance: 0
+  dropTable: {fileID: 0}
+  delayTime: 0

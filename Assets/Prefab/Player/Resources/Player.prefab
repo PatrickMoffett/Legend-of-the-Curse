@@ -237,6 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dust: {fileID: 5998118273216970179}
   playerStatistics: {fileID: 11400000, guid: c8527269a1d741342bdce0a1afb1dc67, type: 2}
+  particleSystem: {fileID: 5998118273216970179}
 --- !u!114 &1375559554707705346
 MonoBehaviour:
   m_ObjectHideFlags: 0

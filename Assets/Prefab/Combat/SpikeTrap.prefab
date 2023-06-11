@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8368202571166613995}
   - component: {fileID: 8368202571166614006}
   - component: {fileID: 8368202571166614007}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SpikeTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8368202571166613994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.48, y: -0.51, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -125,14 +125,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &8368202571166614007
 MonoBehaviour:
@@ -150,9 +150,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b002cec7def9a7444816de4a892fb1d2, type: 2}
   trapOnTime: 0.5
   trapOffTime: 1.5
+  timeOffset: 0
   spikeAnimator: {fileID: 8368202571166613995}
-  spikeActivated: 0
-  isOnSpike: 0
   activatedAnimationName: spike_trap_activated
   idleAnimationName: spike_trap_idle
   SpikeActivatedSound: {fileID: 11400000, guid: 6a4c959893bf838419f7ad6bb6695294, type: 2}

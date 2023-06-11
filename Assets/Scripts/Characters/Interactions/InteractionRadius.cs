@@ -12,7 +12,7 @@ public class InteractionRadius : MonoBehaviour
     public float detectionDistance = 2f;
 
     [Header("UI")]
-    [SerializeField] private string _promptText;
+    [SerializeField] private string _promptText = "";
 
     void Awake()
     {
@@ -67,5 +67,6 @@ public class InteractionRadius : MonoBehaviour
     void SetPrompt(string prompt)
     {
         _promptText = prompt;
+        UIPromptText.RequestPromptText(_promptText);
     }
 }

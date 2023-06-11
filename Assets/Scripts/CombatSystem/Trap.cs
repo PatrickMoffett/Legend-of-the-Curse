@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
+    [Header("Effects")]
     [SerializeField] private List<StatusEffect> effectsToApplyOnHit;
+    
+    [Space(10)]
+    [Header("Activation Time")]
     [SerializeField] private float trapOnTime = 0.5f;
-    [SerializeField] private float trapOffTime = 1.5f; 
+    [SerializeField] private float trapOffTime = 1.5f;
+    [SerializeField] private float timeOffset = 0f;
+    
+    [Space(10)]
+    [Header("Animator")]
     [SerializeField] private Animator spikeAnimator;
-    [SerializeField] private bool spikeActivated;
-    [SerializeField] private bool isOnSpike;
     [SerializeField] private string activatedAnimationName;
     [SerializeField] private string idleAnimationName;
+    
+    [Space(10)]
+    [Header("Audio")]
     [SerializeField] private AudioEvent SpikeActivatedSound;
     [SerializeField] private AudioEvent SpikeDeactivatedSound;
 
+    private bool _currentlyEnabled = true;
     private List<CombatSystem> _previouslyHit = new List<CombatSystem>();
-
     private List<GameObject> _objectsOnSpike = new List<GameObject>();
+    private bool _spikeActivated;
     
     void Awake()
     {
@@ -27,15 +37,19 @@ public class Trap : MonoBehaviour
 
     void Start()
     {
-        StartTrap();
+        StartCoroutine(WaitForOffset(timeOffset));
     }
 
 
     void Update()
     {
-        if(spikeActivated) 
+        if(_spikeActivated) 
         {
             foreach(GameObject objectOnSpike in _objectsOnSpike){
+                if (objectOnSpike == null)
+                {
+                    _objectsOnSpike.Remove(objectOnSpike);
+                }
                 CombatSystem combatSystem = objectOnSpike.GetComponent<CombatSystem>();
                 if (combatSystem && !_previouslyHit.Contains(combatSystem))
                 {
@@ -54,7 +68,8 @@ public class Trap : MonoBehaviour
     public void StartTrap()
     {
         StopAllCoroutines();
-        spikeActivated = true;
+        if (!_currentlyEnabled) return;
+        _spikeActivated = true;
         spikeAnimator.Play(activatedAnimationName);
         _previouslyHit.Clear();
         StartCoroutine(ResetTrap());
@@ -68,12 +83,17 @@ public class Trap : MonoBehaviour
     {
         _objectsOnSpike.Remove(collider.gameObject);
     }
-    
+
+    private IEnumerator WaitForOffset(float offset)
+    {
+        yield return new WaitForSeconds(offset);
+        StartTrap();
+    }
     private IEnumerator ResetTrap()
     {
         SpikeActivatedSound?.Play(gameObject);
         yield return new WaitForSeconds(trapOnTime);
-        spikeActivated = false;
+        _spikeActivated = false;
         spikeAnimator.Play(idleAnimationName);
         SpikeDeactivatedSound?.Play(gameObject);
         yield return new WaitForSeconds(trapOffTime);

@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -23.792, y: 25.9516}
-  m_SizeDelta: {x: -59.481, y: -64.879}
+  m_AnchoredPosition: {x: -4.4894104, y: 29.812103}
+  m_SizeDelta: {x: 138.3705, y: 17.1569}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5588746305765144142
 CanvasRenderer:
@@ -66,7 +66,38 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '-Patrick Moffett: Project lead, core gameplay, level generation with related
+    authoring, systems (ability, combat, attribute, mana, traps, audio), base enemy
+    AI, sounds (spikes, spider attack, additional bat attack, game over), assorted
+    art (arrows, dungeon tiles, frog animations, frog spawner, bandaid, candy, attack
+    power), speed boots, game over handling, item drops, font integration, treasure
+    rooms
+
+    -Rodrigo Bonzerr Lopez: Environmental art (tree trunk, white and green
+    flowers, rocks, post, coffin, crates, barrels, bush, cave walls, web, furniture,
+    bookshelves, bricks with variations, additional tiles), assorted sprites (armor,
+    archer hood, archer character incl. animations), fireflies (including related
+    post processing), tree collisions, sounds (fireball), texture fog, main menu
+    song, death effect, dust
+
+    -Michael Monty: Spider (attacks, animations, stun
+    effect, controller), hit flash, treasure chests, sprites (fireball, turret, UI
+    bars, buttons), fireball sound, player stat tracking, health and mana bar functionality,
+    UI buttons, poison status, frog enemy with tongue attack
+
+    -Christer "McFunkypants"
+    Kaitila: Twin stick control, player dodge, bat animation and attack projectile,
+    stats GUI, various stats measurements
+
+    -Cooper Willis: Mysterious cave music
+
+    -Adam
+    Smith: Spike trap functionality, spreadshot
+
+    -Jared Rigby: Sounds (bat attack,
+    spider web)
+
+    -Fahad Muntaz: Player attack icon'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -93,7 +124,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 22.55
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1

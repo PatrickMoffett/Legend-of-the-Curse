@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-        private AttributeSet _attributeSet;
+    private AttributeSet _attributeSet;
         private Vector2 _direction;
         private Animator _animator;
         private static readonly int XDirectionHash = Animator.StringToHash("xDirection");

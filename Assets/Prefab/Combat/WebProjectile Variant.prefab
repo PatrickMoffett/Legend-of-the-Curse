@@ -67,9 +67,17 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7477218898586871379, guid: b04ef8ca6464c0a46b6389069a162c15, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477218898586871379, guid: b04ef8ca6464c0a46b6389069a162c15, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1626413467
+      objectReference: {fileID: 0}
     - target: {fileID: 7477218898586871388, guid: b04ef8ca6464c0a46b6389069a162c15, type: 3}
       propertyPath: m_Name
-      value: WebProjectile
+      value: WebProjectile Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b04ef8ca6464c0a46b6389069a162c15, type: 3}

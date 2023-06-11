@@ -42,7 +42,7 @@ public class PlayerCharacter : Character
         //targetData.targetGameObject
         if (basicAttack.TryActivate(targetData))
         {
-            _stats.shots++;
+            if (_stats) _stats.shots++;
         }
     }
 

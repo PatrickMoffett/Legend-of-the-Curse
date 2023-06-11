@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerCharacterMovement : CharacterMovement
 {
     [SerializeField] private PlayerStatistics playerStatistics;
+    [SerializeField] private ParticleSystem particleSystem;
     public override void Move(Vector2 direction)
     {
         //store original position
@@ -16,7 +17,23 @@ public class PlayerCharacterMovement : CharacterMovement
         Vector3 newPosition = transform.position;
         
         //add distance to player statistics
-        playerStatistics.totalDistance += (newPosition - position).magnitude;
+        float distance = (newPosition - position).magnitude;
+        playerStatistics.totalDistance += distance;
         playerStatistics.steps = Mathf.RoundToInt(playerStatistics.totalDistance);
+
+        if (distance > 0)
+        {
+            if (particleSystem.isPaused)
+            {
+                particleSystem.Play();
+            }
+        }
+        else
+        {
+            if (particleSystem.isPlaying)
+            {
+                particleSystem.Stop();
+            }
+        }
     }
 }

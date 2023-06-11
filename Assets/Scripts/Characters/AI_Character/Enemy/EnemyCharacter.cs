@@ -11,6 +11,7 @@ using Random = UnityEngine.Random;
 public class EnemyCharacter : Character
 {
 
+    [SerializeField] private PlayerStatistics _stats;            
     [SerializeField] private float aggroRange = 8f;
     [SerializeField] private float distanceToPerformAttack;
     [SerializeField] private Ability basicAttack;
@@ -27,7 +28,7 @@ public class EnemyCharacter : Character
     private static readonly int Speed = Animator.StringToHash("Speed");
 
     // Start is called before the first frame update
-    private void Start()
+    protected virtual void Start()
     {
         base.Start();
         
@@ -58,8 +59,13 @@ public class EnemyCharacter : Character
 
     private void HealthChanged(ModifiableAttributeValue health, float prevValue)
     {
+
+        // if (_stats) _stats.hits++; // FIXME: this gets called many times per arrow...
+        
         if (health.CurrentValue <= 0)
         {
+            if (_stats) _stats.kills++;
+
             OnEnemyDied?.Invoke(gameObject);
             Destroy(gameObject);
 
@@ -72,7 +78,7 @@ public class EnemyCharacter : Character
     }
 
     // Update is called once per frame
-    private void Update()
+    protected virtual void Update()
     {
         if (!_player)
         {
@@ -155,7 +161,7 @@ public class EnemyCharacter : Character
         CharacterMovement.Move(playerDirection);
     }
 
-    private void PerformBasicAttack(Vector3 direction)
+    protected void PerformBasicAttack(Vector3 direction)
     {
         //face the player
         direction.Normalize();

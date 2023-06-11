@@ -8,7 +8,7 @@ namespace Services
     {
         public readonly string UI_PREFAB = "UIMainMenu";
 
-        private AudioClip _mainMenuMusic = Resources.Load<AudioClip>("MainMenuMusicReducedVolume");
+        private AudioClip _mainMenuMusic = Resources.Load<AudioClip>("MainMenu-LegendOfCurseV2");
 
         //public readonly int SCENE_NAME = (int)SceneIndexes.INITIAL_SCENE;
         private UIWidget _uiWidget;

@@ -26,10 +26,10 @@ MonoBehaviour:
   periodicRate: 0
   attributeModifiers:
   - attribute: 0
-    operation: 0
+    operation: 1
     attributeModifierValue:
       valueType: 0
-      constantFloat: 1
+      constantFloat: 3
       attributeSet: 0
       sourceAttributeType: 0
       preCoefficientAddition: 0

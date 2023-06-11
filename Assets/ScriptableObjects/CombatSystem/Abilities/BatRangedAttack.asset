@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2d4a3589a741b68006b53c55fc312a, type: 3}
-  m_Name: EnemyRangedAttack
+  m_Name: BatRangedAttack
   m_EditorClassIdentifier: 
   passiveAbility: 0
   activationCost: {fileID: 0}
   cooldown: {fileID: 11400000, guid: 8605cc5433aaaed4abc93d6cc2619c0f, type: 2}
-  projectilePrefab: {fileID: 7477218898586871388, guid: c7a8501594640e342ba699e19288ad74, type: 3}
+  projectilePrefab: {fileID: 4947755143870489845, guid: 47c6d28ec6d2e3e4d9d4cfc6fd231600, type: 3}
   projectileLifetime: 5
   projectileVelocity: 3
   effectsToApplyOnHit:

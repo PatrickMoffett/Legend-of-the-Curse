@@ -20,6 +20,14 @@ PrefabInstance:
       value: Frog
       objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826757, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
+      propertyPath: dropTable
+      value: 
+      objectReference: {fileID: 11400000, guid: 2fd1cbcb7320b0a43aee2cc2dcb5a235, type: 2}
+    - target: {fileID: 5421869499343826757, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
+      propertyPath: dropChance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421869499343826757, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: basicAttack
       value: 
       objectReference: {fileID: 11400000, guid: 5262b1b5abecace408a8a6c44c4a5eb7, type: 2}
@@ -42,6 +50,10 @@ PrefabInstance:
     - target: {fileID: 5421869499343826758, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421869499343826758, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826759, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_RootOrder
@@ -86,6 +98,14 @@ PrefabInstance:
     - target: {fileID: 5421869499343826759, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348248489396451972, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
+      propertyPath: maxHealth.baseValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348248489396451972, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
+      propertyPath: currentHealth.baseValue
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce81a63362b80f243a5e27de755b246e, type: 3}

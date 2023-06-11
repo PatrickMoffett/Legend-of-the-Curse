@@ -21,3 +21,4 @@ MonoBehaviour:
     minValue: 0.9017199
     maxValue: 1.0982801
   spatialBlend: 1
+  minimumReplayTime: 0.1

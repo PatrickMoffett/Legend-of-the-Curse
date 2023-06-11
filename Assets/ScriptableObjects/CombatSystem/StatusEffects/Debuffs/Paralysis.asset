@@ -15,7 +15,7 @@ MonoBehaviour:
   durationType: 1
   duration:
     valueType: 0
-    constantFloat: 1
+    constantFloat: 2
     attributeSet: 0
     sourceAttributeType: 0
     preCoefficientAddition: 0
@@ -26,10 +26,10 @@ MonoBehaviour:
   periodicRate: 0
   attributeModifiers:
   - attribute: 12
-    operation: 4
+    operation: 2
     attributeModifierValue:
       valueType: 0
-      constantFloat: 0
+      constantFloat: 0.5
       attributeSet: 0
       sourceAttributeType: 0
       preCoefficientAddition: 0

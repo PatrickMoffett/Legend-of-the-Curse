@@ -39,7 +39,7 @@ public class UIBarText : MonoBehaviour
 
     private void OnValueChanged(ModifiableAttributeValue arg1, float arg2)
     {
-        _text.text = _currentAttribute.CurrentValue + "/" + _maxAttribute.CurrentValue;
+        _text.text = Mathf.FloorToInt(_currentAttribute.CurrentValue) + "/" + Mathf.FloorToInt(_maxAttribute.CurrentValue);
     }
 
     private void OnEnable()

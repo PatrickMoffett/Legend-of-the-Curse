@@ -23,7 +23,7 @@ public class PlayerCharacterMovement : CharacterMovement
 
         if (distance > 0)
         {
-            if (particleSystem.isPaused)
+            if (!particleSystem.isPlaying)
             {
                 particleSystem.Play();
             }

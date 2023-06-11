@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -8400235632720178926}
   - component: {fileID: -8989758476047415499}
   - component: {fileID: 8045997809279704441}
+  - component: {fileID: 7652027646693428203}
   m_Layer: 0
   m_Name: FrogSpawner
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 83fd57c8ed3a2324e9c24c37b132f6fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyToSpawn: {fileID: 6149530785933253896, guid: 0f93c07402336ef428f15ab21ab3f48d, type: 3}
-  spawnTime: 2
-  maxToSpawn: 10
+  spawnTime: 3
+  maxToSpawn: 7
   rangeToSpawn: 3
 --- !u!114 &-8400235632720178926
 MonoBehaviour:
@@ -117,9 +118,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth:
-    baseValue: 50
+    baseValue: 5
   maxHealth:
-    baseValue: 50
+    baseValue: 5
   healthRegen:
     baseValue: 1
   currentMana:
@@ -179,3 +180,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.91, y: 0.36}
   m_EdgeRadius: 0
+--- !u!114 &7652027646693428203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998083003677306890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b9aaee0fb56244cbd8784b21cabbc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 1b6e03c6056ae344dbf8cac0ec111624, type: 2}
+  duration: 0.2

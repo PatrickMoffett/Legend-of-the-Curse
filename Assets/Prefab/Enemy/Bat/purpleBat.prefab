@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 92323420, guid: e6954d0272229da4d8c0446a83f92c66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   projectileSize: 1
   dropChance: 0
   dropTable: {fileID: 0}
-  isTurret: 0
+  deathEffect: {fileID: 1732607783234562789, guid: 3fb686df5e318514f9a291dc2515cc71, type: 3}
 --- !u!114 &6348248489396451972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936a72a35d85ddb44b5febed773ed238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dust: {fileID: 0}
 --- !u!95 &4509596724667498618
 Animator:
   serializedVersion: 5

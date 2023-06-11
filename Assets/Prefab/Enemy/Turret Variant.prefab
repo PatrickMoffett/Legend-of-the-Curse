@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5421869499343826758, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5421869499343826759, guid: ce81a63362b80f243a5e27de755b246e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -143,4 +147,5 @@ MonoBehaviour:
   projectileSize: 1
   dropChance: 0
   dropTable: {fileID: 0}
+  deathEffect: {fileID: 0}
   delayTime: 0

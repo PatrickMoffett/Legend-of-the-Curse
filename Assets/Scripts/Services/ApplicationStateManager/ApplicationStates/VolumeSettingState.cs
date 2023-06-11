@@ -33,6 +33,7 @@ namespace Services
         protected override void SetupState(BaseState prevState, Dictionary<string, object> options)
         {
             _uiWidget = ServiceLocator.Instance.Get<UIManager>().LoadUI(UI_PREFAB);
+            _uiWidget.UIObject.GetComponent<UIVolumeSettings>().Setup();
         }
 
         protected override void SetupStateInBackground(BaseState prevState, Dictionary<string, object> options)

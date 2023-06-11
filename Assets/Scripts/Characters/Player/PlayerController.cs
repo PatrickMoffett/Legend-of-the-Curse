@@ -1,3 +1,5 @@
+using Services;
+using StateManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,6 +34,19 @@ public class PlayerController : MonoBehaviour
 #endif
         _playerControls.Player.SpecialAttack.performed += SpecialAttackPressed;
         _playerControls.Player.Interact.performed += Interact;
+        _playerControls.Player.PauseMenu.performed += Pause;
+    }
+
+    private void Pause(InputAction.CallbackContext obj)
+    {
+        BaseState currentState = ServiceLocator.Instance.Get<ApplicationStateManager>().GetCurrentState();
+        if (currentState.GetType() == typeof(PauseMenuState)
+            || currentState.GetType() == typeof(VolumeSettingsState)
+            || currentState.GetType() == typeof(SettingsState))
+        {
+            return;
+        }
+        ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<PauseMenuState>();
     }
 
     private void SpecialAttackPressed(InputAction.CallbackContext obj)

@@ -32,6 +32,10 @@ public class EnemySpawner : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else
+        {
+            GetComponent<SpriteFlash>().Flash();
+        }
     }
     // Update is called once per frame
     void Update()

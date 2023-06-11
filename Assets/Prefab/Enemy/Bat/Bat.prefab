@@ -162,9 +162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth:
-    baseValue: 30
+    baseValue: 3
   maxHealth:
-    baseValue: 10
+    baseValue: 3
   healthRegen:
     baseValue: 1
   currentMana:

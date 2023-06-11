@@ -27,6 +27,7 @@ MonoBehaviour:
   - {fileID: 2995055011651839578, guid: 2d1749b5e134dd34eb728a698218309f, type: 3}
   treasureRooms:
   - {fileID: 2995055011651839578, guid: b056e1d7b9a2b2d41bba0043d6657025, type: 3}
+  - {fileID: 2995055011651839578, guid: 13ed7f191b4cb274487ca81396a3e45b, type: 3}
   exitRoom:
   - {fileID: 2995055011651839578, guid: 573c1a102839fc14d9807501f0af7586, type: 3}
   backgroundColor: {r: 0.427451, g: 0.23137257, b: 0.13725491, a: 0}
@@ -34,5 +35,5 @@ MonoBehaviour:
   connectionWallTile: {fileID: 11400000, guid: e88d0dea81cda35449bc3a549cad77cb, type: 2}
   connectionPathWidth: 3
   music: {fileID: 8300000, guid: 807374c63efcd5649b8c1b3a567431ee, type: 3}
-  useTestSeed: 1
+  useTestSeed: 0
   testSeed: 116259

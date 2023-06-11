@@ -20,6 +20,8 @@ public class EnemyCharacter : Character
     [Range(0,1f)]
     [SerializeField] private float dropChance;
     [SerializeField] private DropTable dropTable;
+
+    [SerializeField] private GameObject deathEffect;
     
     public event Action<GameObject> OnEnemyDied;
     
@@ -69,6 +71,10 @@ public class EnemyCharacter : Character
             OnEnemyDied?.Invoke(gameObject);
             Destroy(gameObject);
 
+            if (deathEffect)
+            {
+                Instantiate(deathEffect,transform.position,Quaternion.identity);
+            }
             if (Random.Range(0, 1f) <= dropChance)
             {
                 ItemData item = dropTable.GetDrop();

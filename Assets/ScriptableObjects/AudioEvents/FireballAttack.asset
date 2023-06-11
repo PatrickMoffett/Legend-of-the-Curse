@@ -20,5 +20,5 @@ MonoBehaviour:
   pitch:
     minValue: 0.9999998
     maxValue: 0.9999998
-  spatialBlend: 0
+  spatialBlend: 1
   minimumReplayTime: 0.1

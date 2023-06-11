@@ -30,7 +30,6 @@ public class PlayerCharacter : Character
         {
             ServiceLocator.Instance.Get<ApplicationStateManager>().PushState<GameOverState>(true);
             OnPlayerDied?.Invoke();
-            if (_stats) _stats.deaths++;
         }
     }
 

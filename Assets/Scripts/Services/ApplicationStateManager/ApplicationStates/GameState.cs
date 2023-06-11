@@ -10,6 +10,8 @@ namespace Services
         public readonly string UI_PREFAB = UIPrefabs.UIGame;
         public readonly string STATS_UI_PREFAB = UIPrefabs.UIStats;
 
+        private readonly PlayerStatistics _playerStatistics = Resources.Load<PlayerStatistics>("PlayerStats");
+
         //public readonly int SCENE_INDEX = (int)SceneIndexes.FIRST_SCENE_NAME;
         //private AudioClip _mainMenuMusic = Resources.Load<AudioClip>("MainMenuMusic");
         private UIWidget _uiWidget;
@@ -54,6 +56,7 @@ namespace Services
         protected override void SetupState(BaseState prevState, Dictionary<string, object> options)
         {
             ServiceLocator.Instance.Get<LevelSceneManager>().LevelLoaded += FinishStateSetup;
+            _playerStatistics.Reset();
 #if UNITY_EDITOR
             //don't load the next level if we're testing out a level in the editor
             // and we didn't launch the gamestate from the initial/menu scene (which should be index 0)
@@ -66,6 +69,7 @@ namespace Services
             ServiceLocator.Instance.Get<LevelSceneManager>().LoadNextLevel();
 #endif
             ServiceLocator.Instance.Get<PlayerManager>().SpawnPlayer(Vector3.zero);
+            
         }
 
         private void FinishStateSetup()

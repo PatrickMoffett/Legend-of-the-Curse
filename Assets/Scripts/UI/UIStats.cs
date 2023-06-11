@@ -11,7 +11,6 @@ public class UIStats : MonoBehaviour
     public TextMeshProUGUI hitsText;
     public TextMeshProUGUI stepsText;
     public TextMeshProUGUI killsText;
-    public TextMeshProUGUI deathsText;
 
     public TextMeshProUGUI attackPowerText;
     public TextMeshProUGUI attackSpeedText;
@@ -80,7 +79,6 @@ public class UIStats : MonoBehaviour
         if (!hitsText) return;
         if (!stepsText) return;
         if (!killsText) return;
-        if (!deathsText) return;
 
         // only update text if value has changed (for better perf)
 
@@ -97,11 +95,6 @@ public class UIStats : MonoBehaviour
         if (myStats.steps != prevSteps) {
             stepsText.text = "Distance: " + myStats.steps;
             prevSteps = myStats.steps;
-        }
-
-        if (myStats.deaths != prevDeaths) {
-            deathsText.text = "Deaths: " + myStats.deaths;
-            prevDeaths = myStats.deaths;
         }
 
         if (myStats.kills != prevKills) {
